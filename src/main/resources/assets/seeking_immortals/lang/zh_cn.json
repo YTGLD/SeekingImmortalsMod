@@ -197,6 +197,9 @@
   "advancements.tooltip.nightmare_base_insight_drug.text": "获得这个物品",
   "advancements.tooltip.nightmare_base_insight_drug.hand": "长生者",
 
+  "advancements.tooltip.nightmare_base.hand": "噩梦基座",
+  "advancements.tooltip.nightmare_base.text": "最好是佩戴它",
+
 
   "item.seeking_immortals.nightmare_base_insight_insane":"§4癫狂之石",
   "item.nightmare_base_insight_insane.tool.string": "当你斩杀生物时",
