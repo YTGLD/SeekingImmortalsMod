@@ -1,6 +1,8 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -16,12 +18,10 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.List;
 
 public class nightmare_base_insight extends nightmare implements SuperNightmare {
-     @Override
- public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player){
-            if (player.isCreative()){
-                return true;
-            }
+    @Override
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() instanceof Player player) {
+            return player.isCreative();
         }
         return false;
     }
@@ -40,11 +40,12 @@ public class nightmare_base_insight extends nightmare implements SuperNightmare 
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));
 
     }
+
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = com.google.common.collect.LinkedHashMultimap.create();
         CuriosApi
-                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_insight"+"add_slot"
+                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_insight" + "add_slot"
 
                 ), 3, AttributeModifier.Operation.ADD_VALUE);
         return linkedHashMultimap;

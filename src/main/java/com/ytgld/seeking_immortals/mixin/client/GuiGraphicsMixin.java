@@ -4,7 +4,7 @@ import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ytgld.seeking_immortals.MGuiGraphics;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.INightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import net.minecraft.client.Minecraft;
@@ -19,7 +19,6 @@ import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import org.joml.Matrix4f;
@@ -32,7 +31,6 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Mixin(GuiGraphics.class)

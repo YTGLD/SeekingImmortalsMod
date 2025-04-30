@@ -2,16 +2,28 @@ package com.ytgld.seeking_immortals.event.old;
 
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.init.items.Items;
-import com.ytgld.seeking_immortals.init.moonstoneitem.AttReg;
+import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.INightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_eye;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_heart;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_red;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.nightmare_base_redemption_deception;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.nightmare_base_reversal;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.nightmare_base_reversal_orb;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.start.nightmare_base_start_pod;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.end_bone;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.nightmare_base_stone_brain;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.nightmare_base_stone_virus;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
@@ -57,11 +69,6 @@ public class NewEvent {
         nightmare_base_insight_insane.LivingDeathEvents(event);
 
     }
-    public void addV(ItemStack stack,Item Dhis,ItemTooltipEvent event,String string){
-        if (stack.is(Dhis)) {
-            event.getToolTip().add(1,Component.translatable(string).withStyle(ChatFormatting.RED));
-        }
-    }
 
     @SubscribeEvent
     public void LivingHurtEvent(LivingIncomingDamageEvent event){
@@ -76,6 +83,9 @@ public class NewEvent {
         nightmare_base_insight_insane.damage(event);
         nightmare_base_start.damage(event);
         nightmare_base_start_pod.damage(event);
+        end_bone.hurts(event);
+
+
         if (event.getAmount()>Integer.MAX_VALUE){
             event.setAmount(Integer.MAX_VALUE);
         }

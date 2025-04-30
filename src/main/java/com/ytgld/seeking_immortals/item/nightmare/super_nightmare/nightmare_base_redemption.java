@@ -2,8 +2,10 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
-import com.ytgld.seeking_immortals.init.items.Items;
-import com.ytgld.seeking_immortals.init.moonstoneitem.DataReg;
+import com.ytgld.seeking_immortals.init.DataReg;
+import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -20,12 +22,10 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.List;
 
 public class nightmare_base_redemption extends nightmare implements SuperNightmare {
-       @Override
- public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player){
-            if (player.isCreative()){
-                return true;
-            }
+    @Override
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() instanceof Player player) {
+            return player.isCreative();
         }
         return false;
     }
@@ -34,12 +34,12 @@ public class nightmare_base_redemption extends nightmare implements SuperNightma
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         super.curioTick(slotContext, stack);
-        if (slotContext.entity() instanceof Player player){
-            if (player.level() instanceof ServerLevel serverLevel){
-                if (serverLevel.getRaidAt(player.blockPosition())!=null && serverLevel.getRaidAt(player.blockPosition()).isLoss()){
-                    if (stack.get(DataReg.tag)!=null&&!stack.get(DataReg.tag).getBoolean(AdvancementEvt.nightmare_base_redemption_down_and_out)){
+        if (slotContext.entity() instanceof Player player) {
+            if (player.level() instanceof ServerLevel serverLevel) {
+                if (serverLevel.getRaidAt(player.blockPosition()) != null && serverLevel.getRaidAt(player.blockPosition()).isLoss()) {
+                    if (stack.get(DataReg.tag) != null && !stack.get(DataReg.tag).getBoolean(AdvancementEvt.nightmare_base_redemption_down_and_out)) {
                         player.addItem(new ItemStack(Items.nightmare_base_redemption_down_and_out.get()));
-                        stack.get(DataReg.tag).putBoolean(AdvancementEvt.nightmare_base_redemption_down_and_out,true);
+                        stack.get(DataReg.tag).putBoolean(AdvancementEvt.nightmare_base_redemption_down_and_out, true);
                     }
                 }
             }
@@ -60,12 +60,13 @@ public class nightmare_base_redemption extends nightmare implements SuperNightma
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));
 
     }
+
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = com.google.common.collect.LinkedHashMultimap.create();
         CuriosApi
-                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_redemption"+"add_slot"
-), 3, AttributeModifier.Operation.ADD_VALUE);
+                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_redemption" + "add_slot"
+                ), 3, AttributeModifier.Operation.ADD_VALUE);
         return linkedHashMultimap;
     }
 }

@@ -168,6 +168,14 @@
 
 
 
+ "item.seeking_immortals.end_bone":"§4End Bone",
+ "item.end_bone.tool.string": "Reduces speed by 50% and damage received by 80% when at full health",
+ "item.end_bone.tool.string.1": "When at full health, damage received is reflected back to the attacker at 700% of the original amount",
+
+ "advancements.tooltip.end_bone.text": "Obtain this item",
+ "advancements.tooltip.end_bone.hand": "Unbreakable!",
+
+ "seeking_immortals.jei.item.seeking_immortals.end_bone": "Obtained by killing the Guardian, one player can only get one",
 
 
 
@@ -175,7 +183,9 @@
 
 
 
-  "item.seeking_immortals.nightmare_base_fool":"§4Fool's Danger",
+
+
+ "item.seeking_immortals.nightmare_base_fool":"§4Fool's Danger",
   "item.nightmare_base_fool.tool.string": "Starting from 2 pieces, each additional accessory will reduce health by 1%",
   "item.nightmare_base_fool.tool.string.1": "Starting from 5 pieces, each additional accessory will reduce damage by 2%",
   "item.nightmare_base_fool.tool.string.2": "Damage and health penalty of 50% or less.",
@@ -261,11 +271,16 @@
 
 
 
+ "item.seeking_immortals.tricky_puppets": "§4Tricky Puppet",
+ "item.tricky_puppets.tool.string": "Allows you to mark container blocks within a radius of 20 blocks",
+ "item.tricky_puppets.tool.string.1": "Marked blocks will emit light as you get closer to them",
+ "item.tricky_puppets.tool.string.2": "You can see through blocks to them",
+ "advancements.tooltip.tricky_puppets.text": "Obtain this item",
+ "advancements.tooltip.tricky_puppets.hand": "Creak",
+ "seeking_immortals.jei.item.seeking_immortals.tricky_puppets": "Found in Woodland Mansions, probability 75%, one player can only obtain one",
 
 
 
-  "item.seeking_immortals.coffin_item":"亚特格拉德的宝贝小匣子",
-  "item.seeking_immortals.coffin.tool.string":"亚特格拉德的宝贝小匣子",
   "item.seeking_immortals.nightmare_axe":"nightmare axe",
   "item.nightmare_axe.tool.string": "Kill creatures to summon the Chaos Battle Axe",
   "item.nightmare_axe.tool.string.1": "For each nearby Chaos Waraxe:",

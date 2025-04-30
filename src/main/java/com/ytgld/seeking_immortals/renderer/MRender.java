@@ -65,7 +65,7 @@ public class MRender extends RenderType {
             CompositeState.builder()
                     .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
                     .setWriteMaskState(COLOR_DEPTH_WRITE)
-                    .setDepthTestState(RenderStateShard.LEQUAL_DEPTH_TEST)
+                    .setDepthTestState(RenderStateShard.EQUAL_DEPTH_TEST)
                     .setCullState(RenderStateShard.NO_CULL)
                     .setTransparencyState(TransparencyStateShard)
                     .createCompositeState(false)
@@ -151,7 +151,8 @@ public class MRender extends RenderType {
                     .setShaderState(RENDER_STATE_SHARD_p_blood)
                     .setWriteMaskState(COLOR_DEPTH_WRITE)
                     .setTransparencyState(LIGHTNING_TRANSPARENCY)
-                    .setOutputState(setOutputState)
+                    .setCullState(NO_CULL)
+                    .setDepthTestState(RenderStateShard.NO_DEPTH_TEST)
                     .setTextureState(MultiTextureStateShard.builder().
                             add(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"textures/blue.png"),
                                     false,

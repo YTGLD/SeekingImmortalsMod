@@ -4,8 +4,9 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
-import com.ytgld.seeking_immortals.init.items.Items;
-import com.ytgld.seeking_immortals.init.moonstoneitem.DataReg;
+import com.ytgld.seeking_immortals.init.DataReg;
+import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -28,9 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-public class nightmare_base  extends nightmare {
+public class nightmare_base extends nightmare {
 
     public int tick = 0;
+
     @Override
     public void onUnequip(SlotContext slotContext, ItemStack newStack, ItemStack stack) {
         slotContext.entity().getAttributes().removeAttributeModifiers(gets(slotContext));
@@ -41,18 +43,18 @@ public class nightmare_base  extends nightmare {
         slotContext.entity().getAttributes().addTransientAttributeModifiers(gets(slotContext));
         tick = 100;
     }
+
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
-       if (stack.get(DataReg.tag)==null){
+        if (stack.get(DataReg.tag) == null) {
             slotContext.entity().level().playSound(null, slotContext.entity().getX(), slotContext.entity().getY(), slotContext.entity().getZ(), SoundEvents.ELDER_GUARDIAN_CURSE, SoundSource.NEUTRAL, 1, 1);
-            stack.set(DataReg.tag,new CompoundTag());
+            stack.set(DataReg.tag, new CompoundTag());
         }
-
 
 
         if (!stack.get(DataReg.tag).getBoolean("canDo")) {
             Random random = new Random();
-            ArrayList<Item> items= new ArrayList<>(List.of(
+            ArrayList<Item> items = new ArrayList<>(List.of(
                     Items.nightmare_base_stone.get(),
                     Items.nightmare_base_reversal.get(),
                     Items.nightmare_base_black_eye.get(),
@@ -70,20 +72,20 @@ public class nightmare_base  extends nightmare {
                     addLoot(slotContext.entity(), selectedItem, stack);
                 }
             }
-            stack.get(DataReg.tag).putBoolean("canDo",true);
+            stack.get(DataReg.tag).putBoolean("canDo", true);
         }
     }
 
     public Multimap<Holder<Attribute>, AttributeModifier> gets(SlotContext slotContext) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = HashMultimap.create();
-        float s= -0.3f;
-        if (Handler.hascurio(slotContext.entity(),Items.nightmare_base_reversal_mysterious.get())){
+        float s = -0.3f;
+        if (Handler.hascurio(slotContext.entity(), Items.nightmare_base_reversal_mysterious.get())) {
             s = 0;
         }
-        if (Handler.hascurio(slotContext.entity(),Items.nightmare_base_redemption_down_and_out.get())){
+        if (Handler.hascurio(slotContext.entity(), Items.nightmare_base_redemption_down_and_out.get())) {
             s += 0.35f;
         }
-        if (Handler.hascurio(slotContext.entity(),Items.nightmare_base_redemption.get())){
+        if (Handler.hascurio(slotContext.entity(), Items.nightmare_base_redemption.get())) {
             s -= 0.15f;
         }
         linkedHashMultimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), s, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
@@ -94,33 +96,33 @@ public class nightmare_base  extends nightmare {
 
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player){
-            if (player.isCreative()){
-                return true;
-            }
+        if (slotContext.entity() instanceof Player player) {
+            return player.isCreative();
         }
         return false;
     }
 
-    private void addLoot(Entity entity ,
+    private void addLoot(Entity entity,
                          Item itemList,
-                         ItemStack stack){
-        if (entity instanceof Player player){
-            if (stack.get(DataReg.tag)!=null) {
+                         ItemStack stack) {
+        if (entity instanceof Player player) {
+            if (stack.get(DataReg.tag) != null) {
                 player.addItem(itemList.getDefaultInstance());
             }
         }
     }
+
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = com.google.common.collect.LinkedHashMultimap.create();
         CuriosApi
                 .addSlotModifier(linkedHashMultimap, "nightmare",
-                        ResourceLocation.parse("nightmare_base"+"add_slot"
-                ), 3, AttributeModifier.Operation.ADD_VALUE);
+                        ResourceLocation.parse("nightmare_base" + "add_slot"
+                        ), 3, AttributeModifier.Operation.ADD_VALUE);
 
         return linkedHashMultimap;
     }
+
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, pTooltipComponents, tooltipFlag);

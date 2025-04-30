@@ -3,7 +3,9 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Handler;
-import com.ytgld.seeking_immortals.init.items.Items;
+import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -25,12 +27,10 @@ import java.util.List;
 import java.util.Map;
 
 public class nightmare_base_fool extends nightmare implements SuperNightmare {
-       @Override
- public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player){
-            if (player.isCreative()){
-                return true;
-            }
+    @Override
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() instanceof Player player) {
+            return player.isCreative();
         }
         return false;
     }
@@ -70,7 +70,7 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
                 dam++;
             }
             int j = 5;
-            if (Handler.hascurio(living, Items.nightmare_base_fool_soul.get())){
+            if (Handler.hascurio(living, Items.nightmare_base_fool_soul.get())) {
                 j += 9;
             }
             dam -= j;
@@ -80,9 +80,9 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
             dam /= 100f;
             dam *= 2;
 
-            dam=-dam;
+            dam = -dam;
             if (dam <= -0.5f) {
-                dam=-0.5f;
+                dam = -0.5f;
             }
             linkedHashMultimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), dam, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         }
@@ -106,7 +106,7 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
                 health++;
             }
             int j = 2;
-            if (Handler.hascurio(living, Items.nightmare_base_fool_soul.get())){
+            if (Handler.hascurio(living, Items.nightmare_base_fool_soul.get())) {
                 j += 7;
             }
             health -= j;
@@ -115,9 +115,9 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
             }
             health /= 100f;
             health *= 1;
-            health=-health;
+            health = -health;
             if (health <= -0.5f) {
-                health=-0.5f;
+                health = -0.5f;
             }
             linkedHashMultimap.put(Attributes.MAX_HEALTH, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), health, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         }
@@ -144,12 +144,13 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));
 
     }
+
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = com.google.common.collect.LinkedHashMultimap.create();
         CuriosApi
-                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_fool"+"add_slot"
-), 3, AttributeModifier.Operation.ADD_VALUE);
+                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_fool" + "add_slot"
+                ), 3, AttributeModifier.Operation.ADD_VALUE);
         return linkedHashMultimap;
     }
 }

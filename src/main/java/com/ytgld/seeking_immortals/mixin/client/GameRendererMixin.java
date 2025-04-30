@@ -1,7 +1,7 @@
 package com.ytgld.seeking_immortals.mixin.client;
 
 import com.ytgld.seeking_immortals.Handler;
-import com.ytgld.seeking_immortals.init.items.Items;
+import com.ytgld.seeking_immortals.init.Items;
 import net.minecraft.client.Camera;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;

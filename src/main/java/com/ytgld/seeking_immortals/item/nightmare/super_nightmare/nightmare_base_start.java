@@ -3,7 +3,9 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Handler;
-import com.ytgld.seeking_immortals.init.items.Items;
+import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;
@@ -21,26 +23,25 @@ import top.theillusivec4.curios.api.SlotContext;
 import java.util.List;
 
 public class nightmare_base_start extends nightmare implements SuperNightmare {
-       @Override
- public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player){
-            if (player.isCreative()){
-                return true;
-            }
+    @Override
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
+        if (slotContext.entity() instanceof Player player) {
+            return player.isCreative();
         }
         return false;
     }
 
-    public static void damage(LivingIncomingDamageEvent event){
+    public static void damage(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.nightmare_base_start.get())) {
-                player.setHealth(player.getHealth()-1);
+                player.setHealth(player.getHealth() - 1);
             }
         }
     }
+
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        if (Handler.hascurio(slotContext.entity(),this))
+        if (Handler.hascurio(slotContext.entity(), this))
             slotContext.entity().getAttributes().addTransientAttributeModifiers(gets(slotContext));
     }
 
@@ -71,12 +72,13 @@ public class nightmare_base_start extends nightmare implements SuperNightmare {
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));
 
     }
+
     @Override
     public Multimap<Holder<Attribute>, AttributeModifier> getAttributeModifiers(SlotContext slotContext, ResourceLocation id, ItemStack stack) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = com.google.common.collect.LinkedHashMultimap.create();
         CuriosApi
-                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_start"+"add_slot"
-), 3, AttributeModifier.Operation.ADD_VALUE);
+                .addSlotModifier(linkedHashMultimap, "nightmare", ResourceLocation.parse("nightmare_base_start" + "add_slot"
+                ), 3, AttributeModifier.Operation.ADD_VALUE);
         return linkedHashMultimap;
     }
 }

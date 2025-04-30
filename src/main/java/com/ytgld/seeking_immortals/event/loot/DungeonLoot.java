@@ -4,7 +4,7 @@ import com.google.common.base.Suppliers;
 import com.mojang.serialization.MapCodec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
-import com.ytgld.seeking_immortals.init.moonstoneitem.LootReg;
+import com.ytgld.seeking_immortals.init.LootReg;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
@@ -51,7 +51,9 @@ public class DungeonLoot extends LootModifier {
             if (idSting.contains("dungeon")) {
                 AdvancementEvt.nightmare_base_start_pod(generatedLoot, entity);
             }
-
+            if (idSting.contains("mansion")) {
+                AdvancementEvt.tricky_puppets(generatedLoot, entity);
+            }
         }
         return generatedLoot;
     }

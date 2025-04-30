@@ -126,6 +126,13 @@
 
 
 
+  "item.seeking_immortals.nightmare_base_black_eye_heart": "§4死心之胚",
+  "item.nightmare_base_black_eye_heart.tool.string": "附近的生物受到的伤害提高25%",
+  "item.nightmare_base_black_eye_heart.tool.string.1": "他们恢复的生命值会到你身上",
+  "item.nightmare_base_black_eye_heart.tool.string.2": "且他们不再会受到任何治疗",
+
+
+
 
 
 
@@ -209,6 +216,34 @@
   "advancements.tooltip.nightmare_base_insight_insane.hand": "战神之石",
 
 
+
+  "item.seeking_immortals.tricky_puppets":"§4诡响木偶",
+  "item.tricky_puppets.tool.string": "允许你标记半径20格内的容器方块",
+  "item.tricky_puppets.tool.string.1": "被标记的方块会随着你与其距离的减少而发出光照",
+  "item.tricky_puppets.tool.string.2": "你可以穿透方块看到它们",
+
+  "advancements.tooltip.tricky_puppets.text": "获得这个物品",
+  "advancements.tooltip.tricky_puppets.hand": "咯咯吱吱",
+
+  "seeking_immortals.jei.item.seeking_immortals.tricky_puppets": "发现于林地府邸，概率75%，一个玩家只能获得一个",
+
+
+
+  "item.seeking_immortals.end_bone":"§4末世脊骨",
+  "item.end_bone.tool.string": "满血时速度减少50%，受到的伤害减少80%",
+  "item.end_bone.tool.string.1": "满血时受到的伤害会以700%的比例反弹给攻击者",
+
+  "advancements.tooltip.end_bone.text": "获得这个物品",
+  "advancements.tooltip.end_bone.hand": "坚不可摧！",
+
+  "seeking_immortals.jei.item.seeking_immortals.end_bone": "杀死坚守者获取，一个玩家只能获得一个",
+
+
+
+
+
+
+
   "item.seeking_immortals.nightmare_base_insight_collapse":"§4瓦解魔镜",
   "item.nightmare_base_insight_collapse.tool.string": "通用饰品栏的数量加倍",
   "advancements.tooltip.nightmare_base_insight_collapse.text": "获得这个物品",
@@ -260,7 +295,36 @@
 
   "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_power": "杀死坚守者",
   "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_egg": "杀死嗅探兽",
-  "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_pod": "开地牢的箱子，概率25%，只能获取一个"
+  "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_pod": "开地牢的箱子，概率25%，只能获取一个",
+  "itemGroup.seeking_immortals": "求仙者：噩梦之章",
+  "curios.identifier.nightmare": "§4噩梦之槽",
+  "curios.identifier.medicine": "medicine",
+  "curios.identifier.necora": "DNA",
+  "curios.identifier.ncrdna": "ncr dna",
+  "curios.identifier.dna": "dna",
+  "curios.modifiers.ncrdna": "necora",
+  "curios.modifiers.nightmare": "§4接受噩梦洗礼时",
+  "seeking_immortals.jei.necora.giant_nightmare.all": "Requires wearing Nightmare Giant genetic fragment to be found in treasure loot",
+  "seeking_immortals.jei.nightmare": ": Requires wearing nightmare eye to be found in dungeons and mines",
+  "seeking_immortals.super_nightmare.name": "只有佩戴噩梦基座的人才可以使用这个物品",
+  "item.nightmareeye.tool.string.2": "不可取下",
+
+  "advancements.tooltip.nightmare_base_stone.text": "获得死兆方尖碑",
+  "advancements.tooltip.nightmare_base_stone.hand": "噩梦的方尖碑",
+  "advancements.tooltip.nightmare_base_black_eye_heart.text": "获得死心之胚",
+  "advancements.tooltip.nightmare_base_black_eye_heart.hand": "无休止的痛苦",
+  "advancements.tooltip.nightmare_base_black_eye_eye.text": "获得肉瘤",
+  "advancements.tooltip.nightmare_base_black_eye_eye.hand": "不详因子",
+  "advancements.tooltip.nightmare_base_black_eye_red.text": "获得这个口红",
+  "advancements.tooltip.nightmare_base_black_eye_red.hand": "真刺激啊！",
+  "advancements.tooltip.nightmare_base_stone_meet.text": "获得绝望共鸣",
+  "advancements.tooltip.nightmare_base_stone_meet.hand": "噩梦降至",
+  "advancements.tooltip.nightmare_base_stone_brain.text": "获得末世之脑",
+  "advancements.tooltip.nightmare_base_stone_brain.hand": "疯狂大脑",
+  "advancements.tooltip.nightmare_base_black_eye.text": "获得邪念之窥眸",
+  "advancements.tooltip.nightmare_base_black_eye.hand": "永远凝视",
+  "advancements.tooltip.nightmare_base_stone_virus.text": "获得Nightecora病毒",
+  "advancements.tooltip.nightmare_base_stone_virus.hand": "融合体"
 
 }
 
