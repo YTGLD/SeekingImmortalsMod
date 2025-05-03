@@ -10,10 +10,12 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNi
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_eye;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_heart;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_red;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.apple;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.nightmare_base_redemption_deception;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.nightmare_base_reversal;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_reversal;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.candle;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.nightmare_base_reversal_orb;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.start.nightmare_base_start_pod;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.end_bone;
@@ -53,6 +55,7 @@ public class NewEvent {
     public void LivingHealEvent(LivingHealEvent event) {
         nightmare_base_reversal_orb.LivingHealEvent(event);
         nightmare_base_black_eye_heart.heal(event);
+        candle.heal(event);
         if (event.getEntity() instanceof LivingEntity living){
             if (living.getAttribute(AttReg.heal)!=null){
                 float attack = (float) living.getAttribute(AttReg.heal).getValue();
@@ -84,7 +87,8 @@ public class NewEvent {
         nightmare_base_start.damage(event);
         nightmare_base_start_pod.damage(event);
         end_bone.hurts(event);
-
+        candle.hurt(event);
+        apple.damage(event);
 
         if (event.getAmount()>Integer.MAX_VALUE){
             event.setAmount(Integer.MAX_VALUE);

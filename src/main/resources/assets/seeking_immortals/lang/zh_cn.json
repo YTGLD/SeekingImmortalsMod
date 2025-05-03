@@ -25,7 +25,7 @@
     "item.nightmare_base_stone_virus.tool.string": "伤害增加100%",
   "item.nightmare_base_stone_virus.tool.string.1": "治疗增加100%",
   "item.nightmare_base_stone_virus.tool.string.2": "暴击增加100%",
-  "item.nightmare_base_stone_virus.tool.string.3": "受到任意伤害都会额外附加25%最大生命值的惩罚,不受任何加成影响",
+  "item.nightmare_base_stone_virus.tool.string.3": "受到任意伤害都会额外附加10%最大生命值的惩罚,不受任何加成影响",
 
   "item.seeking_immortals.nightmare_base_stone_brain": "§4末世之脑",
   "item.nightmare_base_stone_brain.tool.string": "满血时伤害减少100%",
@@ -33,6 +33,28 @@
   "item.nightmare_base_stone_brain.tool.string.2": "非满血状态抗性提高50%",
   "item.seeking_immortals.nightmare_virus":"噩梦之霍乱",
 
+
+
+  "item.seeking_immortals.candle": "§4邪异古烛",
+  "item.candle.tool.string": "满生命值时受到的伤害增加1000%",
+  "item.candle.tool.string.1": "但是始终保留1点生命值",
+  "item.candle.tool.string.2": "根据满生命值时受到的伤害获得无敌保护",
+  "item.candle.tool.string.3": "每10点生命值获得0.05秒（不超过5秒）",
+  "item.candle.tool.string.4": "在任何无敌保护期间",
+  "item.candle.tool.string.5": "伤害和治疗提高100%",
+  "item.candle.tool.string.6": "免除死兆方尖碑的受伤处罚",
+  "advancements.tooltip.candle.text": "修正死兆的诅咒，但代价是什么？",
+  "advancements.tooltip.candle.hand": "永恒的痛苦",
+  "seeking_immortals.jei.item.seeking_immortals.candle": "合成获取",
+
+  "item.seeking_immortals.apple": "§4倾斜异果",
+  "item.apple.tool.string": "最大生命值固定为30",
+  "item.apple.tool.string.1": "受到的伤害固定为2",
+  "item.apple.tool.string.2": "攻击伤害固定为10",
+
+  "advancements.tooltip.apple.text": "获得这个物品",
+  "advancements.tooltip.apple.hand": "倾斜的天平",
+  "seeking_immortals.jei.item.seeking_immortals.apple": "杀死血量大于自身30倍最大生命值的生物获取，一个玩家只能获得一个",
 
 
   "item.seeking_immortals.nightmare_base_black_eye": "§4邪念之窥眸",
@@ -269,6 +291,7 @@
   "item.seeking_immortals.nightmare_base_start":"§4噩梦之起始",
   "item.nightmare_base_start.tool.string": "护甲无效化",
   "item.nightmare_base_start.tool.string.1": "每次受伤都会强制减少1点生命值",
+  "item.nightmare_base_start.tool.string.2": "生命值低于10点时不会触发",
   "advancements.tooltip.nightmare_base_start.text": "获得这个物品",
   "advancements.tooltip.nightmare_base_start.hand": "”仙人“",
 

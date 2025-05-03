@@ -1,4 +1,4 @@
-package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal;
+package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -17,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
@@ -68,7 +69,9 @@ public class nightmare_base_reversal extends nightmare implements SuperNightmare
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if (!slotContext.entity().level().isClientSide) {
-            slotContext.entity().getAttributes().addTransientAttributeModifiers(geta(stack));
+            if (slotContext.entity().tickCount>=20) {
+                slotContext.entity().getAttributes().addTransientAttributeModifiers(geta(stack));
+            }
         }
         if (slotContext.entity().hasEffect(MobEffects.POISON)) {
 
@@ -126,8 +129,9 @@ public class nightmare_base_reversal extends nightmare implements SuperNightmare
             double as = -stack.get(DataReg.tag).getInt(att);
             as /= 100;
             for (Holder<Attribute> attribute : BuiltInRegistries.ATTRIBUTE.asHolderIdMap()) {
-
-                get.put(attribute, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), as, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                if (attribute != (Attributes.MAX_HEALTH)) {
+                    get.put(attribute, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), as, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
+                }
             }
         }
         return get;
@@ -144,6 +148,7 @@ public class nightmare_base_reversal extends nightmare implements SuperNightmare
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_reversal_orb").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_reversal_card").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_reversal_mysterious").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.seeking_immortals.candle").withStyle(ChatFormatting.DARK_RED));
 
         pTooltipComponents.add(Component.literal(""));
 

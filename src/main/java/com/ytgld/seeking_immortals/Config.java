@@ -24,7 +24,7 @@ public class Config {
 
             Nightecora = BUILDER
                     .comment("Nightecora病毒的额外生命值惩罚，单位百分比")
-                    .defineInRange("Nightecora", 25, 0, 100);
+                    .defineInRange("Nightecora_", 10, 0, 100);
             nightmare_base_redemption_deception = BUILDER
                     .comment("“欺骗”恢复的生命值，单位百分比")
                     .defineInRange("nightmare_base_redemption_deception", 100, 0, 100);

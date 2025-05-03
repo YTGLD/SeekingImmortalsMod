@@ -280,6 +280,29 @@
  "seeking_immortals.jei.item.seeking_immortals.tricky_puppets": "Found in Woodland Mansions, probability 75%, one player can only obtain one",
 
 
+ "item.seeking_immortals.apple": "§4Skewed Fruit",
+ "item.apple.tool.string": "Max Health is fixed at 30",
+ "item.apple.tool.string.1": "Damage taken is fixed at 2",
+ "item.apple.tool.string.2": "Attack damage is fixed at 10",
+
+ "advancements.tooltip.apple.text": "Obtain this item",
+ "advancements.tooltip.apple.hand": "Skewed Scale",
+ "seeking_immortals.jei.item.seeking_immortals.apple": "Obtained by killing a creature with health greater than 30 times your max health, only one per player",
+
+
+
+
+ "item.seeking_immortals.candle": "§4Evil Ancient Candle",
+ "item.candle.tool.string": "Increases damage taken by 1000% when at full health",
+ "item.candle.tool.string.1": "But always retains 1 health point",
+ "item.candle.tool.string.2": "Gains invincibility protection based on damage taken at full health",
+ "item.candle.tool.string.3": "Gain 0.05 seconds of invincibility for every 10 health points (not exceeding 5 seconds)",
+ "item.candle.tool.string.4": "During any period of invincibility protection",
+ "item.candle.tool.string.5": "Increases damage and healing by 100%",
+ "item.candle.tool.string.6": "Exempts from injury penalties of the Death Omen Obelisk",
+ "advancements.tooltip.candle.text": "Fix Death Omen's curse, but at what cost?",
+ "advancements.tooltip.candle.hand": "Eternal Agony",
+ "seeking_immortals.jei.item.seeking_immortals.candle": "Crafting to obtain",
 
   "item.seeking_immortals.nightmare_axe":"nightmare axe",
   "item.nightmare_axe.tool.string": "Kill creatures to summon the Chaos Battle Axe",
@@ -290,7 +313,8 @@
 
   "item.seeking_immortals.nightmare_base_start":"§4Beginning of Nightmare",
   "item.nightmare_base_start.tool.string": "Armor is nullified",
-  "item.nightmare_base_start.tool.string.1": "Every time you take damage, it forcibly reduces 1 health point",
+ "item.nightmare_base_start.tool.string.1": "Every time you take damage, it forcibly reduces 1 health point",
+ "item.nightmare_base_start.tool.string.2": "Does not trigger when the health is below 10",
   "advancements.tooltip.nightmare_base_start.text": "Obtain this item",
   "advancements.tooltip.nightmare_base_start.hand": "The 'Immortal'",
 

@@ -34,7 +34,9 @@ public class nightmare_base_start extends nightmare implements SuperNightmare {
     public static void damage(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.nightmare_base_start.get())) {
-                player.setHealth(player.getHealth() - 1);
+                if (player.getHealth()>10) {
+                    player.setHealth(player.getHealth() - 1);
+                }
             }
         }
     }
@@ -62,6 +64,7 @@ public class nightmare_base_start extends nightmare implements SuperNightmare {
         super.appendHoverText(stack, context, pTooltipComponents, tooltipFlag);
         pTooltipComponents.add(Component.translatable("item.nightmare_base_start.tool.string").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.nightmare_base_start.tool.string.1").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.nightmare_base_start.tool.string.2").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.literal(""));
         pTooltipComponents.add(Component.translatable("item.nightmare_base_black_eye.tool.string.1").withStyle(ChatFormatting.RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_start_power").withStyle(ChatFormatting.DARK_RED));

@@ -52,6 +52,8 @@ public class Items {
     public static final DeferredHolder<Item,?> nightmare_base_start_pod =REGISTRY.register("nightmare_base_start_pod", nightmare_base_start_pod::new);
     public static final DeferredHolder<Item,?> nightmare_base_start_egg =REGISTRY.register("nightmare_base_start_egg", nightmare_base_start_egg::new);
     public static final DeferredHolder<Item,?> end_bone =REGISTRY.register("end_bone", end_bone::new);
+    public static final DeferredHolder<Item,?> candle =REGISTRY.register("candle", candle::new);
+    public static final DeferredHolder<Item,?> apple =REGISTRY.register("apple", apple::new);
 
     public static final DeferredHolder<Item,?> nightmare_base_start_power =REGISTRY.register("nightmare_base_start_power", nightmare_base_start_power::new);
     public static final DeferredHolder<Item,?> tricky_puppets =REGISTRY.register("tricky_puppets", tricky_puppets::new);

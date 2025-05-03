@@ -139,6 +139,7 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_fool_betray").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_fool_bone").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_fool_soul").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.seeking_immortals.apple").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.literal(""));
 
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));

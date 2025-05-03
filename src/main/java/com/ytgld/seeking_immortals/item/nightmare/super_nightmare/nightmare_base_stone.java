@@ -25,7 +25,11 @@ public class nightmare_base_stone extends nightmare implements SuperNightmare {
     public static void LivingHurtEvent(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.nightmare_base_stone.get())) {
+                if (Handler.hascurio(player,Items.candle.get())){
+                    return;
+                }
                 if (player.getHealth() >= player.getMaxHealth()) {
+
                     event.setAmount(event.getAmount() * 6);
                 }
             }

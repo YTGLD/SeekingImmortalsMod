@@ -37,6 +37,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.nightmare_base_reversal_orb.get()));
                 b.accept(new ItemStack(Items.nightmare_base_reversal_card.get()));
                 b.accept(new ItemStack(Items.nightmare_base_reversal_mysterious.get()));
+                b.accept(new ItemStack(Items.candle.get()));
 
 
                 b.accept(new ItemStack(Items.nightmare_base_redemption.get()));
@@ -49,6 +50,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.nightmare_base_fool_soul.get()));
                 b.accept(new ItemStack(Items.nightmare_base_fool_betray.get()));
                 b.accept(new ItemStack(Items.nightmare_base_fool_bone.get()));
+                b.accept(new ItemStack(Items.apple.get()));
 
 
                 b.accept(new ItemStack(Items.nightmare_base_insight.get()));

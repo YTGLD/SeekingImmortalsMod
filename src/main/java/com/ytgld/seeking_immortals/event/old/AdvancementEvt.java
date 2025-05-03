@@ -8,6 +8,7 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.animal.sniffer.Sniffer;
 import net.minecraft.world.entity.boss.enderdragon.EnderDragon;
 import net.minecraft.world.entity.boss.wither.WitherBoss;
@@ -61,6 +62,7 @@ public class AdvancementEvt {
     public static final String nightmare_base_fool_betray = "nightmare_base_fool_betray";
     public static final String nightmare_base_fool_bone = "nightmare_base_fool_bone";
     public static final String nightmare_base_fool_soul = "nightmare_base_fool_soul";
+    public static final String apple = "apple";
 
 
 
@@ -83,6 +85,39 @@ public class AdvancementEvt {
     public static final String nightmare_base_start_egg = "nightmare_base_start_egg";
     public static final String nightmare_base_start_pod = "nightmare_base_start_pod";
 
+
+    @SubscribeEvent
+    public void apple(LivingDropsEvent event){
+        if (event.getSource().getEntity() instanceof Player player){
+            if (Handler.hascurio(player,Items.nightmare_base_fool.get())){
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base_fool.get())) {
+                                if (stack.get(DataReg.tag) != null) {
+                                    if (event.getEntity() instanceof LivingEntity warden) {
+                                        if (warden.getMaxHealth()>=player.getMaxHealth()*30){
+                                            if (!stack.get(DataReg.tag).getBoolean(apple)) {
+
+                                                event.getDrops().add(new ItemEntity(warden.level(),warden.getX(),warden.getY(),warden.getZ(),
+                                                        new ItemStack(Items.apple)));
+
+                                                stack.get(DataReg.tag).putBoolean(apple, true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
 
     @SubscribeEvent
     public void nightmare_base_start_egg(LivingDropsEvent event){
