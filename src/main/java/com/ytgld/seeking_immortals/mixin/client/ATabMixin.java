@@ -10,6 +10,7 @@ import net.minecraft.advancements.DisplayInfo;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.advancements.AdvancementTab;
 import net.minecraft.client.gui.screens.advancements.AdvancementWidget;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.texture.TextureManager;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
@@ -60,16 +61,11 @@ public abstract class ATabMixin {
     @Inject(at = @At("RETURN"), method = "drawContents(Lnet/minecraft/client/gui/GuiGraphics;II)V")
     public void drawContents(GuiGraphics guiGraphics, int x, int y, CallbackInfo ci){
         if (this.rootNode.holder().id().equals(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"seeking_immortals/root"))){
-            if (!this.centered) {
-                this.scrollX = (double)(117 - (this.maxX + this.minX) / 2);
-                this.scrollY = (double)(56 - (this.maxY + this.minY) / 2);
-                this.centered = true;
-            }
 
             guiGraphics.enableScissor(x, y, x + 234, y + 113);
             guiGraphics.pose().pushPose();
             guiGraphics.pose().translate((float)x, (float)y, 0.0F);
-            ResourceLocation resourcelocation = (ResourceLocation)this.display.getBackground().orElse(TextureManager.INTENTIONAL_MISSING_TEXTURE);
+            ResourceLocation resourcelocation = this.display.getBackground().orElse(TextureManager.INTENTIONAL_MISSING_TEXTURE);
             int i = Mth.floor(this.scrollX);
             int j = Mth.floor(this.scrollY);
             int k = i % 16;
@@ -77,7 +73,7 @@ public abstract class ATabMixin {
 
             for(int i1 = -1; i1 <= 15; ++i1) {
                 for(int j1 = -1; j1 <= 8; ++j1) {
-                    seekingImmortals$blit(guiGraphics,resourcelocation, k + 16 * i1, l + 16 * j1, 0.0F, 0.0F, 16, 16, 16, 16);
+                    seekingImmortals$blit(MRender.GUI,guiGraphics,resourcelocation, k + 16 * i1, l + 16 * j1, 0.0F, 0.0F, 16, 16, 16, 16);
                 }
             }
 
@@ -124,30 +120,30 @@ public abstract class ATabMixin {
         }
     }
     @Unique
-    void seekingImmortals$innerBlit(GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x1, int x2, int y1, int y2, int blitOffset, float minU, float maxU, float minV, float maxV) {
+    void seekingImmortals$innerBlit(RenderType renderType, GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x1, int x2, int y1, int y2, int blitOffset, float minU, float maxU, float minV, float maxV) {
 
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
-        VertexConsumer vertexConsumer = guiGraphics.bufferSource().getBuffer(MRender.ging());
+        VertexConsumer vertexConsumer = guiGraphics.bufferSource().getBuffer(renderType);
         guiGraphics.pose().pushPose();
-        vertexConsumer.addVertex(matrix4f, (float)x1, (float)y1, (float)blitOffset).setUv(minU, minV);
-        vertexConsumer.addVertex(matrix4f, (float)x1, (float)y2, (float)blitOffset).setUv(minU, maxV);
-        vertexConsumer.addVertex(matrix4f, (float)x2, (float)y2, (float)blitOffset).setUv(maxU, maxV);
-        vertexConsumer.addVertex(matrix4f, (float)x2, (float)y1, (float)blitOffset).setUv(maxU, minV);
+        vertexConsumer.addVertex(matrix4f, (float)x1, (float)y1, (float)blitOffset).setUv(minU, minV).setColor(1,1,1,1);
+        vertexConsumer.addVertex(matrix4f, (float)x1, (float)y2, (float)blitOffset).setUv(minU, maxV).setColor(1,1,1,1);
+        vertexConsumer.addVertex(matrix4f, (float)x2, (float)y2, (float)blitOffset).setUv(maxU, maxV).setColor(1,1,1,1);
+        vertexConsumer.addVertex(matrix4f, (float)x2, (float)y1, (float)blitOffset).setUv(maxU, minV).setColor(1,1,1,1);
         guiGraphics.pose().popPose();
 
     }
     @Unique
-    void seekingImmortals$blit(GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x1, int x2, int y1, int y2, int blitOffset, int uWidth, int vHeight, float uOffset, float vOffset, int textureWidth, int textureHeight) {
-        this.seekingImmortals$innerBlit(guiGraphics,atlasLocation, x1, x2, y1, y2, blitOffset, (uOffset + 0.0F) / (float)textureWidth, (uOffset + (float)uWidth) / (float)textureWidth, (vOffset + 0.0F) / (float)textureHeight, (vOffset + (float)vHeight) / (float)textureHeight);
+    void seekingImmortals$blit(RenderType renderType, GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x1, int x2, int y1, int y2, int blitOffset, int uWidth, int vHeight, float uOffset, float vOffset, int textureWidth, int textureHeight) {
+        this.seekingImmortals$innerBlit(renderType,guiGraphics,atlasLocation, x1, x2, y1, y2, blitOffset, (uOffset + 0.0F) / (float)textureWidth, (uOffset + (float)uWidth) / (float)textureWidth, (vOffset + 0.0F) / (float)textureHeight, (vOffset + (float)vHeight) / (float)textureHeight);
     }
     @Unique
-    public void seekingImmortals$blit(GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x, int y, int width, int height, float uOffset, float vOffset, int uWidth, int vHeight, int textureWidth, int textureHeight) {
-        this.seekingImmortals$blit(guiGraphics,atlasLocation, x, x + width, y, y + height, 0, uWidth, vHeight, uOffset, vOffset, textureWidth, textureHeight);
+    public void seekingImmortals$blit(RenderType renderType, GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x, int y, int width, int height, float uOffset, float vOffset, int uWidth, int vHeight, int textureWidth, int textureHeight) {
+        this.seekingImmortals$blit(renderType,guiGraphics,atlasLocation, x, x + width, y, y + height, 0, uWidth, vHeight, uOffset, vOffset, textureWidth, textureHeight);
     }
 
     @Unique
-    public void seekingImmortals$blit(GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x, int y, float uOffset, float vOffset, int width, int height, int textureWidth, int textureHeight) {
-        this.seekingImmortals$blit(guiGraphics,atlasLocation, x, y, width, height, uOffset, vOffset, width, height, textureWidth, textureHeight);
+    public void seekingImmortals$blit(RenderType renderType, GuiGraphics guiGraphics, ResourceLocation atlasLocation, int x, int y, float uOffset, float vOffset, int width, int height, int textureWidth, int textureHeight) {
+        this.seekingImmortals$blit(renderType,guiGraphics,atlasLocation, x, y, width, height, uOffset, vOffset, width, height, textureWidth, textureHeight);
     }
 
 }

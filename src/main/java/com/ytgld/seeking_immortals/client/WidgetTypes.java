@@ -5,11 +5,13 @@ import net.minecraft.advancements.AdvancementType;
 import net.minecraft.resources.ResourceLocation;
 
 public enum WidgetTypes {
-    OBTAINED(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/box_obtained"),
+    OBTAINED(
+            ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/box_obtained"),
             ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/task_frame_obtained"),
             ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/challenge_frame_obtained"),
             ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/goal_frame_obtained")),
-    UNOBTAINED(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/box_unobtained"),
+    UNOBTAINED(
+            ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/box_unobtained"),
             ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/task_frame_unobtained"),
             ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/challenge_frame_unobtained"),
             ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/goal_frame_unobtained"));

@@ -51,7 +51,7 @@ public class AdvancementWidgetMixin implements IAdvancementWidget {
 
     @Override
     public void seekingImmortals$draw(GuiGraphics guiGraphics, int x, int y) {
-        if (this.advancementNode.holder().equals(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"seeking_immortals/root"))) {
+        if (this.advancementNode.holder().id().equals(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"seeking_immortals/root"))) {
             if (!this.display.isHidden() || this.progress != null && this.progress.isDone()) {
                 float f = this.progress == null ? 0.0F : this.progress.getPercent();
                 WidgetTypes advancementwidgettype;
@@ -66,12 +66,13 @@ public class AdvancementWidgetMixin implements IAdvancementWidget {
             }
 
             for (AdvancementWidget advancementwidget : this.children) {
-                if (advancementwidget instanceof IAdvancementWidget advancementWidget) {
-                    advancementWidget.seekingImmortals$draw(guiGraphics, x, y);
+                if (advancementwidget instanceof IAdvancementWidget iAdvancementWidget) {
+                    iAdvancementWidget.seekingImmortals$draw(guiGraphics, x, y);
                 }
             }
         }
     }
+
     @Override
     public void seekingImmortals$drawHover(GuiGraphics guiGraphics, int x, int y, float fade, int width, int height) {
         boolean flag = width + x + this.x + this.width + 26 >= this.tab.getScreen().width;
@@ -126,6 +127,7 @@ public class AdvancementWidgetMixin implements IAdvancementWidget {
         guiGraphics.blitSprite(advancementwidgettype.boxSprite(), 200, 26, 0, 0, i1, l, j, 26);
         guiGraphics.blitSprite(advancementwidgettype1.boxSprite(), 200, 26, 200 - k, 0, i1 + j, l, k, 26);
         guiGraphics.blitSprite(advancementwidgettype2.frameSprite(this.display.getType()), x + this.x + 3, y + this.y, 26, 26);
+
         if (flag) {
             guiGraphics.drawString(this.minecraft.font, this.title, i1 + 5, y + this.y + 9, -1);
             if (component != null) {
@@ -153,6 +155,5 @@ public class AdvancementWidgetMixin implements IAdvancementWidget {
 
         guiGraphics.renderFakeItem(this.display.getIcon(), x + this.x + 8, y + this.y + 5);
     }
-
 
 }
