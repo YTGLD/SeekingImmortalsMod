@@ -10,7 +10,10 @@
   "item.seeking_immortals.nightmare_base_stone": "§4死兆方尖碑",
   "item.nightmare_base_stone.tool.string": "满生命值时受到的伤害增加500%",
   "item.nightmare_base_stone.tool.string.1": "但是你可以解锁下列物品",
+  "item.nightmare_base_stone.tool.string.2": "10秒冷却",
 
+  "advancements.tooltip.immortal.text": "“早已厌倦一次又一次的轮回之旅”",
+  "advancements.tooltip.immortal.hand": "步入轮回",
 
   "item.seeking_immortals.nightmare_base_stone_meet": "§4绝望共鸣",
   "item.nightmare_base_stone_meet.tool.string.1": "强化下列饰品",
@@ -210,6 +213,30 @@
 
 
 
+
+  "item.seeking_immortals.immortal": "§4不朽轮回之印章",
+  "item.immortal.tool.string": "受到攻击有80%的概率规避并反弹50%的伤害给攻击者",
+  "item.immortal.tool.string.1": "如果攻击者生命值大于70%，则反弹150%的伤害并破除无敌帧",
+  "item.immortal.tool.string.2": "每隔5秒对周围生物施加一层枯朽Buff，最多达到5级",
+  "item.immortal.tool.string.3": "被施加的生物每级减少20%抗性,护甲,治疗和5%的伤害,移速,攻速",
+  "item.immortal.tool.string.4": "若你被杀死，则对攻击者造成20%当前生命值的穿透伤害并附加10级枯朽（10秒）",
+  "item.immortal.tool.string.5": "深渊和噩梦物品无效化",
+  "item.immortal.tool.string.6": "传闻掌握生死轮回之力的人...",
+  "item.immortal.tool.string.7": "即可规避因果的反噬...",
+  "item.immortal.tool.string.8": "但...代价是什么？",
+
+
+
+  "item.seeking_immortals.ring": "§4灵念药戒",
+  "item.ring.tool.string": "永恒的力量,抗性.生命恢复,急迫,生命提升",
+  "item.ring.tool.string.1": "每获得一种3级及以上的药水状态",
+  "item.ring.tool.string.2": "减少10%药水持续时间",
+  "item.ring.tool.string.3": "任何药水效果结束，你将恢复4点生命值",
+  "item.ring.tool.string.4": "若药水状态为负面，则恢复10%最大生命值",
+
+  "advancements.tooltip.ring.text": "获得这个物品",
+  "advancements.tooltip.ring.hand": "一寸光阴一寸金",
+  "seeking_immortals.jei.item.seeking_immortals.ring": "获得超过10种负面BUFF的情况下触发不死图腾，一个玩家只能获得一个",
 
 
 

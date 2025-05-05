@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    },
+    {
+      "tag": "curios:nightmare"
+    }
+  ],
+  "result": {
+    "id": "seeking_immortals:immortal",
+    "count": 1
+  }
+}

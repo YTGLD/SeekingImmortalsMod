@@ -4,11 +4,7 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.logging.LogUtils;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
-import com.ytgld.seeking_immortals.init.Tab;
-import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.init.AttReg;
-import com.ytgld.seeking_immortals.init.DataReg;
-import com.ytgld.seeking_immortals.init.LootReg;
+import com.ytgld.seeking_immortals.init.*;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
@@ -29,7 +25,7 @@ import java.io.IOException;
 public class SeekingImmortalsMod
 {
     public static final String MODID = "seeking_immortals";
-    private static final Logger LOGGER = LogUtils.getLogger();
+    public static final Logger LOGGER = LogUtils.getLogger();
     public static final ResourceLocation POST = ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
             "shaders/post/entity_outline.json");
 
@@ -37,7 +33,7 @@ public class SeekingImmortalsMod
     public SeekingImmortalsMod(IEventBus eventBus, ModContainer modContainer) {
         NeoForge.EVENT_BUS.register(new NewEvent());
         NeoForge.EVENT_BUS.register(new AdvancementEvt());
-
+        Effects.REGISTRY.register(eventBus);
         AttReg.REGISTRY.register(eventBus);
         LootReg.REGISTRY.register(eventBus);
         DataReg.REGISTRY.register(eventBus);

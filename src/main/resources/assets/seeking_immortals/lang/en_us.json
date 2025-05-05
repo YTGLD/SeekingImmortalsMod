@@ -27,7 +27,8 @@
   "item.nightmare_base.tool.string.1": "Evil Thought Antimony, Blood Cruel Lead, Malicious Mourning Nullification",
 
   "item.seeking_immortals.nightmare_base_stone": "§4Deadly Obelisk",
-  "item.nightmare_base_stone.tool.string": "Damage taken increases by 500% when health is full",
+ "item.nightmare_base_stone.tool.string": "Damage taken increases by 500% when health is full",
+ "item.nightmare_base_stone.tool.string.2": "10 seconds cooling",
   "item.nightmare_base_stone.tool.string.1": "But you can unlock the following items",
   "item.seeking_immortals.nightmare_base_stone_meet": "§4Despair Resonance",
   "item.nightmare_base_stone_meet.tool.string.1": "Enhance the following accessories",
@@ -289,6 +290,33 @@
  "advancements.tooltip.apple.hand": "Skewed Scale",
  "seeking_immortals.jei.item.seeking_immortals.apple": "Obtained by killing a creature with health greater than 30 times your max health, only one per player",
 
+
+
+ "item.seeking_immortals.ring": "§4Soul Memory Potion Ring",
+ "item.ring.tool.string": "Eternal Power, Resistance, Health Regeneration, Urgency, Health Boost",
+ "item.ring.tool.string.1": "For every 3rd level or higher potion effect obtained",
+ "item.ring.tool.string.2": "Reduce potion duration by 10%",
+ "item.ring.tool.string.3": "When any potion effect ends, you will recover 4 health points",
+ "item.ring.tool.string.4": "If the potion effect is negative, recover 10% of your max health",
+
+ "advancements.tooltip.ring.text": "Obtain this item",
+ "advancements.tooltip.ring.hand": "An inch of time is worth an inch of gold",
+ "seeking_immortals.jei.item.seeking_immortals.ring": "Triggers the Totem of the Undead when more than 10 negative buffs are obtained, only one per player",
+
+ "item.seeking_immortals.immortal": "§4 Seal of Immortal Reincarnation",
+ "item.immortal.tool.string": "80% chance to evade and reflect 50% of damage to the attacker",
+ "item.immortal.tool.string.1": "If the attacker is >70%, reflect 150% of the damage and break the invincibility frame",
+ "item.immortal.tool.string.2": "Apply a Withered Buff to nearby mobs every 5 seconds, up to a maximum of level 5",
+ "item.immortal.tool.string.3": "Applied creatures have 20% less Resistance, Armor, Heal, and 5% Damage, Movement Speed, Attack Speed per level",
+ "item.immortal.tool.string.4": "If you are killed, deal 20% of the attacker's current health as piercing damage and add level 10 Wither (10s)",
+ "item.immortal.tool.string.5": "Abyss and Nightmare items neutralized",
+ "item.immortal.tool.string.6": "It is rumored that a person who wields the power of the cycle of life and death...",
+ "item.immortal.tool.string.7": "Простовання простовання...",
+ "item.immortal.tool.string.8": "But... At what cost? ",
+ "effect.seeking_immortals.dead": "枯朽",
+
+ "advancements.tooltip.immortal.text": "“I've long been tired of reincarnation again and again”",
+ "advancements.tooltip.immortal.hand": "Step into reincarnation",
 
 
 

@@ -6,6 +6,7 @@ import com.ytgld.seeking_immortals.init.DataReg;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,6 +28,9 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.List;
 import java.util.Map;
 
 public class AdvancementEvt {
@@ -74,6 +78,7 @@ public class AdvancementEvt {
     public static final String nightmare_base_insight_drug = "nightmare_base_insight_drug";
     public static final String nightmare_base_insight_insane = "nightmare_base_insight_insane";
     public static final String nightmare_base_insight_collapse = "nightmare_base_insight_collapse";
+    public static final String ring = "ring";
 
 
 
@@ -85,7 +90,49 @@ public class AdvancementEvt {
     public static final String nightmare_base_start_egg = "nightmare_base_start_egg";
     public static final String nightmare_base_start_pod = "nightmare_base_start_pod";
 
+    @SubscribeEvent
+    public void ring(LivingUseTotemEvent event){
+        if (event.getEntity() instanceof Player player){
 
+
+
+            List<Integer> integers = new ArrayList<>();
+            int a = 0;
+            Collection<MobEffectInstance> collection = player.getActiveEffects();
+            if (!collection.isEmpty()) {
+                for (MobEffectInstance effectInstance : collection) {
+                    if (!effectInstance.getEffect().value().isBeneficial()) {
+                        integers.add(1);
+                    }
+                }
+            }
+            for (int ignored : integers){
+                a++;
+            }
+            if (a>=10) {
+                if (Handler.hascurio(player, Items.nightmare_base_insight.get())) {
+                    CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                        Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                        for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                            ICurioStacksHandler stacksHandler = entry.getValue();
+                            IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                            for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                                ItemStack stack = stackHandler.getStackInSlot(i);
+                                if (stack.is(Items.nightmare_base_insight.get())) {
+                                    if (stack.get(DataReg.tag) != null) {
+                                        if (!stack.get(DataReg.tag).getBoolean(ring)) {
+                                            player.addItem(new ItemStack(Items.ring.get()));
+                                            stack.get(DataReg.tag).putBoolean(ring, true);
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
     @SubscribeEvent
     public void apple(LivingDropsEvent event){
         if (event.getSource().getEntity() instanceof Player player){

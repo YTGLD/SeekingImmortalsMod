@@ -1,6 +1,7 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
@@ -24,11 +25,18 @@ import java.util.List;
 public class nightmare_base_redemption extends nightmare implements SuperNightmare {
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player) {
-            return player.isCreative();
+        if (slotContext.entity() instanceof Player player){
+            if (CuriosApi.getCuriosInventory(player).isPresent()
+                    && CuriosApi.getCuriosInventory(player).get().isEquipped(Items.immortal.get())){
+                return true;
+            }
+            if (player.isCreative()){
+                return true;
+            }
         }
         return false;
     }
+
 
 
     @Override

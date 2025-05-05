@@ -1,5 +1,5 @@
 {
-  "parent": "seeking_immortals:seeking_immortals/nightmare_base_start",
+  "parent": "seeking_immortals:seeking_immortals/nightmare_base_start_egg",
   "criteria": {
     "nightmare_base_start_pod": {
       "conditions": {

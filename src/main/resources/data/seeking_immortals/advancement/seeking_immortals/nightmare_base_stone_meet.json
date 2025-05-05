@@ -1,5 +1,5 @@
 {
-  "parent": "seeking_immortals:seeking_immortals/nightmare_base_stone",
+  "parent": "seeking_immortals:seeking_immortals/nightmare_base_stone_brain",
   "criteria": {
     "nightmare_base_stone_meet": {
       "conditions": {

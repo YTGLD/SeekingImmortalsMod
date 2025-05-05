@@ -96,8 +96,14 @@ public class nightmare_base extends nightmare {
 
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player) {
-            return player.isCreative();
+        if (slotContext.entity() instanceof Player player){
+            if (CuriosApi.getCuriosInventory(player).isPresent()
+                    && CuriosApi.getCuriosInventory(player).get().isEquipped(Items.immortal.get())){
+                return true;
+            }
+            if (player.isCreative()){
+                return true;
+            }
         }
         return false;
     }

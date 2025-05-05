@@ -15,7 +15,7 @@
   },
   "display": {
     "announce_to_chat": true,
-    "background": "minecraft:textures/block/cracked_deepslate_tiles.png",
+    "background": "seeking_immortals:textures/gui/air.png",
     "description": {
       "text": "§4Nightmare"
     },

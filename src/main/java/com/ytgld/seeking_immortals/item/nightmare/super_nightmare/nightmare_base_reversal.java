@@ -38,11 +38,18 @@ public class nightmare_base_reversal extends nightmare implements SuperNightmare
 
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player) {
-            return player.isCreative();
+        if (slotContext.entity() instanceof Player player){
+            if (CuriosApi.getCuriosInventory(player).isPresent()
+                    && CuriosApi.getCuriosInventory(player).get().isEquipped(Items.immortal.get())){
+                return true;
+            }
+            if (player.isCreative()){
+                return true;
+            }
         }
         return false;
     }
+
 
     public static void LivingDeathEvent(LivingDeathEvent event) {
         if (event.getEntity() instanceof Player player) {

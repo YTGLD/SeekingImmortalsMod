@@ -2,8 +2,10 @@ package com.ytgld.seeking_immortals.event.old;
 
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
+import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.init.AttReg;
+import com.ytgld.seeking_immortals.item.nightmare.immortal;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
@@ -67,6 +69,7 @@ public class NewEvent {
     @SubscribeEvent
     public void LivingHealEvent(LivingDeathEvent event) {
         nightmare_base_reversal.LivingDeathEvent(event);
+        immortal.livDead(event);
 
         nightmare_base_black_eye_red.kill(event);
         nightmare_base_insight_insane.LivingDeathEvents(event);
@@ -89,7 +92,14 @@ public class NewEvent {
         end_bone.hurts(event);
         candle.hurt(event);
         apple.damage(event);
+        immortal.hEvt(event);
 
+        if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
+            float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
+            lvl *= 0.2f;
+            event.setAmount(event.getAmount()*(1+lvl));
+
+        }
         if (event.getAmount()>Integer.MAX_VALUE){
             event.setAmount(Integer.MAX_VALUE);
         }

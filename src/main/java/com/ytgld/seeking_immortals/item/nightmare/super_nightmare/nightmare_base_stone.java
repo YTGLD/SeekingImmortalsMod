@@ -31,6 +31,14 @@ public class nightmare_base_stone extends nightmare implements SuperNightmare {
                 if (player.getHealth() >= player.getMaxHealth()) {
 
                     event.setAmount(event.getAmount() * 6);
+
+                    if (!player.getCooldowns().isOnCooldown(Items.nightmare_base_stone.get())) {
+                        if (event.getAmount() > player.getHealth()) {
+                            event.setAmount(0);
+                            player.setHealth(1);
+                            player.getCooldowns().addCooldown(Items.nightmare_base_stone.get(),200);
+                        }
+                    }
                 }
             }
         }
@@ -38,11 +46,18 @@ public class nightmare_base_stone extends nightmare implements SuperNightmare {
 
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
-        if (slotContext.entity() instanceof Player player) {
-            return player.isCreative();
+        if (slotContext.entity() instanceof Player player){
+            if (CuriosApi.getCuriosInventory(player).isPresent()
+                    && CuriosApi.getCuriosInventory(player).get().isEquipped(Items.immortal.get())){
+                return true;
+            }
+            if (player.isCreative()){
+                return true;
+            }
         }
         return false;
     }
+
 
 
     @Override
@@ -58,6 +73,8 @@ public class nightmare_base_stone extends nightmare implements SuperNightmare {
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, pTooltipComponents, tooltipFlag);
         pTooltipComponents.add(Component.translatable("item.nightmare_base_stone.tool.string").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.candle.tool.string.1").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.nightmare_base_stone.tool.string.2").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.literal(""));
         pTooltipComponents.add(Component.translatable("item.nightmare_base_stone.tool.string.1").withStyle(ChatFormatting.RED));
 
