@@ -63,6 +63,7 @@ public class nightmare_base_redemption extends nightmare implements SuperNightma
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_redemption_deception").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_redemption_degenerate").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_redemption_down_and_out").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.seeking_immortals.hypocritical_self_esteem").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.literal(""));
 
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));

@@ -16,7 +16,8 @@
     "client.ChestRendererMixin",
     "client.GameRendererMixin",
     "client.GuiGraphicsMixin",
-    "client.LevelRendererMixin"
+    "client.LevelRendererMixin",
+    "client.LivingEntityRendererMixin"
   ],
   "server": [],
   "injectors": {

@@ -11,7 +11,6 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.advancements.AdvancementTab;
 import net.minecraft.client.gui.screens.advancements.AdvancementWidget;
-import net.minecraft.client.gui.screens.advancements.AdvancementWidgetType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.FormattedCharSequence;
@@ -21,6 +20,7 @@ import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 
 import javax.annotation.Nullable;
+import java.util.Iterator;
 import java.util.List;
 
 @Mixin(AdvancementWidget.class)
@@ -51,26 +51,24 @@ public class AdvancementWidgetMixin implements IAdvancementWidget {
 
     @Override
     public void seekingImmortals$draw(GuiGraphics guiGraphics, int x, int y) {
-        if (this.advancementNode.holder().id().equals(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"seeking_immortals/root"))) {
-            if (!this.display.isHidden() || this.progress != null && this.progress.isDone()) {
-                float f = this.progress == null ? 0.0F : this.progress.getPercent();
-                WidgetTypes advancementwidgettype;
-                if (f >= 1.0F) {
-                    advancementwidgettype = WidgetTypes.OBTAINED;
-                } else {
-                    advancementwidgettype = WidgetTypes.UNOBTAINED;
-                }
-
-                guiGraphics.blitSprite(advancementwidgettype.frameSprite(this.display.getType()), x + this.x + 3, y + this.y, 26, 26);
-                guiGraphics.renderFakeItem(this.display.getIcon(), x + this.x + 8, y + this.y + 5);
+        if (!this.display.isHidden() || this.progress != null && this.progress.isDone()) {
+            float f = this.progress == null ? 0.0F : this.progress.getPercent();
+            WidgetTypes advancementwidgettype;
+            if (f >= 1.0F) {
+                advancementwidgettype = WidgetTypes.OBTAINED;
+            } else {
+                advancementwidgettype = WidgetTypes.UNOBTAINED;
             }
 
-            for (AdvancementWidget advancementwidget : this.children) {
-                if (advancementwidget instanceof IAdvancementWidget iAdvancementWidget) {
-                    iAdvancementWidget.seekingImmortals$draw(guiGraphics, x, y);
-                }
+            guiGraphics.blitSprite(advancementwidgettype.frameSprite(this.display.getType()), x + this.x + 3, y + this.y, 26, 26);
+            guiGraphics.renderFakeItem(this.display.getIcon(), x + this.x + 8, y + this.y + 5);
+        }
+        for (AdvancementWidget advancementwidget : this.children) {
+            if (advancementwidget instanceof IAdvancementWidget advancementWidget) {
+                advancementWidget.seekingImmortals$draw(guiGraphics, x, y);
             }
         }
+
     }
 
     @Override
@@ -118,9 +116,9 @@ public class AdvancementWidgetMixin implements IAdvancementWidget {
         int j1 = 32 + this.description.size() * 9;
         if (!this.description.isEmpty()) {
             if (flag1) {
-                guiGraphics.blitSprite(TITLE_BOX_SPRITE, i1, l + 26 - j1, this.width, j1);
+                guiGraphics.blitSprite(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/box"), i1, l + 26 - j1, this.width, j1);
             } else {
-                guiGraphics.blitSprite(TITLE_BOX_SPRITE, i1, l, this.width, j1);
+                guiGraphics.blitSprite(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"advancements/box"), i1, l, this.width, j1);
             }
         }
 

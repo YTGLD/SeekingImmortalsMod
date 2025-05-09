@@ -57,6 +57,7 @@ public class Items {
     public static final DeferredHolder<Item,?> apple =REGISTRY.register("apple", apple::new);
     public static final DeferredHolder<Item,?> ring =REGISTRY.register("ring", ring::new);
     public static final DeferredHolder<Item,?> immortal =REGISTRY.register("immortal", immortal::new);
+    public static final DeferredHolder<Item,?> hypocritical_self_esteem =REGISTRY.register("hypocritical_self_esteem", hypocritical_self_esteem::new);
 
     public static final DeferredHolder<Item,?> nightmare_base_start_power =REGISTRY.register("nightmare_base_start_power", nightmare_base_start_power::new);
     public static final DeferredHolder<Item,?> tricky_puppets =REGISTRY.register("tricky_puppets", tricky_puppets::new);

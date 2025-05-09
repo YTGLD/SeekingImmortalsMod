@@ -15,6 +15,7 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.apple;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.hypocritical_self_esteem;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.nightmare_base_redemption_deception;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_reversal;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.candle;
@@ -43,12 +44,15 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import oshi.driver.mac.net.NetStat;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioCanEquipEvent;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
+import java.util.List;
 import java.util.Map;
+import java.util.Random;
 
 public class NewEvent {
 
@@ -147,20 +151,6 @@ public class NewEvent {
         }
     }
     @SubscribeEvent
-    public void Night(ItemTooltipEvent event) {
-        ItemStack stack = event.getItemStack();
-        Player player = event.getEntity();
-        if (stack.getItem() instanceof SuperNightmare){
-            if (!Handler.hascurio(player,Items.nightmare_base.get())) {
-                event.getToolTip().add(1, Component.literal(""));
-                event.getToolTip().add(1, Component.translatable("seeking_immortals.super_nightmare.name").withStyle(ChatFormatting.DARK_RED));
-            }else {
-                event.getToolTip().add(1, Component.literal(""));
-                event.getToolTip().add(1, Component.translatable("seeking_immortals.super_nightmare.name").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFCD853F))));
-            }
-        }
-    }
-    @SubscribeEvent
     public void soulbattery(CriticalHitEvent event) {
        if (event.getEntity() instanceof Player living){
             if (living.getAttribute(AttReg.cit)!=null){
@@ -191,7 +181,66 @@ public class NewEvent {
         }
 
     }
+    @SubscribeEvent
+    public void hurt(ItemTooltipEvent event) {
 
+        if (event.getEntity() instanceof Player player) {
+            if (!Handler.hascurio(player, Items.nightmare_base.get())) {
+                if (event.getItemStack().getItem() instanceof SuperNightmare) {
+                    List<Component> toolTip = event.getToolTip();
+                    Random random = new Random();
+                    for (int i = 0; i < toolTip.size(); i++) {
+                        int randomLength = random.nextInt(25) + 1;
+                        StringBuilder randomString = new StringBuilder();
+                        for (int j = 0; j < randomLength; j++) {
+                            randomString.append("§ka");
+                        }
+                        toolTip.set(i, Component.literal(randomString.toString()).withStyle(ChatFormatting.DARK_RED));
+                    }
+                }
+            }
+        }
+        {
+            ItemStack stack = event.getItemStack();
+            Player player = event.getEntity();
+            if (stack.getItem() instanceof SuperNightmare) {
+                if (!Handler.hascurio(player, Items.nightmare_base.get())) {
+                    event.getToolTip().add(1, Component.literal(""));
+                    event.getToolTip().add(1, Component.translatable("seeking_immortals.super_nightmare.name.1").withStyle(ChatFormatting.DARK_RED));
+                    event.getToolTip().add(1, Component.translatable("seeking_immortals.super_nightmare.name").withStyle(ChatFormatting.DARK_RED));
+                } else {
+                    event.getToolTip().add(1, Component.literal(""));
+                    event.getToolTip().add(1, Component.translatable("seeking_immortals.super_nightmare.name.1").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFCD853F))));
+                    event.getToolTip().add(1, Component.translatable("seeking_immortals.super_nightmare.name").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFCD853F))));
+                }
+            }
+        }
+//
+//        if (event.getEntity() instanceof Player living) {
+//            addFirst(event, Items.nightmare_base_black_eye.get(),Items.hypocritical_self_esteem.get()
+//                    ,hypocritical_self_esteem.hypocritical_self_esteem2,living);
+//            addFirst(event, Items.nightmare_base_black_eye.get(),Items.hypocritical_self_esteem.get()
+//                    ,hypocritical_self_esteem.hypocritical_self_esteem3,living);
+//            addFirst(event, Items.nightmare_base_black_eye.get(),Items.hypocritical_self_esteem.get()
+//                    ,hypocritical_self_esteem.hypocritical_self_esteem4,living);
+//        }
+    }
+    public void addFirst(ItemTooltipEvent event,
+                         Item has,
+                         Item addItem,
+                         Component contains,
+                         Player living) {
+        if (Handler.hascurio(living,has)) {
+            if (event.getItemStack().is(addItem)) {
+                List<Component> toolTip = event.getToolTip();
+                for (Component component : toolTip) {
+                    if (component.contains(contains)) {
+                        component.getSiblings().addFirst(Component.literal("§k"));
+                    }
+                }
+            }
+        }
+    }
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void Color(RenderTooltipEvent.Color tooltipEvent){

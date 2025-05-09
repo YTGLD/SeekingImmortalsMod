@@ -1,6 +1,7 @@
 package com.ytgld.seeking_immortals.event.old;
 
 import com.ytgld.seeking_immortals.Handler;
+import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.init.DataReg;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
@@ -60,7 +61,7 @@ public class AdvancementEvt {
     public static final String nightmare_base_redemption_deception = "nightmare_base_redemption_deception";
     public static final String nightmare_base_redemption_degenerate = "nightmare_base_redemption_degenerate";
     public static final String nightmare_base_redemption_down_and_out = "nightmare_base_redemption_down_and_out";
-
+    public static final String hypocritical_self_esteem = "hypocritical_self_esteem";
 
 
     public static final String nightmare_base_fool_betray = "nightmare_base_fool_betray";
@@ -90,6 +91,40 @@ public class AdvancementEvt {
     public static final String nightmare_base_start_egg = "nightmare_base_start_egg";
     public static final String nightmare_base_start_pod = "nightmare_base_start_pod";
 
+
+
+    @SubscribeEvent
+    public void hypocritical_self_esteem(LivingDropsEvent event){
+        if (event.getSource().getEntity() instanceof Player player){
+            if (Handler.hascurio(player,Items.nightmare_base_redemption.get())){
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base_redemption.get())) {
+                                if (stack.get(DataReg.tag) != null) {
+                                    if (event.getEntity() instanceof EnderDragon enderDragon) {
+                                        if (player.getMainHandItem().isEmpty()&&player.hasEffect(MobEffects.WITHER)) {
+                                            if (!stack.get(DataReg.tag).getBoolean(hypocritical_self_esteem)) {
+
+                                                event.getDrops().add(new ItemEntity(enderDragon.level(), enderDragon.getX(), enderDragon.getY(), enderDragon.getZ(),
+                                                        new ItemStack(Items.hypocritical_self_esteem)));
+
+                                                stack.get(DataReg.tag).putBoolean(hypocritical_self_esteem, true);
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
     @SubscribeEvent
     public void ring(LivingUseTotemEvent event){
         if (event.getEntity() instanceof Player player){

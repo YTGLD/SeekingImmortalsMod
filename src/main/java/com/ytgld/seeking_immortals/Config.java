@@ -50,7 +50,18 @@ public class Config {
             BUILDER.pop();
         }
 
+        {
+            BUILDER.push("测试");
+            x = BUILDER.comment("x")
+                    .defineInRange("x", 0, -360f, 360f);
+            y = BUILDER.comment("y")
+                    .defineInRange("y", 0, -360f, 360f);
+            z = BUILDER.comment("z")
+                    .defineInRange("z", 0, -360f, 360f);
 
+
+            BUILDER.pop();
+        }
 
 
 
@@ -72,6 +83,13 @@ public class Config {
 
 
     public   ModConfigSpec.IntValue nightmareBaseMaxItem ;
+
+
+    public   ModConfigSpec.DoubleValue x ;
+    public   ModConfigSpec.DoubleValue y ;
+    public   ModConfigSpec.DoubleValue z ;
+
+
 
     @SubscribeEvent
     public static void onLoad(final ModConfigEvent.Loading configEvent) {

@@ -55,19 +55,19 @@ public class MRender extends RenderType {
         RenderSystem.disableDepthTest();
     });
 
-    public static final RenderType LIGHTNING = create(
+    public static final RenderType DRAGON_RAYS = create(
             "lightning",
             DefaultVertexFormat.POSITION_COLOR,
             VertexFormat.Mode.QUADS,
             1536,
             false,
             true,
-            CompositeState.builder()
+            RenderType.CompositeState.builder()
                     .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
                     .setWriteMaskState(COLOR_DEPTH_WRITE)
-                    .setDepthTestState(RenderStateShard.EQUAL_DEPTH_TEST)
-                    .setCullState(RenderStateShard.NO_CULL)
-                    .setTransparencyState(TransparencyStateShard)
+                    .setCullState(NO_CULL)
+                    .setTransparencyState(LIGHTNING_TRANSPARENCY)
+                    .setOutputState(WEATHER_TARGET)
                     .createCompositeState(false)
     );
     protected static final OutputStateShard BEACON = new OutputStateShard("set_beacon", () -> {

@@ -73,12 +73,9 @@ public abstract class ATabMixin {
 
             for(int i1 = -1; i1 <= 15; ++i1) {
                 for(int j1 = -1; j1 <= 8; ++j1) {
-                    seekingImmortals$blit(MRender.GUI,guiGraphics,resourcelocation, k + 16 * i1, l + 16 * j1, 0.0F, 0.0F, 16, 16, 16, 16);
+                    seekingImmortals$blit(MRender.gui(),guiGraphics,resourcelocation, k + 16 * i1, l + 16 * j1, 0.0F, 0.0F, 16, 16, 16, 16);
                 }
             }
-
-            this.root.drawConnectivity(guiGraphics, i, j, true);
-            this.root.drawConnectivity(guiGraphics, i, j, false);
 
             if (root instanceof IAdvancementWidget iAdvancementWidget) {
                 iAdvancementWidget.seekingImmortals$draw(guiGraphics, i, j);
@@ -96,27 +93,19 @@ public abstract class ATabMixin {
             guiGraphics.pose().pushPose();
             guiGraphics.pose().translate(0.0F, 0.0F, -200.0F);
             guiGraphics.fill(0, 0, 234, 113, Mth.floor(this.fade * 255.0F) << 24);
-            boolean flag = false;
             int i = Mth.floor(this.scrollX);
             int j = Mth.floor(this.scrollY);
             if (mouseX > 0 && mouseX < 234 && mouseY > 0 && mouseY < 113) {
                 for (AdvancementWidget advancementwidget : this.widgets.values()) {
                     if (advancementwidget.isMouseOver(i, j, mouseX, mouseY)) {
                         if (advancementwidget instanceof IAdvancementWidget iAdvancementWidget) {
-                            flag = true;
                             iAdvancementWidget.seekingImmortals$drawHover(guiGraphics, i, j, this.fade, width, height);
                             break;
                         }
                     }
                 }
             }
-
             guiGraphics.pose().popPose();
-            if (flag) {
-                this.fade = Mth.clamp(this.fade + 0.02F, 0.0F, 0.3F);
-            } else {
-                this.fade = Mth.clamp(this.fade - 0.04F, 0.0F, 1.0F);
-            }
         }
     }
     @Unique

@@ -45,6 +45,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.nightmare_base_redemption_deception.get()));
                 b.accept(new ItemStack(Items.nightmare_base_redemption_degenerate.get()));
                 b.accept(new ItemStack(Items.nightmare_base_redemption_down_and_out.get()));
+                b.accept(new ItemStack(Items.hypocritical_self_esteem.get()));
 
 
                 b.accept(new ItemStack(Items.nightmare_base_fool.get()));

@@ -1,20 +1,15 @@
 {
+  "itemGroup.seeking_immortals": "Seeking Immortals: Nightmare Chapter",
+ "attrib.seeking_immortals.critical": "Critical Hit",
 
-  "itemGroup.seeking_immortals": "求仙者：噩梦之章",
-
-  "curios.identifier.nightmare": "§4噩梦之槽",
-  "curios.identifier.medicine": "medicine",
-  "curios.identifier.necora": "DNA",
-  "curios.identifier.ncrdna": "ncr dna",
-  "curios.identifier.dna": "dna",
-  "curios.modifiers.ncrdna": "necora",
-  "curios.modifiers.nightmare": "§4接受噩梦洗礼时",
   "seeking_immortals.jei.necora.giant_nightmare.all": "Requires wearing Nightmare Giant genetic fragment to be found in treasure loot",
 
  "seeking_immortals.jei.nightmare": ": Requires wearing nightmare eye to be found in dungeons and mines",
-
- "seeking_immortals.super_nightmare.name": "只有佩戴噩梦基座的人才可以使用这个物品",
- "item.nightmareeye.tool.string.2": "不可取下",
+"curios.identifier.nightmare": "§4Nightmare Slot",
+"curios.modifiers.nightmare": "§4When undergoing the Nightmare Baptism",
+"seeking_immortals.super_nightmare.name": "Only those wearing the Nightmare Base",
+"seeking_immortals.super_nightmare.name.1": "can use this item",
+"item.nightmareeye.tool.string.2": "Cannot be removed",
 
 
 
@@ -67,33 +62,29 @@
   "item.nightmare_base_black_eye_heart.tool.string.2": "And they will no longer receive any healing",
 
 
+"advancements.tooltip.nightmare_base_stone.text": "Obtain the Obelisk of Death",
+  "advancements.tooltip.nightmare_base_stone.hand": "Obelisk of Nightmares",
 
-  "advancements.tooltip.nightmare_base_stone.text": "获得死兆方尖碑",
-  "advancements.tooltip.nightmare_base_stone.hand": "噩梦的方尖碑",
+"advancements.tooltip.nightmare_base_black_eye_heart.text": "Obtain the Embryo of Death",
+  "advancements.tooltip.nightmare_base_black_eye_heart.hand": "Endless pain",
 
-  "advancements.tooltip.nightmare_base_black_eye_heart.text": "获得死心之胚",
-  "advancements.tooltip.nightmare_base_black_eye_heart.hand": "无休止的痛苦",
+"advancements.tooltip.nightmare_base_black_eye_eye.text": "Get sarcoma",
+  "advancements.tooltip.nightmare_base_black_eye_eye.hand": "Unknown factor",
 
-  "advancements.tooltip.nightmare_base_black_eye_eye.text": "获得肉瘤",
-  "advancements.tooltip.nightmare_base_black_eye_eye.hand": "不详因子",
+"advancements.tooltip.nightmare_base_black_eye_red.text": "Get this lipstick",
+  "advancements.tooltip.nightmare_base_black_eye_red.hand": "That's exciting!" ,
 
-  "advancements.tooltip.nightmare_base_black_eye_red.text": "获得这个口红",
-  "advancements.tooltip.nightmare_base_black_eye_red.hand": "真刺激啊！",
+"advancements.tooltip.nightmare_base_stone_meet.text": "Get Desperate Resonance",
+  "advancements.tooltip.nightmare_base_stone_meet.hand": "Nightmare descends",
 
-  "advancements.tooltip.nightmare_base_stone_meet.text": "获得绝望共鸣",
-  "advancements.tooltip.nightmare_base_stone_meet.hand": "噩梦降至",
+"advancements.tooltip.nightmare_base_stone_brain.text": "Get the Brain of the End Times",
+  "advancements.tooltip.nightmare_base_stone_brain.hand": "Crazy Brain",
 
-  "advancements.tooltip.nightmare_base_stone_brain.text": "获得末世之脑",
-  "advancements.tooltip.nightmare_base_stone_brain.hand": "疯狂大脑",
+"advancements.tooltip.nightmare_base_black_eye.text": "Gain the Eyes of Evil Thoughts",
+  "advancements.tooltip.nightmare_base_black_eye.hand": "Forever Staring",
 
-  "advancements.tooltip.nightmare_base_black_eye.text": "获得邪念之窥眸",
-  "advancements.tooltip.nightmare_base_black_eye.hand": "永远凝视",
-
-  "advancements.tooltip.nightmare_base_stone_virus.text": "获得Nightecora病毒",
-  "advancements.tooltip.nightmare_base_stone_virus.hand": "融合体",
-
-
-
+"advancements.tooltip.nightmare_base_stone_virus.text": "Get Nightecora virus",
+  "advancements.tooltip.nightmare_base_stone_virus.hand": "fusion",
   "item.seeking_immortals.nightmare_virus":"nightmare virus",
 
   "item.seeking_immortals.nightmare_base_reversal":"§4Reversal Object",
@@ -339,7 +330,20 @@
   "item.nightmare_axe.tool.string.3": "+25% heal",
 
 
-  "item.seeking_immortals.nightmare_base_start":"§4Beginning of Nightmare",
+
+
+"item.seeking_immortals.hypocritical_self_esteem":"§4Hypocritical Self-Esteem",
+"item.hypocritical_self_esteem.tool.string": "You will gain the following boosts for each entity nearby.",
+"item.hypocritical_self_esteem.tool.string.1": "If you have suffered the curse of Malevolent Gaze.. then:",
+"item.hypocritical_self_esteem.tool.string.2": "   Bite nearby creatures, dealing 20% of your displayed damage every 0.5 seconds",
+"item.hypocritical_self_esteem.tool.string.3": "   Damage increases by 20% for each additional target",
+"item.hypocritical_self_esteem.tool.string.4": "   Each bite will absorb health from the target and weaken them",
+"advancements.tooltip.hypocritical_self_esteem.text": "Obtain this item",
+"advancements.tooltip.hypocritical_self_esteem.hand": "Do not destroy the self-esteem of the weak",
+"seeking_immortals.jei.item.seeking_immortals.hypocritical_self_esteem": "In the presence of withered state, deliver the final blow to the Ender Dragon with an empty hand; only one player can obtain it",
+
+
+ "item.seeking_immortals.nightmare_base_start":"§4Beginning of Nightmare",
   "item.nightmare_base_start.tool.string": "Armor is nullified",
  "item.nightmare_base_start.tool.string.1": "Every time you take damage, it forcibly reduces 1 health point",
  "item.nightmare_base_start.tool.string.2": "Does not trigger when the health is below 10",
