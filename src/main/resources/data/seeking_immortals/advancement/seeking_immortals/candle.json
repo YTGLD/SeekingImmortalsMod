@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.tooltip.candle.text"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:candle"

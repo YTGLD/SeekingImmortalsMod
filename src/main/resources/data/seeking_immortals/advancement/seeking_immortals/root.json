@@ -19,7 +19,7 @@
     "description": {
       "text": "§4Nightmare"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:nightmare_base"

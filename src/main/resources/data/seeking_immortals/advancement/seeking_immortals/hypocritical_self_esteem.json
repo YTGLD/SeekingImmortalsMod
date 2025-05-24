@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.tooltip.hypocritical_self_esteem.text"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:hypocritical_self_esteem"

@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.tooltip.nightmare_base_insight_collapse.text"
     },
-    "frame": "challenge",
+    "frame": "task",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:nightmare_base_insight_collapse"

@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.mixin.client;
 
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ytgld.seeking_immortals.MGuiGraphics;
@@ -125,13 +126,66 @@ public abstract class GuiGraphicsMixin {
             int i1 = vector2ic.y();
             if (tooltipStack.getItem()instanceof INightmare){
                 this.pose.pushPose();
-                moonstone$renderTooltipBackground_nig((GuiGraphics)(Object)this, l, i1, i2, j2, 400, 0xff000000,0xff000000,0xff000000,0xff000000);
+                moonstone$renderTooltipBackground_nig((GuiGraphics) (Object) this, l, i1, i2, j2, 400, 0xff000000, 0xff000000, 0xff000000, 0xff000000);
+                si1_21_4$renderTooltipBackground((GuiGraphics) (Object) this, l, i1, i2, j2,400);
                 this.pose.popPose();
             }
         });
 
     }
+    @Unique
+    public void si1_21_4$renderTooltipBackground(GuiGraphics guiGraphics, int x, int y, int width, int height, int z) {
+        // 左上角
+        int topLeftX = x - 3 - 9+2;
+        int topLeftY = y - 3 - 9;
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(0.0F, -2, (float)z);
+        guiGraphics.blit(
+                ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                        "textures/gui/tooltip/tool_0_0.png"), topLeftX, topLeftY,  0, 0, 48, 48, 48, 48);
+        guiGraphics.pose().popPose();
 
+        // 中间位置
+        int middleX = x + (width - 48) / 2;
+        int middleY = y - 3 - 9;
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(0.0F, -7, (float)z);
+        guiGraphics.blit(
+                ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                        "textures/gui/tooltip/tool_middle_0.png"), middleX, middleY, 0, 0, 48, 48, 48, 48);
+        guiGraphics.pose().popPose();
+
+
+        // 右上角
+        int topRightX = x + width + 3 - 48+6;
+        int topRightY = y - 3 - 9;
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(0.0F, -2, (float)z);
+        guiGraphics.blit(
+                ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                        "textures/gui/tooltip/tool_0_1.png"), topRightX, topRightY, 0, 0, 48, 48, 48, 48);
+        guiGraphics.pose().popPose();
+
+        // 左下角
+        int bottomLeftX = x - 3 - 9 + 2;
+        int bottomLeftY = y + height + 3 - 48 + 4;
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(0.0F, 4, (float)z);
+        guiGraphics.blit(
+                ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                        "textures/gui/tooltip/tool_1_0.png"),bottomLeftX, bottomLeftY,0, 0, 48, 48, 48, 48);
+        guiGraphics.pose().popPose();
+
+        // 右下角
+        int bottomRightX = x + width + 3 - 48 + 6;
+        int bottomRightY = y + height + 3 - 48 + 4;
+        guiGraphics.pose().pushPose();
+        guiGraphics.pose().translate(0.0F, 4, (float)z);
+        guiGraphics.blit(
+                ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                        "textures/gui/tooltip/tool_1_1.png"),bottomRightX, bottomRightY, 0, 0, 48, 48, 48, 48);
+        guiGraphics.pose().popPose();
+    }
 
     @Unique
     private void moonstone$renderTooltipBackground_nig(GuiGraphics p_282666_, int p_281901_, int p_281846_, int p_281559_, int p_283336_, int p_283422_, int backgroundTop, int backgroundBottom, int borderTop, int borderBottom)

@@ -1,12 +1,12 @@
 {
-  "parent": "seeking_immortals:seeking_immortals/nightmare_base_black_eye_eye",
+  "parent": "seeking_immortals:seeking_immortals/nightmare_base_start",
   "criteria": {
-    "nightmare_base_black_eye_heart": {
+    "wolf": {
       "conditions": {
         "items": [
           {
             "items": [
-              "seeking_immortals:nightmare_base_black_eye_heart"
+              "seeking_immortals:wolf"
             ]
           }
         ]
@@ -17,21 +17,21 @@
   "display": {
     "announce_to_chat": true,
     "description": {
-      "translate": "advancements.tooltip.nightmare_base_black_eye_heart.text"
+      "translate": "advancements.tooltip.wolf.text"
     },
-    "frame": "task",
+    "frame": "goal",
     "hidden": false,
     "icon": {
-      "id": "seeking_immortals:nightmare_base_black_eye_heart"
+      "id": "seeking_immortals:wolf"
     },
     "show_toast": true,
     "title": {
-      "translate": "advancements.tooltip.nightmare_base_black_eye_heart.hand"
+      "translate": "advancements.tooltip.wolf.hand"
     }
   },
   "requirements": [
     [
-      "nightmare_base_black_eye_heart"
+      "wolf"
     ]
   ],
   "rewards": {

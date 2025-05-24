@@ -30,11 +30,15 @@ import java.util.List;
 public class ring extends nightmare implements SuperNightmare {
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
-        slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST,1000000,2,false,false));
-        slotContext.entity().addEffect(new MobEffectInstance(MobEffects.REGENERATION,1000000,2,false,false));
-        slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE,1000000,2,false,false));
-        slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED,1000000,2,false,false));
-        slotContext.entity().addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST,1000000,2,false,false));
+        if (!slotContext.entity().level().isClientSide) {
+            if (slotContext.entity().tickCount%20==0) {
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 120, 2, false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.REGENERATION, 120, 2, false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, 2, false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 120, 2, false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 120, 2, false, false));
+            }
+        }
     }
 
     @Override

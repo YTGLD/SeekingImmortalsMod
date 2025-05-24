@@ -66,6 +66,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.nightmare_base_start_pod.get()));
                 b.accept(new ItemStack(Items.nightmare_base_start_egg.get()));
                 b.accept(new ItemStack(Items.nightmare_base_start_power.get()));
+                b.accept(new ItemStack(Items.wolf.get()));
 
             })
             .build());

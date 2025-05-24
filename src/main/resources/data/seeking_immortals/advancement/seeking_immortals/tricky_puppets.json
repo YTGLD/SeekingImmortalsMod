@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.tooltip.tricky_puppets.text"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:tricky_puppets"

@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.tooltip.end_bone.text"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:end_bone"

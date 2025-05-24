@@ -19,7 +19,7 @@
     "description": {
       "translate": "advancements.tooltip.apple.text"
     },
-    "frame": "challenge",
+    "frame": "goal",
     "hidden": false,
     "icon": {
       "id": "seeking_immortals:apple"

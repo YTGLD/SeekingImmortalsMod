@@ -40,9 +40,13 @@ public class nightmare_base_start extends nightmare implements SuperNightmare {
     public static void damage(LivingIncomingDamageEvent event) {
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.nightmare_base_start.get())) {
-                if (player.getHealth()>10) {
-                    player.setHealth(player.getHealth() - 1);
+                if (!player.getCooldowns().isOnCooldown(Items.nightmare_base_start.get())){
+                    if (player.getHealth()>10) {
+                        player.setHealth(player.getHealth() - 1);
+                        player.getCooldowns().addCooldown(Items.nightmare_base_start.get(),10);
+                    }
                 }
+
             }
         }
     }

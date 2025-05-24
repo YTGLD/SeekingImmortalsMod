@@ -344,6 +344,11 @@
   "advancements.tooltip.nightmare_base_start_power.hand": "崩解之力",
   "attrib.seeking_immortals.critical": "暴击",
 
+  "attribute.name.seeking_immortals.allattack": "通用伤害",
+  "attribute.name.seeking_immortals.cit": "暴击伤害",
+  "attribute.name.seeking_immortals.heal": "治疗",
+  "attribute.name.seeking_immortals.dig": "挖掘速度",
+
   "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_power": "杀死坚守者",
   "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_egg": "杀死嗅探兽",
   "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_pod": "开地牢的箱子，概率25%，只能获取一个",
@@ -366,6 +371,17 @@
   "advancements.tooltip.hypocritical_self_esteem.text": "获得这个物品",
   "advancements.tooltip.hypocritical_self_esteem.hand": "不要摧毁弱者的自尊",
   "seeking_immortals.jei.item.seeking_immortals.hypocritical_self_esteem": "在存在凋零状态的情况下，使用空手给末影龙最后一击，一个玩家只能获得一个",
+
+  "item.seeking_immortals.wolf":"§4孤狼",
+  "item.wolf.tool.string": "每杀死一种生物都会增加你1点生命和护甲",
+  "item.wolf.tool.string.1": "你对曾被你杀死的生物造成额外25%的伤害",
+  "item.wolf.tool.string.2": "标记附近被你巡抚的单位",
+  "item.wolf.tool.string.3": "每次受伤都会转移到它们身上，若单位死亡则物品进入5秒冷却",
+  "seeking_immortals.item.kill": "你还没有佩戴它没有杀死过生物",
+
+  "advancements.tooltip.wolf.text": "获得这个物品",
+  "advancements.tooltip.wolf.hand": "一叶孤舟",
+  "seeking_immortals.jei.item.seeking_immortals.wolf": "让你的狼杀死监守者",
 
   "advancements.tooltip.nightmare_base_stone.text": "获得死兆方尖碑",
   "advancements.tooltip.nightmare_base_stone.hand": "噩梦的方尖碑",

@@ -20,7 +20,7 @@ public class Config {
             BUILDER.push("噩梦");
             nightmareBaseMaxItem = BUILDER
                     .comment("“”噩梦基座“给玩家的罪孽数量")
-                    .defineInRange("nig_", 5, 0, 7);
+                    .defineInRange("night_", 3, 0, 7);
 
             Nightecora = BUILDER
                     .comment("Nightecora病毒的额外生命值惩罚，单位百分比")

@@ -89,7 +89,7 @@ public abstract class ATabMixin {
 
     @Inject(at = @At("RETURN"), method = "drawTooltips")
     public void drawTooltips(GuiGraphics guiGraphics, int mouseX, int mouseY, int width, int height, CallbackInfo ci) {
-        if (this.rootNode.holder().id().equals(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"seeking_immortals/root"))) {
+        if (this.rootNode.holder().id().equals(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "seeking_immortals/root"))) {
             guiGraphics.pose().pushPose();
             guiGraphics.pose().translate(0.0F, 0.0F, -200.0F);
             guiGraphics.fill(0, 0, 234, 113, Mth.floor(this.fade * 255.0F) << 24);

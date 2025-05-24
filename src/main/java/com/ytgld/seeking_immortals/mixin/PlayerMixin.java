@@ -18,11 +18,6 @@ public class PlayerMixin {
                 .add(AttReg.heal,1)
                 .add(AttReg.hurt,1)
                 .add(AttReg.dig,1)
-                .add(AttReg.owner_blood_time,1)
-                .add(AttReg.owner_blood_speed,1)
-                .add(AttReg.owner_blood_damage,1)
-                .add(AttReg.owner_blood_attack_speed,1)
-                .add(AttReg.zombie_attack_damage,1)
         );
     }
 }
