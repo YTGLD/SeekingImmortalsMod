@@ -2,6 +2,7 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
@@ -87,8 +88,8 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
             dam *= 2;
 
             dam = -dam;
-            if (dam <= -0.5f) {
-                dam = -0.5f;
+            if (dam <= -Config.SERVER.nightmare_base_fool.getAsDouble()) {
+                dam = (float) -Config.SERVER.nightmare_base_fool.getAsDouble();
             }
             linkedHashMultimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), dam, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         }
@@ -122,8 +123,8 @@ public class nightmare_base_fool extends nightmare implements SuperNightmare {
             health /= 100f;
             health *= 1;
             health = -health;
-            if (health <= -0.5f) {
-                health = -0.5f;
+            if (health <= -Config.SERVER.nightmare_base_fool.getAsDouble()) {
+                health = (float) -Config.SERVER.nightmare_base_fool.getAsDouble();
             }
             linkedHashMultimap.put(Attributes.MAX_HEALTH, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), health, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         }

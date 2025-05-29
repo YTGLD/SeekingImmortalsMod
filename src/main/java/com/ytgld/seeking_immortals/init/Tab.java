@@ -18,6 +18,7 @@ public class Tab {
             .title(Component.translatable("itemGroup.seeking_immortals"))
             .displayItems((a,b)->{
                 b.accept(new ItemStack(Items.immortal.get()));
+                b.accept(new ItemStack(Items.eye.get()));
 
                 b.accept(new ItemStack(Items.nightmare_base.get()));
                 b.accept(new ItemStack(Items.nightmare_base_black_eye.get()));

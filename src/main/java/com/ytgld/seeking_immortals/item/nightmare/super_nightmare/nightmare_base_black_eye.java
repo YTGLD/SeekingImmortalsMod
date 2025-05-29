@@ -21,6 +21,7 @@ import java.util.List;
 
 public class nightmare_base_black_eye extends nightmare implements SuperNightmare {
 
+
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
         if (slotContext.entity() instanceof Player player){

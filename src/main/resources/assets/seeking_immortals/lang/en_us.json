@@ -390,6 +390,14 @@
   "seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_pod": "Open dungeon chests, 25% chance, can only get one",
 
   "advancements.tooltip.nightmare_base.text": "Obtain this item",
-  "advancements.tooltip.nightmare_base.hand": "Beginning"
+  "advancements.tooltip.nightmare_base.hand": "Beginning",
+
+  "item.seeking_immortals.eye":"§4Evil Eyes",
+  "item.eye.tool.string.1": "Tear the creatures you look at, weaken them and restore your health",
+  "item.eye.tool.string.2": "Assuming you are at full health at the time of the bite, the excess recovered health will be stored in the item",
+  "item.eye.tool.string.3": "When you take critical damage and have more than 200% of your Max Health",
+  "item.eye.tool.string.4": "Consume all your health and avoid this death incidentally restoring you to full health",
+  "item.eye.tool.string.5": "stored blood",
+  "item.eye.tool.string.6": "You need to look at mobs to get blood"
 }
 

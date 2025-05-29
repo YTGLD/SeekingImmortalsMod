@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.mixin.client;
 
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.Items;
 import net.minecraft.client.Camera;
@@ -41,29 +42,31 @@ public abstract class GameRendererMixin {
     @Inject(at = @At("RETURN"), method = "render")
     public void init(DeltaTracker deltaTracker, boolean renderLevel, CallbackInfo ci) {
 
-       if (mainCamera.getEntity() instanceof Player player) {
-           if (Handler.hascurio(player,Items.nightmare_base_black_eye.get())){
-               float fs = player.getPersistentData().getFloat("blurEffectOFNightmare_base_black_eye");
-               if (moonstone1_21_1$getPlayerLookTarget(player.level(), player) != null && moonstone1_21_1$getPlayerLookTarget(player.level(), player) instanceof LivingEntity) {
+        if (Config.SERVER.nightmare_base_black_eye.get()) {
+            if (mainCamera.getEntity() instanceof Player player) {
+                if (Handler.hascurio(player, Items.nightmare_base_black_eye.get())) {
+                    float fs = player.getPersistentData().getFloat("blurEffectOFNightmare_base_black_eye");
+                    if (moonstone1_21_1$getPlayerLookTarget(player.level(), player) != null && moonstone1_21_1$getPlayerLookTarget(player.level(), player) instanceof LivingEntity) {
 
-                   if (fs<5){
-                       player.getPersistentData().putFloat("blurEffectOFNightmare_base_black_eye", fs + 0.1f);
-                   }
+                        if (fs < 5) {
+                            player.getPersistentData().putFloat("blurEffectOFNightmare_base_black_eye", fs + 0.1f);
+                        }
 
 
-               } else {
-                   if (fs>0){
-                       player.getPersistentData().putFloat("blurEffectOFNightmare_base_black_eye", fs - 0.05f);
-                   }
-               }
-               if (fs>0) {
-                   if (this.blurEffect != null) {
-                       this.blurEffect.setUniform("Radius", player.getPersistentData().getFloat("blurEffectOFNightmare_base_black_eye"));
-                       this.blurEffect.process(deltaTracker.getGameTimeDeltaTicks());
-                   }
-               }
-           }
-       }
+                    } else {
+                        if (fs > 0) {
+                            player.getPersistentData().putFloat("blurEffectOFNightmare_base_black_eye", fs - 0.05f);
+                        }
+                    }
+                    if (fs > 0) {
+                        if (this.blurEffect != null) {
+                            this.blurEffect.setUniform("Radius", player.getPersistentData().getFloat("blurEffectOFNightmare_base_black_eye"));
+                            this.blurEffect.process(deltaTracker.getGameTimeDeltaTicks());
+                        }
+                    }
+                }
+            }
+        }
     }
     @Unique
     public Entity moonstone1_21_1$getPlayerLookTarget(Level level, LivingEntity living) {

@@ -267,7 +267,22 @@ public class MRender extends RenderType {
                                             false,
                                             false).add(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"textures/mls.png"),
                                             false, false).build()).createCompositeState(false));
-
+    public static final RenderType LIGHTING =
+            create(
+                    "lightning",
+                    DefaultVertexFormat.POSITION_COLOR,
+                    VertexFormat.Mode.QUADS,
+                    1536,
+                    false,
+                    true,
+                    RenderType.CompositeState.builder()
+                            .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
+                            .setWriteMaskState(COLOR_DEPTH_WRITE)
+                            .setCullState(NO_CULL)
+                            .setTransparencyState(LIGHTNING_TRANSPARENCY)
+                            .setOutputState(WEATHER_TARGET)
+                            .createCompositeState(false)
+            );
     public static final BiFunction<ResourceLocation, Boolean, RenderType> ENTITY_TRANSLUCENT_EMISSIVE = Util.memoize(
             (p_286163_, p_286164_) -> {
                 CompositeState rendertype$compositestate = CompositeState.builder()

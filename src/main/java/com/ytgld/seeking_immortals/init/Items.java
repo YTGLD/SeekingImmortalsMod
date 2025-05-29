@@ -1,7 +1,8 @@
 package com.ytgld.seeking_immortals.init;
 
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.item.nightmare.immortal;
+import com.ytgld.seeking_immortals.item.nightmare.eye;
+import com.ytgld.seeking_immortals.item.nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.*;
@@ -59,6 +60,7 @@ public class Items {
     public static final DeferredHolder<Item,?> immortal =REGISTRY.register("immortal", immortal::new);
     public static final DeferredHolder<Item,?> hypocritical_self_esteem =REGISTRY.register("hypocritical_self_esteem", hypocritical_self_esteem::new);
     public static final DeferredHolder<Item,?> wolf =REGISTRY.register("wolf", wolf::new);
+    public static final DeferredHolder<Item,?> eye =REGISTRY.register("eye", eye::new);
 
     public static final DeferredHolder<Item,?> nightmare_base_start_power =REGISTRY.register("nightmare_base_start_power", nightmare_base_start_power::new);
     public static final DeferredHolder<Item,?> tricky_puppets =REGISTRY.register("tricky_puppets", tricky_puppets::new);

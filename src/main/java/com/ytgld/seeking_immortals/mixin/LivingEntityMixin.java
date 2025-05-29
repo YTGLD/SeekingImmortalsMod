@@ -17,4 +17,9 @@ public class LivingEntityMixin {
             cir.setReturnValue(30f);
         }
     }
+    @Inject(at = @At("RETURN"), method = "getHealth", cancellable = true)
+    private void getHealth(CallbackInfoReturnable<Float> cir){
+        LivingEntity living = (LivingEntity) (Object) this;
+
+    }
 }

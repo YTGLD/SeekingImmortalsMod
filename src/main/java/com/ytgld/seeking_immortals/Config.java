@@ -14,10 +14,66 @@ public class Config {
         SERVER = specPair.getLeft();
         fc = specPair.getRight();
     }
+
+    public final ModConfigSpec.BooleanValue nightmare_base_black_eye ;
+    public final ModConfigSpec.DoubleValue nightmare_base_stone ;
+    public final ModConfigSpec.DoubleValue nightmare_base_fool ;
+    public final ModConfigSpec.IntValue nightmare_base_insight ;
+    public final ModConfigSpec.IntValue nightmare_base_redemption ;
+    public final ModConfigSpec.IntValue nightmare_base_reversal ;
+    public final ModConfigSpec.IntValue nightmare_base_start ;
+
     public Config(ModConfigSpec.Builder BUILDER){
 
         {
             BUILDER.push("噩梦");
+
+            {
+                BUILDER.push("邪念之窥眸");
+                nightmare_base_black_eye = BUILDER
+                        .comment("近视效果开关")
+                        .define("nightmare_base_black_eye", true);
+                BUILDER.pop();
+
+                BUILDER.push("死兆方尖碑");
+                nightmare_base_stone = BUILDER
+                        .comment("满血的受伤伤害")
+                        .defineInRange("nightmare_base_stone", 5f,1,999);
+                BUILDER.pop();
+
+                BUILDER.push("愚者之危");
+                nightmare_base_fool = BUILDER
+                        .comment("最大处罚值，0.5就是50%")
+                        .defineInRange("nightmare_base_fool", 0.5f,0,1);
+                BUILDER.pop();
+
+                BUILDER.push("噩梦洞悉者");
+                nightmare_base_insight = BUILDER
+                        .comment("附魔的减少值")
+                        .defineInRange("nightmare_base_insight", 2,0,1000);
+                BUILDER.pop();
+
+                BUILDER.push("“救赎”");
+                nightmare_base_redemption = BUILDER
+                        .comment("属性衰败比例")
+                        .defineInRange("nightmare_base_redemption", 15,0,100);
+                BUILDER.pop();
+
+                BUILDER.push("颠倒之物");
+                nightmare_base_reversal = BUILDER
+                        .comment("每次死亡降低的最低值")
+                        .defineInRange("nightmare_base_reversal", 4,0,100);
+                BUILDER.pop();
+
+                BUILDER.push("噩梦之起始");
+                nightmare_base_start = BUILDER
+                        .comment("护甲值的处罚")
+                        .defineInRange("nightmare_base_start", 100,0,100);
+                BUILDER.pop();
+
+            }
+
+
             nightmareBaseMaxItem = BUILDER
                     .comment("“”噩梦基座“给玩家的罪孽数量")
                     .defineInRange("night_", 3, 0, 7);

@@ -86,7 +86,7 @@ public class nightmare_base extends nightmare {
             s += 0.35f;
         }
         if (Handler.hascurio(slotContext.entity(), Items.nightmare_base_redemption.get())) {
-            s -= 0.15f;
+            s -= Config.SERVER.nightmare_base_redemption.get()/100f;
         }
         linkedHashMultimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), s, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));
         linkedHashMultimap.put(Attributes.MAX_HEALTH, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), s, AttributeModifier.Operation.ADD_MULTIPLIED_BASE));

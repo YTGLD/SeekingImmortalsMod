@@ -2,10 +2,15 @@ package com.ytgld.seeking_immortals;
 
 import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.logging.LogUtils;
+import com.ytgld.seeking_immortals.client.particle.ParticleRenderer;
+import com.ytgld.seeking_immortals.client.particle.blood;
+import com.ytgld.seeking_immortals.client.particle.cube;
+import com.ytgld.seeking_immortals.event.now.EventHandler;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.init.*;
 import com.ytgld.seeking_immortals.renderer.MRender;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 import net.neoforged.api.distmarker.Dist;
@@ -15,7 +20,9 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.event.RegisterShadersEvent;
+import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
@@ -33,19 +40,35 @@ public class SeekingImmortalsMod
     public SeekingImmortalsMod(IEventBus eventBus, ModContainer modContainer) {
         NeoForge.EVENT_BUS.register(new NewEvent());
         NeoForge.EVENT_BUS.register(new AdvancementEvt());
+        NeoForge.EVENT_BUS.register(new EventHandler());
+
+        NeoForge.EVENT_BUS.register(ParticleRenderer.class);
         Effects.REGISTRY.register(eventBus);
         AttReg.REGISTRY.register(eventBus);
         LootReg.REGISTRY.register(eventBus);
         DataReg.REGISTRY.register(eventBus);
         Items.REGISTRY.register(eventBus);
-
+        Particles.PARTICLE_TYPES.register(eventBus);
         Tab.TABS.register(eventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.fc);
     }
+    public static RenderLevelStageEvent.Stage stage_particles ;
 
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        @SubscribeEvent
+        public static void RegisterStageEvent(RenderLevelStageEvent.RegisterStageEvent event) {
+            RenderType renderType = MRender.beacon.apply(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/p_blood.png"), true);
+            stage_particles = event.register(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "seeking_particles"),
+                    renderType);
+        }
+        @SubscribeEvent
+        public static void registerFactories(RegisterParticleProvidersEvent event) {
+            event.registerSpriteSet(Particles.blood.get(), blood.Provider::new);
+            event.registerSpriteSet(Particles.cube.get(), cube.Provider::new);
+
+        }
         @SubscribeEvent
         public static void EntityRenderersEvent(RegisterShadersEvent event) {
             try {

@@ -2,11 +2,11 @@ package com.ytgld.seeking_immortals.event.old;
 
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
+import com.ytgld.seeking_immortals.event.CurioDamageEvent;
+import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.item.nightmare.immortal;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_eye;
@@ -15,9 +15,10 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.apple;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.hypocritical_self_esteem;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.nightmare_base_redemption_deception;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_reversal;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_start;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_stone;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.nightmare_base_redemption_deception;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.candle;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.nightmare_base_reversal_orb;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.start.nightmare_base_start_pod;
@@ -38,6 +39,7 @@ import net.neoforged.api.distmarker.Dist;
 import net.neoforged.api.distmarker.OnlyIn;
 import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
+import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
@@ -45,7 +47,6 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
-import oshi.driver.mac.net.NetStat;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioCanEquipEvent;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -57,6 +58,22 @@ import java.util.Random;
 
 public class NewEvent {
 
+    @SubscribeEvent
+    public void CurioLivingIncomingDamageEvent(LivingIncomingDamageEvent event){
+        if (event.getEntity() instanceof Player player) {
+            CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                    ICurioStacksHandler stacksHandler = entry.getValue();
+                    IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                    for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                        ItemStack stack = stackHandler.getStackInSlot(i);
+                        NeoForge.EVENT_BUS.post(new CurioDamageEvent(player, stack,event));
+                    }
+                }
+            });
+        }
+    }
 
     @SubscribeEvent
     public void LivingHealEvent(LivingHealEvent event) {

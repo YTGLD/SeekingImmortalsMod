@@ -398,8 +398,15 @@
   "advancements.tooltip.nightmare_base_black_eye.text": "获得邪念之窥眸",
   "advancements.tooltip.nightmare_base_black_eye.hand": "永远凝视",
   "advancements.tooltip.nightmare_base_stone_virus.text": "获得Nightecora病毒",
-  "advancements.tooltip.nightmare_base_stone_virus.hand": "融合体"
+  "advancements.tooltip.nightmare_base_stone_virus.hand": "融合体",
 
+  "item.seeking_immortals.eye":"§4无名邪眼",
+  "item.eye.tool.string.1": "撕咬你目视的生物，并削弱它们和恢复你的生命值",
+  "item.eye.tool.string.2": "假设撕咬时你是满血状态，那么多余恢复的生命值将储存在物品当中",
+  "item.eye.tool.string.3": "当你受到致命伤害，且储存的血液量大于你200%最大生命值时",
+  "item.eye.tool.string.4": "消耗血液并免除这次死亡附带恢复你至满血",
+  "item.eye.tool.string.5": "储存的血液",
+  "item.eye.tool.string.6": "你需要去注视生物来获得血液"
 }
 
 

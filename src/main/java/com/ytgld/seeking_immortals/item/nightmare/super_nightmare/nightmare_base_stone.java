@@ -1,6 +1,7 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
@@ -29,8 +30,9 @@ public class nightmare_base_stone extends nightmare implements SuperNightmare {
                     return;
                 }
                 if (player.getHealth() >= player.getMaxHealth()) {
-
-                    event.setAmount(event.getAmount() * 6);
+                    float s  = (float) Config.SERVER.nightmare_base_stone.getAsDouble();
+                    s+=1;
+                    event.setAmount(event.getAmount() * s);
 
                     if (!player.getCooldowns().isOnCooldown(Items.nightmare_base_stone.get())) {
                         if (event.getAmount() > player.getHealth()) {
