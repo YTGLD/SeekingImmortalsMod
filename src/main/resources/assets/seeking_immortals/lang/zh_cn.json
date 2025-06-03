@@ -400,6 +400,15 @@
   "advancements.tooltip.nightmare_base_stone_virus.text": "获得Nightecora病毒",
   "advancements.tooltip.nightmare_base_stone_virus.hand": "融合体",
 
+  "item.seeking_immortals.disintegrating_stone":"§4裂天石",
+  "item.disintegrating_stone.tool.string": "此物品的属性会随着你安装模组的数量的增加而增加",
+  "item.disintegrating_stone.tool.string.1": "来自任何模组的饰品都可能无效化",
+  "item.disintegrating_stone.tool.string.2": "上限为1800%",
+
+  "advancements.tooltip.disintegrating_stone.text": "获得这个物品",
+  "advancements.tooltip.disintegrating_stone.hand": "天崩地裂",
+
+
   "item.seeking_immortals.eye":"§4无名邪眼",
   "item.eye.tool.string.1": "撕咬你目视的生物，并削弱它们和恢复你的生命值",
   "item.eye.tool.string.2": "假设撕咬时你是满血状态，那么多余恢复的生命值将储存在物品当中",

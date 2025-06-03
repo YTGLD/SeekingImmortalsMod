@@ -4,9 +4,11 @@ import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.event.CurioDamageEvent;
 import com.ytgld.seeking_immortals.init.DataReg;
+import com.ytgld.seeking_immortals.init.EntityTs;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.init.Particles;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.test_entity.orb_entity;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -16,6 +18,8 @@ import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -96,8 +100,12 @@ public class eye extends nightmare {
                     }else {
                         stack.set(DataReg.tag,new CompoundTag());
                     }
+                    orb_entity orb_entity = new orb_entity(EntityTs.orb_entity.get(), slotContext.entity().level());
+                    orb_entity.setOwner(slotContext.entity());
+                    orb_entity.setPos(entity.position().add(0,1.5,0));
+                    orb_entity.setDeltaMovement(new Vec3(Mth.nextFloat(RandomSource.create(),-0.21F,0.25F),0.25f,Mth.nextFloat(RandomSource.create(),-0.311F,0.25F)));
 
-                    slotContext.entity().level().addParticle(Particles.blood.get(), entity.getX(), entity.getY() + 1,entity.getZ(), 0, 0, 0);
+                    slotContext.entity().level().addFreshEntity(orb_entity);
                 }
             }
         }
@@ -155,6 +163,8 @@ public class eye extends nightmare {
         pTooltipComponents.add(Component.translatable("item.eye.tool.string.3").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.eye.tool.string.4").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.literal(""));
+        pTooltipComponents.add(Component.translatable("item.eye.tool.string.7").withStyle(ChatFormatting.DARK_RED));
+        pTooltipComponents.add(Component.translatable("item.eye.tool.string.8").withStyle(ChatFormatting.DARK_RED));
         CompoundTag compoundTag = stack.get(DataReg.tag);
         if (compoundTag!=null){
             pTooltipComponents.add(Component.translatable("item.eye.tool.string.5").append(": ").append(String.valueOf(compoundTag.getInt(health))).withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFff4789))));

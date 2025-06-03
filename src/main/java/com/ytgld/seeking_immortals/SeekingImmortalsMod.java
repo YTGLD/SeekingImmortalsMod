@@ -10,6 +10,7 @@ import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.init.*;
 import com.ytgld.seeking_immortals.renderer.MRender;
+import com.ytgld.seeking_immortals.test_entity.client.OrbEntityRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
@@ -20,6 +21,7 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.neoforge.client.event.EntityRenderersEvent;
 import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
 import net.neoforged.neoforge.client.event.RegisterShadersEvent;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
@@ -48,15 +50,21 @@ public class SeekingImmortalsMod
         LootReg.REGISTRY.register(eventBus);
         DataReg.REGISTRY.register(eventBus);
         Items.REGISTRY.register(eventBus);
+        EntityTs.REGISTRY.register(eventBus);
         Particles.PARTICLE_TYPES.register(eventBus);
         Tab.TABS.register(eventBus);
         modContainer.registerConfig(ModConfig.Type.COMMON, Config.fc);
+        modContainer.registerConfig(ModConfig.Type.CLIENT, ClientConfig.CLIENT);
     }
     public static RenderLevelStageEvent.Stage stage_particles ;
 
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        @SubscribeEvent
+        public static void EntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event){
+            event.registerEntityRenderer(EntityTs.orb_entity.get(), OrbEntityRenderer::new);
+        }
         @SubscribeEvent
         public static void RegisterStageEvent(RenderLevelStageEvent.RegisterStageEvent event) {
             RenderType renderType = MRender.beacon.apply(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/p_blood.png"), true);
@@ -73,11 +81,6 @@ public class SeekingImmortalsMod
         public static void EntityRenderersEvent(RegisterShadersEvent event) {
             try {
 
-
-                event.registerShader(new ShaderInstance(event.getResourceProvider(),
-                        ResourceLocation.fromNamespaceAndPath(MODID,"rendertype_gateway"),
-                        DefaultVertexFormat.POSITION_TEX_COLOR), MRender::setShaderInstance_gateway);
-
                 event.registerShader(new ShaderInstance(event.getResourceProvider(),
                         ResourceLocation.fromNamespaceAndPath(MODID,"rendertype_mls"),
                         DefaultVertexFormat.POSITION_TEX_COLOR),MRender::setShaderInstance_mls);
@@ -85,20 +88,6 @@ public class SeekingImmortalsMod
                 event.registerShader(new ShaderInstance(event.getResourceProvider(),
                         ResourceLocation.fromNamespaceAndPath(MODID, "rendertype_ging"),
                         DefaultVertexFormat.POSITION_TEX_COLOR),MRender::setShaderInstance_ging);
-
-
-
-                event.registerShader(new ShaderInstance(event.getResourceProvider(),
-                        ResourceLocation.fromNamespaceAndPath(MODID,"trail"),
-                        DefaultVertexFormat.POSITION_TEX_COLOR),MRender::setShaderInstance_trail);
-
-                event.registerShader(new ShaderInstance(event.getResourceProvider(),
-                        ResourceLocation.fromNamespaceAndPath(MODID,"eye"),
-                        DefaultVertexFormat.POSITION_TEX_COLOR),MRender::setShaderInstance_EYE);
-
-                event.registerShader(new ShaderInstance(event.getResourceProvider(),
-                        ResourceLocation.fromNamespaceAndPath(MODID,"snake"),
-                        DefaultVertexFormat.POSITION_TEX_COLOR),MRender::setShader_snake);
 
                 event.registerShader(new ShaderInstance(event.getResourceProvider(),
                         ResourceLocation.fromNamespaceAndPath(MODID,"p_blood"),

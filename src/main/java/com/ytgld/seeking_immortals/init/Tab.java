@@ -19,6 +19,7 @@ public class Tab {
             .displayItems((a,b)->{
                 b.accept(new ItemStack(Items.immortal.get()));
                 b.accept(new ItemStack(Items.eye.get()));
+                b.accept(new ItemStack(Items.disintegrating_stone.get()));
 
                 b.accept(new ItemStack(Items.nightmare_base.get()));
                 b.accept(new ItemStack(Items.nightmare_base_black_eye.get()));

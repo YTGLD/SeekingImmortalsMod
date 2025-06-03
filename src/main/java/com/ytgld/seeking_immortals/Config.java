@@ -22,6 +22,7 @@ public class Config {
     public final ModConfigSpec.IntValue nightmare_base_redemption ;
     public final ModConfigSpec.IntValue nightmare_base_reversal ;
     public final ModConfigSpec.IntValue nightmare_base_start ;
+    public final ModConfigSpec.DoubleValue disintegrating_stone ;
 
     public Config(ModConfigSpec.Builder BUILDER){
 
@@ -70,7 +71,11 @@ public class Config {
                         .comment("护甲值的处罚")
                         .defineInRange("nightmare_base_start", 100,0,100);
                 BUILDER.pop();
-
+                BUILDER.push("裂天石");
+                disintegrating_stone = BUILDER
+                        .comment("裂天石的单个模组给予的数值")
+                        .defineInRange("disintegrating_stone", 1.3f, 0, 10000);
+                BUILDER.pop();
             }
 
 
