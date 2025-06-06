@@ -23,12 +23,21 @@ public class Config {
     public final ModConfigSpec.IntValue nightmare_base_reversal ;
     public final ModConfigSpec.IntValue nightmare_base_start ;
     public final ModConfigSpec.DoubleValue disintegrating_stone ;
+    public final ModConfigSpec.IntValue give_nightmare_base_insight_drug ;
 
     public Config(ModConfigSpec.Builder BUILDER){
 
         {
             BUILDER.push("噩梦");
 
+            {
+                BUILDER.push("获取");
+                give_nightmare_base_insight_drug = BUILDER
+                        .comment("疯狂灵药获取时要求的药水数量")
+                        .defineInRange("give_nightmare_base_insight_drug", 9,1,100);
+                BUILDER.pop();
+
+            }
             {
                 BUILDER.push("邪念之窥眸");
                 nightmare_base_black_eye = BUILDER

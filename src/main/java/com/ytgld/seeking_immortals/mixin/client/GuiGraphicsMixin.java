@@ -1,11 +1,10 @@
 package com.ytgld.seeking_immortals.mixin.client;
 
-import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ytgld.seeking_immortals.MGuiGraphics;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.INightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import net.minecraft.client.Minecraft;

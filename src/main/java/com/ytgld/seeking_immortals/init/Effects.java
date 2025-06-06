@@ -10,5 +10,6 @@ import net.neoforged.neoforge.registries.DeferredRegister;
 public class Effects {
     public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(BuiltInRegistries.MOB_EFFECT, SeekingImmortalsMod.MODID);
     public static final DeferredHolder<MobEffect,?> dead  =REGISTRY.register("dead",()->new dead());
+    public static final DeferredHolder<MobEffect,?> erode  =REGISTRY.register("erode",()->new erode());
 
 }

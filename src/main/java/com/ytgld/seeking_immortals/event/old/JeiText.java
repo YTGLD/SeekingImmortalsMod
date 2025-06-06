@@ -67,6 +67,8 @@ public class JeiText implements IModPlugin {
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_start_egg.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_egg").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_start_pod.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_pod").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_start_power.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_power").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
+            registration.addIngredientInfo(new ItemStack(Items.wolf.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.wolf").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all")
+                    .append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
 
 
         }

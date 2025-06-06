@@ -1,9 +1,9 @@
-package com.ytgld.seeking_immortals.item;
+package com.ytgld.seeking_immortals.item.nightmare;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Config;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;

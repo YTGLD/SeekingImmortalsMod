@@ -1,8 +1,11 @@
-package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend;
+package com.ytgld.seeking_immortals.item.nightmare.extend;
 
 import com.ytgld.seeking_immortals.init.DataReg;
+import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.inventory.tooltip.BundleTooltip;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -12,6 +15,8 @@ import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.common.CuriosRegistry;
+
+import java.util.Optional;
 
 public class nightmare extends Item implements ICurioItem, INightmare {
     public nightmare() {
@@ -25,6 +30,12 @@ public class nightmare extends Item implements ICurioItem, INightmare {
         if (stack.get(DataReg.tag) == null) {
             stack.set(DataReg.tag, new CompoundTag());
         }
+    }
+    @Override
+    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP)
+                ? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new)
+                : Optional.empty();
     }
 
     @NotNull

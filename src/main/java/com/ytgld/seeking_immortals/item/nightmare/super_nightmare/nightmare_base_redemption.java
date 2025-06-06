@@ -1,12 +1,11 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 
 import com.google.common.collect.Multimap;
-import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.network.chat.Component;

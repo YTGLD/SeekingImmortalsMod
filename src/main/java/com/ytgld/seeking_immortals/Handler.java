@@ -1,8 +1,8 @@
 package com.ytgld.seeking_immortals;
 
 import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.SuperNightmare;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import top.theillusivec4.curios.api.CuriosApi;

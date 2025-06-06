@@ -1,7 +1,7 @@
 package com.ytgld.seeking_immortals.init;
 
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.item.disintegrating_stone;
+import com.ytgld.seeking_immortals.item.nightmare.disintegrating_stone;
 import com.ytgld.seeking_immortals.item.nightmare.eye;
 import com.ytgld.seeking_immortals.item.nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
