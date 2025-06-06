@@ -8,7 +8,8 @@ import net.minecraft.resources.ResourceLocation;
  * 命运
  */
 public class Destiny extends Element {
-    public static final ResourceLocation destiny = ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
-            "textures/gui/destiny.png"
+    public static final ResourceLocation destiny =
+            ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+            "destiny"
     );
 }

@@ -31,12 +31,7 @@ public class nightmare extends Item implements ICurioItem, INightmare {
             stack.set(DataReg.tag, new CompoundTag());
         }
     }
-    @Override
-    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-        return !stack.has(DataComponents.HIDE_TOOLTIP) && !stack.has(DataComponents.HIDE_ADDITIONAL_TOOLTIP)
-                ? Optional.ofNullable(stack.get(DataComponents.BUNDLE_CONTENTS)).map(BundleTooltip::new)
-                : Optional.empty();
-    }
+
 
     @NotNull
     @Override

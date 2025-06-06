@@ -41,7 +41,6 @@ public abstract class GameRendererMixin {
     Minecraft minecraft;
     @Inject(at = @At("RETURN"), method = "render")
     public void init(DeltaTracker deltaTracker, boolean renderLevel, CallbackInfo ci) {
-
         if (Config.SERVER.nightmare_base_black_eye.get()) {
             if (mainCamera.getEntity() instanceof Player player) {
                 if (Handler.hascurio(player, Items.nightmare_base_black_eye.get())) {

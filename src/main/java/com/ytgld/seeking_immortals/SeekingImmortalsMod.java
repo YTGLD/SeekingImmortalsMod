@@ -9,7 +9,7 @@ import com.ytgld.seeking_immortals.event.now.EventHandler;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.init.*;
-import com.ytgld.seeking_immortals.item.an_element.AllElementTooltipEvent;
+import com.ytgld.seeking_immortals.item.an_element.NightmareTooltip;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import com.ytgld.seeking_immortals.test_entity.client.OrbEntityRenderer;
 import net.minecraft.client.renderer.RenderType;
@@ -22,14 +22,12 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
-import net.neoforged.neoforge.client.event.EntityRenderersEvent;
-import net.neoforged.neoforge.client.event.RegisterParticleProvidersEvent;
-import net.neoforged.neoforge.client.event.RegisterShadersEvent;
-import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
+import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
 import java.io.IOException;
+import java.util.function.Function;
 
 @Mod(SeekingImmortalsMod.MODID)
 public class SeekingImmortalsMod
@@ -44,7 +42,6 @@ public class SeekingImmortalsMod
         NeoForge.EVENT_BUS.register(new NewEvent());
         NeoForge.EVENT_BUS.register(new AdvancementEvt());
         NeoForge.EVENT_BUS.register(new EventHandler());
-        NeoForge.EVENT_BUS.register(new AllElementTooltipEvent());
 
         NeoForge.EVENT_BUS.register(ParticleRenderer.class);
         Effects.REGISTRY.register(eventBus);
@@ -63,6 +60,10 @@ public class SeekingImmortalsMod
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        @SubscribeEvent
+        public static void RegisterClientTooltipComponentFactoriesEvent(RegisterClientTooltipComponentFactoriesEvent event){
+            event.register(NightmareTooltip.class, Function.identity());
+        }
         @SubscribeEvent
         public static void EntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event){
             event.registerEntityRenderer(EntityTs.orb_entity.get(), OrbEntityRenderer::new);

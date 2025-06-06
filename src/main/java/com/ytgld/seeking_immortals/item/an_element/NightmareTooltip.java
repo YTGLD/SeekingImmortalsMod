@@ -1,5 +1,7 @@
 package com.ytgld.seeking_immortals.item.an_element;
 
+import com.ytgld.seeking_immortals.SeekingImmortalsMod;
+import com.ytgld.seeking_immortals.item.an_element.extend.Element;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
@@ -7,9 +9,11 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import org.jetbrains.annotations.NotNull;
 
+import java.util.Map;
+
 public class NightmareTooltip implements ClientTooltipComponent, TooltipComponent {
     private static final ResourceLocation BACKGROUND_SPRITE =
-            ResourceLocation.withDefaultNamespace("container/bundle/background");
+            ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"background");
     private final AllElement element;
 
     public NightmareTooltip(AllElement contents) {
@@ -27,11 +31,11 @@ public class NightmareTooltip implements ClientTooltipComponent, TooltipComponen
     }
 
     private int backgroundWidth() {
-        return this.gridSizeX() * 18 + 2;
+        return this.gridSizeX() * 32 + 2;
     }
 
     private int backgroundHeight() {
-        return this.gridSizeY() * 20 + 2;
+        return this.gridSizeY() * 32 + 2;
     }
 
     public void renderImage(@NotNull Font font, int x, int y, GuiGraphics guiGraphics) {
@@ -40,26 +44,33 @@ public class NightmareTooltip implements ClientTooltipComponent, TooltipComponen
         guiGraphics.blitSprite(BACKGROUND_SPRITE, x, y, this.backgroundWidth(), this.backgroundHeight());
         for(int l = 0; l < j; ++l) {
             for(int i1 = 0; i1 < i; ++i1) {
-                int j1 = x + i1 * 18 + 1;
-                int k1 = y + l * 20 + 1;
-                this.renderSlot(j1, k1, guiGraphics);
+                int j1 = x + i1 * 32 ;
+                int k1 = y + l * 32 ;
+                this.renderSlot(font,j1, k1, guiGraphics);
             }
         }
 
     }
 
-    private void renderSlot(int x, int y, GuiGraphics guiGraphics) {
+    private void renderSlot(Font font,int x, int y, GuiGraphics guiGraphics) {
         guiGraphics.blitSprite(element.name(),x,y,32,32);
+
+        Map<Element, Integer> map = element.element();
+        if (map!=null) {
+            for (int number : map.values()) {
+                guiGraphics.drawString(font, String.valueOf(number), x+26, y+26, 0xFFFFE7BA, false);
+                break;
+            }
+        }
     }
     private int gridSizeX() {
-        if (this.element.element() !=null) {
-            return Math.max(2, (int) Math.ceil(Math.sqrt((double) this.element.element().size() + 1.0)));
+        Map<Element, Integer> map = element.element();
+        if (map!=null) {
+            return map.size();
         }else return 0;
     }
 
     private int gridSizeY() {
-        if (this.element.element() !=null) {
-            return (int) Math.ceil(((double) this.element.element().size() + 1.0) / (double) this.gridSizeX());
-        }else return 0;
+        return 1;
     }
 }
