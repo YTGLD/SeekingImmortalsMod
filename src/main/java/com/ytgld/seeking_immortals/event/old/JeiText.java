@@ -70,6 +70,8 @@ public class JeiText implements IModPlugin {
             registration.addIngredientInfo(new ItemStack(Items.wolf.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.wolf").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all")
                     .append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
 
+            registration.addIngredientInfo(new ItemStack(Items.nightmare_base_black_eye.get()), VanillaTypes.ITEM_STACK, Component.translatable("item.seeking_immortals.nightmare_base_black_eye.jei").append(Component.translatable("item.seeking_immortals.all_element.jei")));
+            registration.addIngredientInfo(new ItemStack(Items.nightmare_base_stone.get()), VanillaTypes.ITEM_STACK, Component.translatable("item.seeking_immortals.nightmare_base_stone.jei").append(Component.translatable("item.seeking_immortals.all_element.jei")));
 
         }
     }

@@ -2,13 +2,15 @@ package com.ytgld.seeking_immortals.event.old;
 
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.event.CurioDamageEvent;
+import com.ytgld.seeking_immortals.event.CurioDeathAtMeEvent;
+import com.ytgld.seeking_immortals.event.CurioHurtEvent;
+import com.ytgld.seeking_immortals.event.CurioTickEvent;
 import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.item.nightmare.immortal;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.immortal;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_eye;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_heart;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_red;
@@ -47,6 +49,7 @@ import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
+import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioCanEquipEvent;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -68,13 +71,48 @@ public class NewEvent {
                     IDynamicStackHandler stackHandler = stacksHandler.getStacks();
                     for (int i = 0; i < stacksHandler.getSlots(); i++) {
                         ItemStack stack = stackHandler.getStackInSlot(i);
-                        NeoForge.EVENT_BUS.post(new CurioDamageEvent(player, stack,event));
+                        NeoForge.EVENT_BUS.post(new CurioHurtEvent(player, stack,event));
                     }
                 }
             });
         }
     }
-
+    @SubscribeEvent
+    public void CurioLivingIncomingDamageEvent(EntityTickEvent.Post event){
+        if (event.getEntity() instanceof Player player) {
+            CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                    ICurioStacksHandler stacksHandler = entry.getValue();
+                    IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                    for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                        ItemStack stack = stackHandler.getStackInSlot(i);
+                        if (!stack.isEmpty()) {
+                            NeoForge.EVENT_BUS.post(new CurioTickEvent(player, stack));
+                        }
+                    }
+                }
+            });
+        }
+    }
+    @SubscribeEvent
+    public void CurioDeathAtMeEvent(LivingDeathEvent event){
+        if (event.getEntity() instanceof Player player) {
+            if (event.getSource().getEntity() instanceof LivingEntity living) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            NeoForge.EVENT_BUS.post(new CurioDeathAtMeEvent(player, living,stack, event));
+                        }
+                    }
+                });
+            }
+        }
+    }
     @SubscribeEvent
     public void LivingHealEvent(LivingHealEvent event) {
         nightmare_base_reversal_orb.LivingHealEvent(event);
@@ -114,7 +152,6 @@ public class NewEvent {
         nightmare_base_start.damage(event);
         nightmare_base_start_pod.damage(event);
         candle.hurt(event);
-        immortal.hEvt(event);
 
         if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
             float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
@@ -233,32 +270,8 @@ public class NewEvent {
                 }
             }
         }
-//
-//        if (event.getEntity() instanceof Player living) {
-//            addFirst(event, Items.nightmare_base_black_eye.get(),Items.hypocritical_self_esteem.get()
-//                    ,hypocritical_self_esteem.hypocritical_self_esteem2,living);
-//            addFirst(event, Items.nightmare_base_black_eye.get(),Items.hypocritical_self_esteem.get()
-//                    ,hypocritical_self_esteem.hypocritical_self_esteem3,living);
-//            addFirst(event, Items.nightmare_base_black_eye.get(),Items.hypocritical_self_esteem.get()
-//                    ,hypocritical_self_esteem.hypocritical_self_esteem4,living);
-//        }
     }
-    public void addFirst(ItemTooltipEvent event,
-                         Item has,
-                         Item addItem,
-                         Component contains,
-                         Player living) {
-        if (Handler.hascurio(living,has)) {
-            if (event.getItemStack().is(addItem)) {
-                List<Component> toolTip = event.getToolTip();
-                for (Component component : toolTip) {
-                    if (component.contains(contains)) {
-                        component.getSiblings().addFirst(Component.literal("§k"));
-                    }
-                }
-            }
-        }
-    }
+
     @OnlyIn(Dist.CLIENT)
     @SubscribeEvent
     public void Color(RenderTooltipEvent.Color tooltipEvent){

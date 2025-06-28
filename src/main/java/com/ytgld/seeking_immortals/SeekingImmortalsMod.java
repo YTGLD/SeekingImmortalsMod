@@ -27,6 +27,7 @@ import net.neoforged.neoforge.common.NeoForge;
 import org.slf4j.Logger;
 
 import java.io.IOException;
+import java.util.Locale;
 import java.util.function.Function;
 
 @Mod(SeekingImmortalsMod.MODID)
@@ -43,7 +44,6 @@ public class SeekingImmortalsMod
         NeoForge.EVENT_BUS.register(new AdvancementEvt());
         NeoForge.EVENT_BUS.register(new EventHandler());
 
-        NeoForge.EVENT_BUS.register(ParticleRenderer.class);
         Effects.REGISTRY.register(eventBus);
         AttReg.REGISTRY.register(eventBus);
         LootReg.REGISTRY.register(eventBus);
@@ -100,5 +100,8 @@ public class SeekingImmortalsMod
                 exception.printStackTrace();
             }
         }
+    }
+    public static ResourceLocation prefix(String name) {
+        return ResourceLocation.fromNamespaceAndPath(MODID, name.toLowerCase(Locale.ROOT));
     }
 }

@@ -406,6 +406,14 @@
   "item.eye.tool.string.5": "stored blood",
   "item.eye.tool.string.6": "You need to look at mobs to get blood",
 
+  "seeking_immortals.emperor_demon_body": "合道帝魔身",
+  "seeking_immortals.item.all_element": "按下Alt键查看要素",
+
+  "item.seeking_immortals.all_element.jei": "\n\n要素可以用来减少或者抑制诅咒效果（未实现）\n也可以用来获得某些物品（未实现）",
+  "item.seeking_immortals.nightmare_base_black_eye.jei": "此物品的由10点“命运”要素组成，可以按下“ALT”键进行查看\n你可以触发此物品的诅咒来获取要素",
+  "item.seeking_immortals.nightmare_base_stone.jei": "此物品的由15点“死亡”要素组成，可以按下“ALT”键进行查看\n你可以触发此物品的诅咒来获取要素",
+
+
   "item.eye.tool.string.7": "剥离你所看注视生物的灵魂",
   "item.eye.tool.string.8": "灵魂会飞向你，若撞击到生物则造成大量负面效果和4点魔法伤害"
 }

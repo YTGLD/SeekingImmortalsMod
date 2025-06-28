@@ -2,7 +2,7 @@ package com.ytgld.seeking_immortals.item.nightmare;
 
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Handler;
-import com.ytgld.seeking_immortals.event.CurioDamageEvent;
+import com.ytgld.seeking_immortals.event.CurioHurtEvent;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.EntityTs;
 import com.ytgld.seeking_immortals.init.Items;
@@ -54,18 +54,20 @@ import java.util.Optional;
 public class eye extends nightmare {
     public static String health = "HealthEye";
 
-    public static void CurioDamageEvent(CurioDamageEvent event){
+    public static void CurioDamageEvent(CurioHurtEvent event){
         Player player = event.getPlayer();
         ItemStack stack = event.getStack();
         LivingIncomingDamageEvent damageEvent = event.getEvent();
         CompoundTag compoundTag = stack.get(DataReg.tag);
         if (Handler.hascurio(player,Items.eye.get())){
-            if (compoundTag != null) {
-                if (compoundTag.getInt(health)>=player.getMaxHealth()*3){
-                    player.heal(compoundTag.getInt(health));
-                    player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.NEUTRAL, 1F, 1F);
-                    damageEvent.setAmount(0);
-                    compoundTag.putInt(health, (int) (compoundTag.getInt(health)-player.getMaxHealth()));
+            if (stack.is(Items.eye.get())) {
+                if (compoundTag != null) {
+                    if (compoundTag.getInt(health) >= player.getMaxHealth() * 3) {
+                        player.heal(compoundTag.getInt(health));
+                        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.NEUTRAL, 1F, 1F);
+                        damageEvent.setAmount(0);
+                        compoundTag.putInt(health, (int) (compoundTag.getInt(health) - player.getMaxHealth()));
+                    }
                 }
             }
         }

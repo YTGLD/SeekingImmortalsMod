@@ -24,6 +24,7 @@ public class Config {
     public final ModConfigSpec.IntValue nightmare_base_start ;
     public final ModConfigSpec.DoubleValue disintegrating_stone ;
     public final ModConfigSpec.IntValue give_nightmare_base_insight_drug ;
+    public final ModConfigSpec.IntValue immortal ;
 
     public Config(ModConfigSpec.Builder BUILDER){
 
@@ -39,6 +40,11 @@ public class Config {
 
             }
             {
+                BUILDER.push("不朽轮回之印章");
+                immortal = BUILDER
+                        .comment("反伤概率")
+                        .defineInRange("immortal", 70,0,100);
+                BUILDER.pop();
                 BUILDER.push("邪念之窥眸");
                 nightmare_base_black_eye = BUILDER
                         .comment("近视效果开关")
