@@ -10,6 +10,7 @@ import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.falling_immortals;
 import com.ytgld.seeking_immortals.item.nightmare.immortal;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_eye;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_heart;
@@ -133,11 +134,12 @@ public class NewEvent {
         wolf.kill(event);
         nightmare_base_black_eye_red.kill(event);
         nightmare_base_insight_insane.LivingDeathEvents(event);
-
+        falling_immortals.dieEqItem(event);
     }
 
     @SubscribeEvent
     public void LivingHurtEvent(LivingIncomingDamageEvent event){
+        falling_immortals.damage(event);
         apple.damage(event);
         end_bone.hurts(event);
         wolf.attack(event);

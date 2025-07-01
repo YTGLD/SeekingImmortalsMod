@@ -1,0 +1,31 @@
+{
+    "targets": [
+        "swap"
+    ],
+    "passes": [
+       {
+            "name": "seeking_immortals:color_convolve",
+            "intarget": "minecraft:main",
+            "outtarget": "swap",
+            "use_linear_filter": true,
+            "uniforms": [
+                {
+                    "name": "Saturation",
+                    "values": [ 0.75 ]
+                }
+            ]
+        },
+        {
+            "name": "seeking_immortals:color_convolve",
+            "intarget": "swap",
+            "outtarget": "minecraft:main",
+            "use_linear_filter": true,
+            "uniforms": [
+                {
+                    "name": "Saturation",
+                    "values": [ 0.75 ]
+                }
+            ]
+        }
+    ]
+}

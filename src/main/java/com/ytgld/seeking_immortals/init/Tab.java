@@ -20,6 +20,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.immortal.get()));
                 b.accept(new ItemStack(Items.eye.get()));
                 b.accept(new ItemStack(Items.disintegrating_stone.get()));
+                b.accept(new ItemStack(Items.falling_immortals.get()));
 
                 b.accept(new ItemStack(Items.nightmare_base.get()));
                 b.accept(new ItemStack(Items.nightmare_base_black_eye.get()));
@@ -27,6 +28,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.nightmare_base_black_eye_heart.get()));
                 b.accept(new ItemStack(Items.nightmare_base_black_eye_red.get()));
                 b.accept(new ItemStack(Items.tricky_puppets.get()));
+                b.accept(new ItemStack(Items.muddy_jewels.get()));
 
 
                 b.accept(new ItemStack(Items.nightmare_base_stone.get()));

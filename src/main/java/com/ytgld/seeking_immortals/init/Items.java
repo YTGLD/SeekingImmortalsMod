@@ -62,7 +62,9 @@ public class Items {
     public static final DeferredHolder<Item,?> hypocritical_self_esteem =REGISTRY.register("hypocritical_self_esteem", hypocritical_self_esteem::new);
     public static final DeferredHolder<Item,?> wolf =REGISTRY.register("wolf", wolf::new);
     public static final DeferredHolder<Item,?> eye =REGISTRY.register("eye", eye::new);
+    public static final DeferredHolder<Item,?> falling_immortals =REGISTRY.register("falling_immortals", falling_immortals::new);
     public static final DeferredHolder<Item,?> disintegrating_stone =REGISTRY.register("disintegrating_stone", disintegrating_stone::new);
+    public static final DeferredHolder<Item,?> muddy_jewels =REGISTRY.register("muddy_jewels", muddy_jewels::new);
 
     public static final DeferredHolder<Item,?> nightmare_base_start_power =REGISTRY.register("nightmare_base_start_power", nightmare_base_start_power::new);
     public static final DeferredHolder<Item,?> tricky_puppets =REGISTRY.register("tricky_puppets", tricky_puppets::new);

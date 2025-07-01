@@ -15,6 +15,7 @@
     "client.AdvancementWidgetMixin",
     "client.ATabMixin",
     "client.ChestRendererMixin",
+    "client.EyeColorMixin",
     "client.GameRendererMixin",
     "client.GuiGraphicsMixin",
     "client.LevelRendererMixin",

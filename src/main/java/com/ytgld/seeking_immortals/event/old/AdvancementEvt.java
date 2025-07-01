@@ -5,8 +5,10 @@ import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.init.DataReg;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.tags.DamageTypeTags;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
@@ -41,6 +43,7 @@ public class AdvancementEvt {
     public static final String nightmare_base_black_eye_eye = "nightmare_base_black_eye_eye";
     public static final String nightmare_base_black_eye_red = "nightmare_base_black_eye_red";
     public static final String tricky_puppets = "tricky_puppets";
+    public static final String muddy_jewels = "muddy_jewels";
 
 
 
@@ -92,7 +95,34 @@ public class AdvancementEvt {
     public static final String nightmare_base_start_egg = "nightmare_base_start_egg";
     public static final String nightmare_base_start_pod = "nightmare_base_start_pod";
     public static final String wolf = "wolf";
+    @SubscribeEvent
+    public void muddy_jewels(LivingDeathEvent event){
+        if (event.getSource().getEntity() instanceof Player player) {
+            if (event.getEntity() instanceof WitherBoss) {
+                if (Handler.hascurio(player, Items.nightmare_base_black_eye.get())) {
+                    CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                        Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                        for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                            ICurioStacksHandler stacksHandler = entry.getValue();
+                            IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                            for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                                ItemStack stack = stackHandler.getStackInSlot(i);
+                                if (stack.is(Items.nightmare_base_black_eye.get())) {
+                                    if (stack.get(DataReg.tag) != null) {
+                                        if (!stack.get(DataReg.tag).getBoolean(muddy_jewels)) {
+                                            player.addItem(new ItemStack(Items.muddy_jewels.get()));
+                                            stack.get(DataReg.tag).putBoolean(muddy_jewels, true);
+                                        }
 
+                                    }
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+    }
     @SubscribeEvent
     public void wolf(LivingDropsEvent event){
         if (event.getSource().getEntity() instanceof Wolf wolf_entity){

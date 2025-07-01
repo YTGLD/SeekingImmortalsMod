@@ -43,6 +43,9 @@ public abstract class GameRendererMixin {
    public void init(DeltaTracker deltaTracker, boolean renderLevel, CallbackInfo ci) {
        if (Config.SERVER.nightmare_base_black_eye.get()) {
            if (mainCamera.getEntity() instanceof Player player) {
+               if (Handler.hascurio(player, Items.muddy_jewels.get())){
+                   return;
+               }
                if (Handler.hascurio(player, Items.nightmare_base_black_eye.get())) {
                    float fs = player.getPersistentData().getFloat("blurEffectOFNightmare_base_black_eye");
                    if (moonstone1_21_1$getPlayerLookTarget(player.level(), player) != null && moonstone1_21_1$getPlayerLookTarget(player.level(), player) instanceof LivingEntity) {

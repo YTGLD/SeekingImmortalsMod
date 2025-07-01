@@ -26,10 +26,13 @@ public class JeiText implements IModPlugin {
     public void registerRecipes(IRecipeRegistration registration) {
         {
 
+
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_black_eye_heart.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_black_eye_heart").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_black_eye"))));
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_black_eye_eye.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_black_eye_eye").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_black_eye"))));
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_black_eye_red.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_black_eye_red").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_black_eye"))));
             registration.addIngredientInfo(new ItemStack(Items.tricky_puppets.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.tricky_puppets").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all")
+                    .append(Component.translatable("item.seeking_immortals.nightmare_base_black_eye"))));
+            registration.addIngredientInfo(new ItemStack(Items.muddy_jewels.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.muddy_jewels").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all")
                     .append(Component.translatable("item.seeking_immortals.nightmare_base_black_eye"))));
 
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_stone_brain.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_stone_brain").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_stone"))));
@@ -69,9 +72,10 @@ public class JeiText implements IModPlugin {
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_start_power.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_start_power").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
             registration.addIngredientInfo(new ItemStack(Items.wolf.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.wolf").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all")
                     .append(Component.translatable("item.seeking_immortals.nightmare_base_start"))));
+            registration.addIngredientInfo(new ItemStack(Items.falling_immortals.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.falling_immortals").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all")
+                    .append(Component.translatable("item.seeking_immortals.apple"))));
 
-            registration.addIngredientInfo(new ItemStack(Items.nightmare_base_black_eye.get()), VanillaTypes.ITEM_STACK, Component.translatable("item.seeking_immortals.nightmare_base_black_eye.jei").append(Component.translatable("item.seeking_immortals.all_element.jei")));
-            registration.addIngredientInfo(new ItemStack(Items.nightmare_base_stone.get()), VanillaTypes.ITEM_STACK, Component.translatable("item.seeking_immortals.nightmare_base_stone.jei").append(Component.translatable("item.seeking_immortals.all_element.jei")));
+
 
         }
     }
