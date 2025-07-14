@@ -49,20 +49,7 @@ public abstract class GuiGraphicsMixin {
         if (living != null) {
             if (stack.getItem() instanceof nightmare_base){
                 int tickCount = living.tickCount;
-
-
-
-                float[][] positions = {
-                        {x - 8/10f, y - 8/10f},
-                        {x + 24/10f, y - 8/10f},
-                        {x - 8/10f, y + 24/10f},
-                        {x + 24/10f, y + 24/10f},
-                        {x + 56/10f, y - 8/10f},
-                        {x + 56/10f, y + 24/10f},
-                        {x - 8/10f, y + 56/10f},
-                        {x + 24/10f, y + 56/10f},
-                        {x + 5/10f, y + 5/10f}
-                };
+                float[][] positions = {{x - 8/10f, y - 8/10f}, {x + 24/10f, y - 8/10f}, {x - 8/10f, y + 24/10f}, {x + 24/10f, y + 24/10f}, {x + 56/10f, y - 8/10f}, {x + 56/10f, y + 24/10f}, {x - 8/10f, y + 56/10f}, {x + 24/10f, y + 56/10f}, {x + 5/10f, y + 5/10f}};
                 double[] alphaFactors = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
                 for (int i = 0; i < 9; i++) {
                     float s = (float) Math.sin((double) tickCount / 50 * alphaFactors[i]);

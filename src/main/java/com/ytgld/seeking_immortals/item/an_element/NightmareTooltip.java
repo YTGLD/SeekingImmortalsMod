@@ -1,6 +1,5 @@
 package com.ytgld.seeking_immortals.item.an_element;
 
-import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.item.an_element.extend.Element;
 import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
@@ -24,17 +23,17 @@ public class NightmareTooltip implements ClientTooltipComponent, TooltipComponen
 
     @Override
     public int getHeight() {
-//        if (Screen.hasAltDown()){
-//            return  this.backgroundHeight() + 4;
-//        }
+        if (Screen.hasAltDown()){
+            return  this.backgroundHeight() + 4;
+        }
         return 0;
     }
 
     @Override
     public int getWidth(@NotNull Font font) {
-//        if (Screen.hasAltDown()){
-//            return this.backgroundWidth();
-//        }
+        if (Screen.hasAltDown()){
+            return this.backgroundWidth();
+        }
         return 0;
     }
 
@@ -47,19 +46,19 @@ public class NightmareTooltip implements ClientTooltipComponent, TooltipComponen
     }
 
     public void renderImage(@NotNull Font font, int x, int y, @NotNull GuiGraphics guiGraphics) {
-//        if (Screen.hasAltDown()) {
-//            int i = this.gridSizeX();
-//            int j = this.gridSizeY();
-//            int s = 0;
-//            for (int l = 0; l < j; ++l) {
-//                for (int i1 = 0; i1 < i; ++i1) {
-//                    int j1 = x + i1 * 32;
-//                    int k1 = y + l * 32;
-//                    s++;
-//                    this.renderSlot(font, j1, k1, guiGraphics,s);
-//                }
-//            }
-//        }
+        if (Screen.hasAltDown()) {
+            int i = this.gridSizeX();
+            int j = this.gridSizeY();
+            int s = 0;
+            for (int l = 0; l < j; ++l) {
+                for (int i1 = 0; i1 < i; ++i1) {
+                    int j1 = x + i1 * 32;
+                    int k1 = y + l * 32;
+                    s++;
+                    this.renderSlot(font, j1, k1, guiGraphics,s);
+                }
+            }
+        }
     }
 
     private void renderSlot(Font font,int x, int y, GuiGraphics guiGraphics,int i) {

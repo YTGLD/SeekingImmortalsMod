@@ -102,6 +102,10 @@ public class eye extends nightmare {
                         stack.set(DataReg.tag,new CompoundTag());
                     }
                     orb_entity orb_entity = new orb_entity(EntityTs.orb_entity.get(), slotContext.entity().level());
+                    orb_entity.r = Mth.nextInt(RandomSource.create(),100,255);
+                    orb_entity.g = Mth.nextInt(RandomSource.create(),0,25);
+                    orb_entity.b = Mth.nextInt(RandomSource.create(),175,255);
+
                     orb_entity.setOwner(slotContext.entity());
                     orb_entity.setPos(entity.position().add(0,1.5,0));
                     orb_entity.setDeltaMovement(new Vec3(Mth.nextFloat(RandomSource.create(),-0.21F,0.25F),0.25f,Mth.nextFloat(RandomSource.create(),-0.311F,0.25F)));

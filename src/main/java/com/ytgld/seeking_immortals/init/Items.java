@@ -2,6 +2,7 @@ package com.ytgld.seeking_immortals.init;
 
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.item.nightmare.disintegrating_stone;
+import com.ytgld.seeking_immortals.item.nightmare.element.yoke;
 import com.ytgld.seeking_immortals.item.nightmare.eye;
 import com.ytgld.seeking_immortals.item.nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
@@ -65,6 +66,8 @@ public class Items {
     public static final DeferredHolder<Item,?> falling_immortals =REGISTRY.register("falling_immortals", falling_immortals::new);
     public static final DeferredHolder<Item,?> disintegrating_stone =REGISTRY.register("disintegrating_stone", disintegrating_stone::new);
     public static final DeferredHolder<Item,?> muddy_jewels =REGISTRY.register("muddy_jewels", muddy_jewels::new);
+    public static final DeferredHolder<Item,?> hidden_blade =REGISTRY.register("hidden_blade", hidden_blade::new);
+    public static final DeferredHolder<Item,?> yoke =REGISTRY.register("yoke", yoke::new);
 
     public static final DeferredHolder<Item,?> nightmare_base_start_power =REGISTRY.register("nightmare_base_start_power", nightmare_base_start_power::new);
     public static final DeferredHolder<Item,?> tricky_puppets =REGISTRY.register("tricky_puppets", tricky_puppets::new);

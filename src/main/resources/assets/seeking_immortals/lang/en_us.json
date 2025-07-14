@@ -64,7 +64,7 @@
   "item.seeking_immortals.nightmare_base_black_eye_eye": "§4Dreadful Tumor",
   "item.nightmare_base_black_eye_eye.tool.string": "Creatures under your gaze will be unable to move",
   "item.nightmare_base_black_eye_eye.tool.string.1": "They will also receive a large amount of negative BUFFs",
-  "item.nightmare_base_black_eye_eye.tool.string.2": "When you look at any creature, you will gain a 100% damage bonus",
+  "item.nightmare_base_black_eye_eye.tool.string.2": "When you look at any creature, you will gain a 25% damage bonus",
 
   "item.seeking_immortals.nightmare_base_black_eye_red": "§4Sinful Red Lip",
   "item.nightmare_base_black_eye_red.tool.string": "Killing creatures increases all attributes by 5%",
@@ -416,10 +416,29 @@
   "item.falling_immortals.tool.string.5":"Damage taken is fixed at 2",
   "item.falling_immortals.tool.string.6":"Armor is fixed at 10",
 
-  "seeking_immortals.jei.item.seeking_immortals.falling_immortals": "在佩戴倾斜异果的情况下主手手持末影之眼杀死凋零获取（实际上它会直接替换倾斜异果为坠仙）",
+  "seeking_immortals.jei.item.seeking_immortals.falling_immortals": "While wearing the Tilted Fruit, the Eye of Ender is held in the main hand to kill the withering (in fact, it will directly replace the Tilted Fruit with the Fallen Immortal)",
   "advancements.tooltip.falling_immortals.text": "Obtain this item",
   "advancements.tooltip.falling_immortals.hand": "希望之火的熄灭",
 
+"item.seeking_immortals.hidden_blade":"§4 Hidden Blade",
+  "item.hidden_blade.tool.string.1": "Strike back when hit",
+  "item.hidden_blade.tool.string.2": "Critical Hit for 3 seconds after attack",
+  "item.hidden_blade.tool.string.3": "Attack Speed Increases Gradually While Dealing Non-Critical Damage",
+  "item.hidden_blade.tool.string.4": "Damage gradually increases as critical damage is dealt",
+  "advancements.tooltip.hidden_blade.text": "Obtain this item",
+  "advancements.tooltip.hidden_blade.hand": "Unknown Blade",
+"effect.seeking_immortals.blade": "edge",
+  "effect.seeking_immortals.hidden": "hidden",
+
+
+"effect.seeking_immortals.the_yoke_of_war": "yoke of war",
+  "item.seeking_immortals.yoke": "§4 shackles",
+  "seeking_immortals.element.name": "Press ALT to view features",
+  "item.nightmare_base.element.string": "Supports devouring elements of:",
+  "item.yoke.tool.string": "Every 10 Elements of Destiny grants a level 1 Shackles of War buff",
+
+ "item.yoke.tool.string.1": "Increases damage by 10% and speed by 5% per level",
+  "item.yoke.tool.string.2": "Reduces armor and health by 10% per level",
 
 
   "item.seeking_immortals.muddy_jewels":"§4 Muddy Jewels",
@@ -427,17 +446,63 @@
   "item.muddy_jewels.tool.string.2": "35% less perception of color",
   "seeking_immortals.jei.item.seeking_immortals.muddy_jewels": "Kill the wither",
 
+  "advancements.tooltip.muddy_jewels.text": "Obtain this item",
+  "advancements.tooltip.muddy_jewels.hand": "Misty checkerboarder",
 
 
-  "seeking_immortals.emperor_demon_body": "合道帝魔身",
-  "seeking_immortals.item.all_element": "按下Alt键查看要素",
+  "seeking_immortals.configuration.噩梦": "Nightmare",
+  "seeking_immortals.configuration.无名邪眼": "Unnamed Evil Eye",
+  "seeking_immortals.configuration.不朽轮回之印章": "Seal of Immortal Cycle",
+  "seeking_immortals.configuration.裂天石": "Sky Splitting Stone",
+  "seeking_immortals.configuration.邪念之窥眸": "Evil Thought Glimpse",
+  "seeking_immortals.configuration.死兆方尖碑": "Death Omen Obelisk",
+  "seeking_immortals.configuration.愚者之危": "Fool's Dilemma",
+  "seeking_immortals.configuration.噩梦洞悉者": "Nightmare Insight",
+  "seeking_immortals.configuration.“救赎”": "“Redemption”",
+  "seeking_immortals.configuration.颠倒之物": "Reversal",
+  "seeking_immortals.configuration.噩梦之起始": "Nightmare Origin",
 
-  "item.seeking_immortals.all_element.jei": "\n\n要素可以用来减少或者抑制诅咒效果（未实现）\n也可以用来获得某些物品（未实现）",
-  "item.seeking_immortals.nightmare_base_black_eye.jei": "此物品的由10点“命运”要素组成，可以按下“ALT”键进行查看\n你可以触发此物品的诅咒来获取要素",
-  "item.seeking_immortals.nightmare_base_stone.jei": "此物品的由15点“死亡”要素组成，可以按下“ALT”键进行查看\n你可以触发此物品的诅咒来获取要素",
 
+  "seeking_immortals.configuration.nightmare_": "Nightmare",
+  "seeking_immortals.configuration.Nightecora_": "Nightecora Virus",
+  "seeking_immortals.configuration.nightmare_base_redemption_deception": "Deception",
+  "seeking_immortals.configuration.nightmare_base_redemption_deception_time": "Deception 2",
+  "seeking_immortals.configuration.nightmare_base_fool_bone_": "Fool's Dangerous Skull",
+  "seeking_immortals.configuration.nightmare_base_insight_drug_": "Crazy Potion",
+  "seeking_immortals.configuration.nightmare_base_insight_drug_2": "Crazy Potion 2",
+  "seeking_immortals.configuration.nightmare_base_insight_insane_": "Madness Stone",
+  "seeking_immortals.configuration.eye": "Unnamed Evil Eye",
+  "seeking_immortals.configuration.immortal_": "Seal of Immortal Cycle",
+  "seeking_immortals.configuration.disintegrating_stone": "Sky Splitting Stone",
+  "seeking_immortals.configuration.nightmare_base_black_eye": "Evil Thought Glimpse",
+  "seeking_immortals.configuration.nightmare_base_stone": "Death Omen Obelisk",
+  "seeking_immortals.configuration.nightmare_base_fool": "Fool's Dilemma",
+  "seeking_immortals.configuration.nightmare_base_insight": "Nightmare Insight",
+  "seeking_immortals.configuration.nightmare_base_redemption": "Redemption",
+  "seeking_immortals.configuration.nightmare_base_reversal": "Reversal",
+  "seeking_immortals.configuration.nightmare_base_start": "Nightmare Origin",
 
-  "item.eye.tool.string.7": "剥离你所看注视生物的灵魂",
-  "item.eye.tool.string.8": "灵魂会飞向你，若撞击到生物则造成大量负面效果和4点魔法伤害"
+  "seeking_immortals.config.nightmareBaseMaxItem": "The number of sins 'Nightmare Base' gives to the player",
+  "seeking_immortals.config.Nightecora": "Extra life value penalty from Nightecora virus, unit: percentage",
+  "seeking_immortals.config.nightmare_base_redemption_deception": "Health restored by 'Deception', unit: percentage",
+  "seeking_immortals.config.nightmare_base_redemption_deception_time": "Health restored by 'Deception', unit: seconds",
+  "seeking_immortals.config.nightmare_base_fool_bone": "Additional damage caused by Fool's Dangerous Skull, '2' is double",
+  "seeking_immortals.config.nightmare_base_insight_drug": "Maximum attribute boost of Crazy Potion, unit: percentage",
+  "seeking_immortals.config.nightmare_base_insight_drug_2": "Attribute decay per single item of Crazy Potion, unit: percentage",
+  "seeking_immortals.config.nightmare_base_insight_insane": "Damage boost after killing a creature with Madness Stone, unit: percentage",
+  "seeking_immortals.config.eye": "Soul extraction speed of 'Unnamed Evil Eye', 10 is 0.5 seconds, 20 is 1 second, unit: ticks",
+  "seeking_immortals.config.immortal": "Probability of counterattack of Seal of Immortal Cycle",
+  "seeking_immortals.config.disintegrating_stone": "Value given by a single module of Sky Splitting Stone",
+  "seeking_immortals.config.nightmare_base_black_eye": "Near-sightedness effect switch",
+  "seeking_immortals.config.nightmare_base_stone": "Damage received when injured at full health",
+  "seeking_immortals.config.nightmare_base_fool": "Maximum penalty value, 0.5 is 50%",
+  "seeking_immortals.config.nightmare_base_insight": "Enchantment reduction value",
+  "seeking_immortals.config.nightmare_base_redemption": "Attribute decay ratio",
+  "seeking_immortals.config.nightmare_base_reversal": "Minimum value reduced per death",
+  "seeking_immortals.config.nightmare_base_start": "Armor value penalty",
+  "seeking_immortals.config.give_nightmare_base_insight_drug": "疯狂灵药获取时要求的药水数量",
+
+"item.eye.tool.string.7": "Strip the soul of the creature you are looking at",
+  "item.eye.tool.string.8": "Souls fly towards you, dealing a lot of debuffs and 4 magic damage if they hit a mob"
 }
 

@@ -3,13 +3,8 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.item.an_element.elements.Destiny;
-import com.ytgld.seeking_immortals.item.an_element.NightmareTooltip;
-import com.ytgld.seeking_immortals.item.an_element.elements.Nightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
-import com.ytgld.seeking_immortals.item.an_element.AllElement;
-import com.ytgld.seeking_immortals.item.an_element.extend.Element;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -20,23 +15,19 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 
-public class nightmare_base_black_eye extends nightmare implements SuperNightmare , AllElement {
+public class nightmare_base_black_eye extends nightmare implements SuperNightmare {
 
 
     public static String destinyTag = "Destiny";
@@ -128,37 +119,5 @@ public class nightmare_base_black_eye extends nightmare implements SuperNightmar
             }
         }
         return pointedEntity;
-    }
-    @Override
-    public Map<Element, ResourceLocation> name() {
-        Map<Element, ResourceLocation> map = new HashMap<>();
-        map.put(destiny,Destiny.destiny);
-        map.put(nightmare, Nightmare.nightmare);
-        return map;
-    }
-
-    @Override
-    public  Map<Element, String> tooltip() {
-        Map<Element, String> map = new HashMap<>();
-        map.put(this.destiny,"命运");
-        map.put(this.nightmare,"梦魇");
-        return map;
-    }
-
-    @Override
-    public Map<Element, Integer> element(ItemStack stack) {
-        Map<Element, Integer> map = new HashMap<>();
-        @Nullable CompoundTag compoundTag = stack.get(DataReg.tag);
-        int s = 0;
-        if (compoundTag !=null){
-            s = compoundTag.getInt(destinyTag);
-        }
-        map.put(this.destiny,10+s);
-        map.put(this.nightmare,14);
-        return map;
-    }
-    @Override
-    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
-        return Optional.of(new NightmareTooltip(this,stack));
     }
 }

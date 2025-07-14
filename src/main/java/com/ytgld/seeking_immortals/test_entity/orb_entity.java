@@ -1,6 +1,9 @@
 package com.ytgld.seeking_immortals.test_entity;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
@@ -10,6 +13,7 @@ import net.minecraft.world.entity.projectile.ThrowableItemProjectile;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
@@ -19,6 +23,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class orb_entity extends ThrowableItemProjectile {
+    public int r = 255;
+    public int g = 0;
+    public int b = 255;
+    public boolean lColor = false;
+
     public orb_entity(EntityType<? extends orb_entity> p_21803_, Level p_21804_) {
         super(p_21803_, p_21804_);
         this.setNoGravity(true);
@@ -36,6 +45,14 @@ public class orb_entity extends ThrowableItemProjectile {
 
     @Override
     public void tick() {
+        this.setNoGravity(true);
+        if (!lColor){
+            r = Mth.nextInt(RandomSource.create(),100,255);
+            g = Mth.nextInt(RandomSource.create(),0,25);
+            b = Mth.nextInt(RandomSource.create(),175,255);
+
+            lColor = true;
+        }
         if (canSee) {
             trailPositions.add(new Vec3(this.getX(), this.getY(), this.getZ()));
         }
@@ -74,7 +91,10 @@ public class orb_entity extends ThrowableItemProjectile {
         if (this.tickCount > 120) {
             canSee = false;
             live--;
+        }else if (!canSee){
+            live--;
         }
+
         if (live<=0) {
             this.discard();
         }
@@ -116,6 +136,19 @@ public class orb_entity extends ThrowableItemProjectile {
         if (live<= 0) {
             this.discard();
         }
+    }
+    public float getDistanceToGround() {
+        // 获取实体的位置
+        Vec3 position = this.position();
+        BlockPos blockPos = new BlockPos((int) position.x, (int) position.y, (int) position.z);
+
+        // 获取该位置下方的最近非空气方块位置
+        BlockPos groundPos = blockPos.below();
+        while (groundPos.getY() > -100 && this.level().getBlockState(groundPos).isAir()) {
+            groundPos = groundPos.below();
+        }
+        Vec3 groundCenter = new Vec3(groundPos.getX() + 0.5, groundPos.getY() + 0.5, groundPos.getZ() + 0.5);
+        return (float) position.distanceTo(groundCenter);
     }
 
     public List<Vec3> getTrailPositions() {

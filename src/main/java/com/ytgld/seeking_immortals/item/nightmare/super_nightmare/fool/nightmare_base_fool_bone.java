@@ -27,7 +27,7 @@ public class nightmare_base_fool_bone extends nightmare implements SuperNightmar
                         if (Mth.nextInt(RandomSource.create(), 1, 100) <= 30) {
                             mob.invulnerableTime = 0;
                         }
-                        event.setAmount(event.getAmount() * (Config.SERVER.nightmare_base_fool_bone.get()));
+                        event.setAmount((float) (event.getAmount() * (Config.SERVER.nightmare_base_fool_bone.getAsDouble())));
                     }
                 }
             }

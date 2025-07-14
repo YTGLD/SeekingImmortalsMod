@@ -8,6 +8,7 @@ import com.ytgld.seeking_immortals.event.CurioTickEvent;
 import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.an_element.AllElement;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.falling_immortals;
@@ -17,6 +18,7 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_red;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.apple;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.hidden_blade;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_reversal;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_start;
@@ -154,7 +156,7 @@ public class NewEvent {
         nightmare_base_start.damage(event);
         nightmare_base_start_pod.damage(event);
         candle.hurt(event);
-
+        hidden_blade.hurt_cit(event);
         if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
             float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
             lvl *= 0.2f;
@@ -216,6 +218,10 @@ public class NewEvent {
             }
         }
 
+
+
+        hidden_blade.cit(event);
+
     }
     @SubscribeEvent
     public void soulbattery(PlayerEvent.BreakSpeed event) {
@@ -239,7 +245,11 @@ public class NewEvent {
 
     }
     @SubscribeEvent
-    public void hurt(ItemTooltipEvent event) {
+    public void hurt(ItemTooltipEvent event){
+        if (event.getItemStack().getItem() instanceof AllElement){
+            event.getToolTip().add(1, Component.translatable(
+                    "seeking_immortals.element.name").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFCD853F))));
+        }
 
         if (event.getEntity() instanceof Player player) {
             if (!Handler.hascurio(player, Items.nightmare_base.get())) {

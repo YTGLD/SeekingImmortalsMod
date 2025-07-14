@@ -141,8 +141,8 @@ public class hypocritical_self_esteem extends nightmare implements SuperNightmar
         if (stack.get(DataReg.tag)!=null) {
 
             float s = stack.get(DataReg.tag).getInt(MALICE_DIE);//1 == 100%
-            if (s > 40) {
-                s=40;
+            if (s > 10) {
+                s=10;
             }
             s /= 100f;//0.01 = 1%
             multimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(

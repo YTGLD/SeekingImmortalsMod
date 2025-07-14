@@ -14,8 +14,42 @@ import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 public class MRender extends RenderType {
+
+
+    public static RenderType entityShadowsEEKING(ResourceLocation location) {
+        return (RenderType)ENTITY_SHADOW.apply(location);
+    }
+
+    public static final Function<ResourceLocation, RenderType> ENTITY_SHADOW = Util.memoize(
+            p_286151_ -> {
+                RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder()
+                        .setShaderState(RENDERTYPE_ENTITY_SHADOW_SHADER)
+                        .setTextureState(new RenderStateShard.TextureStateShard(p_286151_, false, false))
+                        .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                        .setCullState(NO_CULL)
+                        .setLightmapState(LIGHTMAP)
+                        .setOverlayState(OVERLAY)
+                        .setWriteMaskState(COLOR_WRITE)
+                        .setDepthTestState(LEQUAL_DEPTH_TEST)
+                        .setLayeringState(VIEW_OFFSET_Z_LAYERING)
+                        .createCompositeState(false);
+                return create("entity_shadow_seeking", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 1536, false, false, rendertype$compositestate);
+            }
+    );
+
+
+
+
+
+
+
+
+
+
+
     public MRender(String p_173178_, VertexFormat p_173179_, VertexFormat.Mode p_173180_, int p_173181_, boolean p_173182_, boolean p_173183_, Runnable p_173184_, Runnable p_173185_) {
         super(p_173178_, p_173179_, p_173180_, p_173181_, p_173182_, p_173183_, p_173184_, p_173185_);
     }
