@@ -39,9 +39,14 @@ public class hidden_blade  extends nightmare implements SuperNightmare {
     public static void hurt_cit(LivingIncomingDamageEvent event){
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.hidden_blade.get())){
+                if (event.getSource().getEntity() instanceof LivingEntity living) {
+                    if (Handler.hascurio(living,Items.hidden_blade.get())){
+                        return;
+                    }
+                }
                 if (!player.getCooldowns().isOnCooldown(Items.hidden_blade.get())) {
                     if (event.getSource().getEntity() instanceof LivingEntity livingEntity) {
-                        livingEntity.hurt(livingEntity.damageSources().playerAttack(player), (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 3));
+                        livingEntity.hurt(livingEntity.damageSources().magic(), (float) (player.getAttributeValue(Attributes.ATTACK_DAMAGE) * 3));
                         player.getCooldowns().addCooldown(Items.hidden_blade.get(), 60);
                     }
                 }
@@ -50,6 +55,11 @@ public class hidden_blade  extends nightmare implements SuperNightmare {
         if (event.getSource().getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.hidden_blade.get())) {
                 if (!player.getCooldowns().isOnCooldown(Items.hidden_blade.get())) {
+                    if (event.getEntity() instanceof LivingEntity living) {
+                        if (Handler.hascurio(living,Items.hidden_blade.get())){
+                            return;
+                        }
+                    }
                     player.addEffect(new MobEffectInstance(Effects.hidden, 120, 0));
                     MobEffectInstance instance = player.getEffect(Effects.hidden);
                     if (instance != null) {
@@ -66,6 +76,11 @@ public class hidden_blade  extends nightmare implements SuperNightmare {
     public static void cit(CriticalHitEvent event){
         if (event.getEntity() instanceof Player player){
             if (Handler.hascurio(player, Items.hidden_blade.get())) {
+                if (event.getTarget() instanceof LivingEntity living) {
+                    if (Handler.hascurio(living,Items.hidden_blade.get())){
+                        return;
+                    }
+                }
                 if (player.getCooldowns().isOnCooldown(Items.hidden_blade.get())) {
 
                     event.setCriticalHit(true);

@@ -9,6 +9,7 @@ import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
+import com.ytgld.seeking_immortals.item.nightmare.base.strengthen_runestone;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.falling_immortals;
@@ -145,6 +146,9 @@ public class NewEvent {
         apple.damage(event);
         end_bone.hurts(event);
         wolf.attack(event);
+        strengthen_runestone.hurt(event);
+        strengthen_runestone.hurt(event);
+        strengthen_runestone.hurt(event);
         nightmare_base_stone_virus.h(event);
         nightmare_base_black_eye_eye.attLook(event);
         nightmare_base_black_eye_heart.hurt(event);

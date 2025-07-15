@@ -25,6 +25,9 @@ public class JeiText implements IModPlugin {
     @Override
     public void registerRecipes(IRecipeRegistration registration) {
         {
+            registration.addIngredientInfo(new ItemStack(Items.defend_against_runestone.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.defend_against_runestone").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base"))));
+            registration.addIngredientInfo(new ItemStack(Items.revive_runestone.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.revive_runestone").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base"))));
+            registration.addIngredientInfo(new ItemStack(Items.strengthen_runestone.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.strengthen_runestone").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base"))));
 
 
             registration.addIngredientInfo(new ItemStack(Items.nightmare_base_black_eye_heart.get()), VanillaTypes.ITEM_STACK, Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base_black_eye_heart").append(Component.translatable("seeking_immortals.jei.item.seeking_immortals.nightmare_base.all").append(Component.translatable("item.seeking_immortals.nightmare_base_black_eye"))));

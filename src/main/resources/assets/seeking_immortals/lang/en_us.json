@@ -429,6 +429,7 @@
   "advancements.tooltip.hidden_blade.hand": "Unknown Blade",
 "effect.seeking_immortals.blade": "edge",
   "effect.seeking_immortals.hidden": "hidden",
+  "effect.seeking_immortals.invulnerable": "invulnerable",
 
 
 "effect.seeking_immortals.the_yoke_of_war": "yoke of war",
@@ -502,7 +503,25 @@
   "seeking_immortals.config.nightmare_base_start": "Armor value penalty",
   "seeking_immortals.config.give_nightmare_base_insight_drug": "疯狂灵药获取时要求的药水数量",
 
-"item.eye.tool.string.7": "Strip the soul of the creature you are looking at",
+
+  "item.seeking_immortals.defend_against_runestone":"§4抵御符石",
+  "item.defend_against_runestone.tool.string.1": "受击时有概率获得抗性II",
+  "item.defend_against_runestone.tool.string.2": "攻击时有概率对目标造成虚弱II",
+
+
+  "item.seeking_immortals.revive_runestone":"§4复苏符石",
+  "item.revive_runestone.tool.string.1": "受伤有概率吸收伤害",
+  "item.revive_runestone.tool.string.2": "攻击有概率吸取生命",
+
+  "item.seeking_immortals.strengthen_runestone":"§4强化符石",
+  "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量II",
+  "item.strengthen_runestone.tool.string.2": "受伤有概率反弹伤害",
+
+  "seeking_immortals.jei.item.seeking_immortals.defend_against_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
+  "seeking_immortals.jei.item.seeking_immortals.revive_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
+  "seeking_immortals.jei.item.seeking_immortals.strengthen_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
+
+  "item.eye.tool.string.7": "Strip the soul of the creature you are looking at",
   "item.eye.tool.string.8": "Souls fly towards you, dealing a lot of debuffs and 4 magic damage if they hit a mob"
 }
 

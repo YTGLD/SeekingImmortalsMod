@@ -5,6 +5,7 @@ import com.ytgld.seeking_immortals.item.nightmare.disintegrating_stone;
 import com.ytgld.seeking_immortals.item.nightmare.element.yoke;
 import com.ytgld.seeking_immortals.item.nightmare.eye;
 import com.ytgld.seeking_immortals.item.nightmare.*;
+import com.ytgld.seeking_immortals.item.nightmare.base.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.*;
@@ -66,6 +67,10 @@ public class Items {
     public static final DeferredHolder<Item,?> falling_immortals =REGISTRY.register("falling_immortals", falling_immortals::new);
     public static final DeferredHolder<Item,?> disintegrating_stone =REGISTRY.register("disintegrating_stone", disintegrating_stone::new);
     public static final DeferredHolder<Item,?> muddy_jewels =REGISTRY.register("muddy_jewels", muddy_jewels::new);
+
+    public static final DeferredHolder<Item,?> defend_against_runestone =REGISTRY.register("defend_against_runestone", defend_against_runestone::new);
+    public static final DeferredHolder<Item,?> revive_runestone =REGISTRY.register("revive_runestone", revive_runestone::new);
+    public static final DeferredHolder<Item,?> strengthen_runestone =REGISTRY.register("strengthen_runestone", strengthen_runestone::new);
     public static final DeferredHolder<Item,?> hidden_blade =REGISTRY.register("hidden_blade", hidden_blade::new);
     public static final DeferredHolder<Item,?> yoke =REGISTRY.register("yoke", yoke::new);
 
