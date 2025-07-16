@@ -3,6 +3,8 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.AllTip;
+import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
@@ -15,19 +17,23 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
-public class nightmare_base_black_eye extends nightmare implements SuperNightmare {
+public class nightmare_base_black_eye extends nightmare implements SuperNightmare  , AllTip {
 
 
     public static String destinyTag = "Destiny";
@@ -119,5 +125,25 @@ public class nightmare_base_black_eye extends nightmare implements SuperNightmar
             }
         }
         return pointedEntity;
+    }
+    @Override
+    public @NotNull Optional<TooltipComponent> getTooltipImage(ItemStack stack) {
+        return Optional.of(new ToolTip(this,stack));
+    }
+
+    @Override
+    public Map<Integer, String> tooltip() {
+        Map<Integer,String> map = new HashMap<>();
+        map.put(1,"带上它 你将免疫黑暗");
+        map.put(2,"带上它 你将免疫失明");
+        return map;
+    }
+
+    @Override
+    public Map<Integer, String> element(ItemStack stack) {
+        Map<Integer,String> map = new HashMap<>();
+        map.put(1,"带上它 你将免疫黑暗");
+        map.put(2,"带上它 你将免疫失明");
+        return map;
     }
 }

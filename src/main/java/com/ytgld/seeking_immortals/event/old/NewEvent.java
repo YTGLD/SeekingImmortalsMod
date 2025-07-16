@@ -23,6 +23,7 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.apple;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.hidden_blade;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_insight;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_reversal;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_start;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_stone;
@@ -50,6 +51,7 @@ import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
@@ -137,7 +139,9 @@ public class NewEvent {
             }
         }
     }
-
+    @SubscribeEvent
+    public void PlayerRespawnEvent(PlayerEvent.PlayerRespawnEvent event){
+    }
     @SubscribeEvent
     public void LivingHealEvent(LivingDeathEvent event) {
         nightmare_base_reversal.LivingDeathEvent(event);
@@ -212,7 +216,10 @@ public class NewEvent {
             }
         }
     }
-
+    @SubscribeEvent
+    public  void LivingExperienceDropEvent(LivingExperienceDropEvent event) {
+        nightmare_base_insight.exp(event);
+    }
     @SubscribeEvent
     public  void PlayerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {
         Player player = event.getEntity();
