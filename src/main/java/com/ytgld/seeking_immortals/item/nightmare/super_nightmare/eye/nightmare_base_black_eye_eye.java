@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye;
 
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -38,7 +39,7 @@ public class nightmare_base_black_eye_eye extends nightmare implements SuperNigh
                 Entity entity = getPlayerLookTarget(player.level(), player);
                 if (entity instanceof LivingEntity living0) {
                     if (living0.is(event.getEntity())) {
-                        event.setAmount(event.getAmount() * 1.25f);
+                        event.setAmount((float) (event.getAmount() * Config.SERVER.nightmare_base_black_eye_eye.getAsDouble()));
                     }
                 }
             }

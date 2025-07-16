@@ -9,6 +9,8 @@ import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
+import com.ytgld.seeking_immortals.item.nightmare.AllTip;
+import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
 import com.ytgld.seeking_immortals.item.nightmare.base.strengthen_runestone;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -65,6 +67,7 @@ import java.util.Random;
 
 public class NewEvent {
 
+    public static float time= 0;
     @SubscribeEvent
     public void CurioLivingIncomingDamageEvent(LivingIncomingDamageEvent event){
         if (event.getEntity() instanceof Player player) {
@@ -83,6 +86,11 @@ public class NewEvent {
     }
     @SubscribeEvent
     public void CurioLivingIncomingDamageEvent(EntityTickEvent.Post event){
+
+        time++;
+
+
+
         if (event.getEntity() instanceof Player player) {
             CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
                 Map<String, ICurioStacksHandler> curios = handler.getCurios();
@@ -254,7 +262,10 @@ public class NewEvent {
             event.getToolTip().add(1, Component.translatable(
                     "seeking_immortals.element.name").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFCD853F))));
         }
-
+        if (event.getItemStack().getItem() instanceof AllTip){
+            event.getToolTip().add(1, Component.translatable(
+                    "key.keyboard.left.shift").withStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFCD853F))));
+        }
         if (event.getEntity() instanceof Player player) {
             if (!Handler.hascurio(player, Items.nightmare_base.get())) {
                 if (event.getItemStack().getItem() instanceof SuperNightmare) {

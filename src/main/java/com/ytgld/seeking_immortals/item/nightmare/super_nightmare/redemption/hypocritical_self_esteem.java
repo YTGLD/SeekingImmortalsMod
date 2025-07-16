@@ -2,6 +2,7 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.DataReg;
@@ -141,8 +142,8 @@ public class hypocritical_self_esteem extends nightmare implements SuperNightmar
         if (stack.get(DataReg.tag)!=null) {
 
             float s = stack.get(DataReg.tag).getInt(MALICE_DIE);//1 == 100%
-            if (s > 10) {
-                s=10;
+            if (s > Config.SERVER.hypocritical_self_esteem.get()) {
+                s= (float) Config.SERVER.hypocritical_self_esteem.getAsDouble();
             }
             s /= 100f;//0.01 = 1%
             multimap.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(

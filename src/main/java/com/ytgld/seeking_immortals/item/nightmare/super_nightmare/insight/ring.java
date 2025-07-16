@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight;
 
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
@@ -32,11 +33,11 @@ public class ring extends nightmare implements SuperNightmare {
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if (!slotContext.entity().level().isClientSide) {
             if (slotContext.entity().tickCount%20==0) {
-                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 120, 2, false, false));
-                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.REGENERATION, 120, 2, false, false));
-                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, 2, false, false));
-                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 120, 2, false, false));
-                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 120, 2, false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 120, (int) Config.SERVER.ring.getAsDouble(), false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.REGENERATION, 120,  (int) Config.SERVER.ring.getAsDouble(), false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 120, (int) Config.SERVER.ring.getAsDouble(), false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 120, (int) Config.SERVER.ring.getAsDouble(), false, false));
+                slotContext.entity().addEffect(new MobEffectInstance(MobEffects.HEALTH_BOOST, 120, (int) Config.SERVER.ring.getAsDouble(), false, false));
             }
         }
     }

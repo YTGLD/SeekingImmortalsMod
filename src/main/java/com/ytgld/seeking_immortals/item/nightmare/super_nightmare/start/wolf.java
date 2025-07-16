@@ -3,6 +3,7 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.start;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
@@ -122,7 +123,7 @@ public class wolf extends nightmare implements SuperNightmare {
                                 if (compoundTag!= null) {
                                     if (!player.getCooldowns().isOnCooldown(Items.wolf.get())) {
                                         Vec3 playerPos = player.position();
-                                        float range = 10;
+                                        float range = (float) Config.SERVER.wolf.getAsDouble();
                                         List<LivingEntity> entities =
                                                 player.level().getEntitiesOfClass(LivingEntity.class,
                                                         new AABB(playerPos.x - range,

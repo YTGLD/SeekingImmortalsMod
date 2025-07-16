@@ -3,7 +3,7 @@
 
 
   "item.seeking_immortals.nightmare_base": "§4噩梦基座",
-  "item.nightmare_base.tool.string": "攻击伤害,生命值,护甲减少15%",
+  "item.nightmare_base.tool.string": "攻击伤害,生命值,护甲减少30%",
   "item.nightmare_base.tool.string.1": "邪念体，血虐之铅，恶意之殇无效化",
 
 
@@ -513,17 +513,28 @@
   "seeking_immortals.config.give_nightmare_base_insight_drug": "疯狂灵药获取时要求的药水数量",
 
   "item.seeking_immortals.defend_against_runestone":"§4抵御符石",
-  "item.defend_against_runestone.tool.string.1": "受击时有概率获得抗性II",
-  "item.defend_against_runestone.tool.string.2": "攻击时有概率对目标造成虚弱II",
+  "item.defend_against_runestone.tool.string.1": "受击时有概率获得抗性",
+  "item.defend_against_runestone.tool.string.2": "攻击时有概率对目标造成虚弱",
   "effect.seeking_immortals.invulnerable": "无懈可击",
 
+  "seeking_immortals.config.nightmare_base_black_eye_eye": "惶恐肉瘤目视生物所造成的伤害",
+  "seeking_immortals.config.nightmare_base_fool_soul": "每个饰品的生命值加成",
+  "seeking_immortals.config.nightmare_base_fool_soul2": "每个饰品的治疗加成",
+
+  "seeking_immortals.config.ring": "药水等级",
+  "seeking_immortals.config.hypocritical_self_esteem": "最大索敌数",
+  "seeking_immortals.config.candle": "伤害比例",
+  "seeking_immortals.config.candle2": "治疗比例",
+  "seeking_immortals.config.candle3": "无敌时长的最大上限",
+
+  "seeking_immortals.config.wolf": "检查半径",
 
   "item.seeking_immortals.revive_runestone":"§4复苏符石",
   "item.revive_runestone.tool.string.1": "受伤有概率吸收伤害",
   "item.revive_runestone.tool.string.2": "攻击有概率吸取生命",
 
   "item.seeking_immortals.strengthen_runestone":"§4强化符石",
-  "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量II",
+  "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量",
   "item.strengthen_runestone.tool.string.2": "受伤有概率反弹伤害",
 
 

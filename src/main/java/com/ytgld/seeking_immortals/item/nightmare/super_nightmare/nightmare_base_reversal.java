@@ -102,7 +102,7 @@ public class nightmare_base_reversal extends nightmare implements SuperNightmare
                 if (stack.get(DataReg.tag).getInt(att) >= 4) {
                     if (slotContext.entity() instanceof Player player && !player.getCooldowns().isOnCooldown(stack.getItem())) {
                         stack.get(DataReg.tag).putInt(att, stack.get(DataReg.tag).getInt(att) - 4);
-                        player.getCooldowns().addCooldown(stack.getItem(), 20);
+                        player.getCooldowns().addCooldown(stack.getItem(), 10);
                     }
                 }
             } else {

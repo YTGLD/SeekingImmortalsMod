@@ -2,6 +2,7 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -59,7 +60,7 @@ public class nightmare_base_fool_soul extends nightmare implements SuperNightmar
         });
         float health = 0;
         for (int ignored : integersHealth) {
-            health += 1;
+            health += (float) Config.SERVER.nightmare_base_fool_soul.getAsDouble();
         }
         linkedHashMultimap.put(Attributes.MAX_HEALTH, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), health, AttributeModifier.Operation.ADD_VALUE));
         return linkedHashMultimap;
@@ -87,7 +88,7 @@ public class nightmare_base_fool_soul extends nightmare implements SuperNightmar
             health++;
         }
         health /= 100;
-        health *= 1;
+        health *= (float) Config.SERVER.nightmare_base_fool_soul2.getAsDouble();
         linkedHashMultimap.put(AttReg.heal, new AttributeModifier(ResourceLocation.withDefaultNamespace("base_attack_damage" + this.getDescriptionId()), health, AttributeModifier.Operation.ADD_VALUE));
         return linkedHashMultimap;
     }

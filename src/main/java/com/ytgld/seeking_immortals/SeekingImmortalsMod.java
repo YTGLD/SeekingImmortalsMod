@@ -10,6 +10,8 @@ import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.init.*;
 import com.ytgld.seeking_immortals.item.an_element.NightmareTooltip;
+import com.ytgld.seeking_immortals.item.nightmare.AllTip;
+import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import com.ytgld.seeking_immortals.test_entity.client.OrbEntityRenderer;
 import net.minecraft.client.renderer.RenderType;
@@ -68,6 +70,7 @@ public class SeekingImmortalsMod
         @SubscribeEvent
         public static void RegisterClientTooltipComponentFactoriesEvent(RegisterClientTooltipComponentFactoriesEvent event){
             event.register(NightmareTooltip.class, Function.identity());
+            event.register(ToolTip.class, Function.identity());
         }
         @SubscribeEvent
         public static void EntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event){

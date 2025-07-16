@@ -33,7 +33,7 @@
 
 
   "item.seeking_immortals.nightmare_base": "§4Nightmare Base",
-  "item.nightmare_base.tool.string": "-15% damage,health,armor",
+  "item.nightmare_base.tool.string": "-30% damage,health,armor",
   "item.nightmare_base.tool.string.1": "Evil Thought Antimony, Blood Cruel Lead, Malicious Mourning Nullification",
 
   "item.seeking_immortals.nightmare_base_stone": "§4Deadly Obelisk",
@@ -501,22 +501,47 @@
   "seeking_immortals.config.nightmare_base_redemption": "Attribute decay ratio",
   "seeking_immortals.config.nightmare_base_reversal": "Minimum value reduced per death",
   "seeking_immortals.config.nightmare_base_start": "Armor value penalty",
-  "seeking_immortals.config.give_nightmare_base_insight_drug": "疯狂灵药获取时要求的药水数量",
+
+  "seeking_immortals.config.give_nightmare_base_insight_drug": "The number of potions required to get the elixir of madness",
+
+"seeking_immortals.config.nightmare_base_black_eye_eye": "Sarcoma visual damage caused by creature",
+  "seeking_immortals.config.nightmare_base_fool_soul": "Health bonus per cosmetic item",
+  "seeking_immortals.config.nightmare_base_fool_soul2": "Healing bonus per cosmetic item",
+
+"seeking_immortals.config.ring": "potion level",
+
+"seeking_immortals.config.hypocritical_self_esteem": "Maximum number of claims",
+
+"seeking_immortals.config.candle": "Damage Ratio",
+  "seeking_immortals.config.candle2": "Proportion of treatment",
+  "seeking_immortals.config.candle3": "maximum invincibility duration",
+
+  "seeking_immortals.config.wolf": "Check Radius",
+
+  "seeking_immortals.configuration.惶恐肉瘤": "惶恐肉瘤",
+  "seeking_immortals.configuration.幽怨之魂": "幽怨之魂",
+  "seeking_immortals.configuration.灵念药戒": "灵念药戒",
+  "seeking_immortals.configuration.虚伪的自尊": "虚伪的自尊",
+  "seeking_immortals.configuration.邪异古烛": "邪异古烛",
+  "seeking_immortals.configuration.孤狼": "孤狼",
+
+"item.seeking_immortals.defend_against_runestone":"§4 Defend against runestone",
+  "item.defend_against_runestone.tool.string.1": "Has a chance to gain Resistance II when hit",
+  "item.defend_against_runestone.tool.string.2": "Chance to inflict Weakness II on the target when attacking",
+
+  "item.nightmare_base.tool.string.do": "但是........",
+  "item.nightmare_base_fool.tool.string.do": "增加了2级的时运",
+  "item.nightmare_base_fool.tool.string.do.2": "增加了2级的抢夺",
 
 
-  "item.seeking_immortals.defend_against_runestone":"§4抵御符石",
-  "item.defend_against_runestone.tool.string.1": "受击时有概率获得抗性II",
-  "item.defend_against_runestone.tool.string.2": "攻击时有概率对目标造成虚弱II",
 
+"item.seeking_immortals.revive_runestone":"§4 Revive Runestone",
+  "item.revive_runestone.tool.string.1": "Damage Absorbs Chance Injury",
+  "item.revive_runestone.tool.string.2": "Attack has a chance to drain life",
 
-  "item.seeking_immortals.revive_runestone":"§4复苏符石",
-  "item.revive_runestone.tool.string.1": "受伤有概率吸收伤害",
-  "item.revive_runestone.tool.string.2": "攻击有概率吸取生命",
-
-  "item.seeking_immortals.strengthen_runestone":"§4强化符石",
-  "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量II",
-  "item.strengthen_runestone.tool.string.2": "受伤有概率反弹伤害",
-
+"item.seeking_immortals.strengthen_runestone":"§4 Strengthen_Runestone",
+  "item.strengthen_runestone.tool.string.1": "Attack has a chance to gain Strength II",
+  "item.strengthen_runestone.tool.string.2": "Damage has a chance to reflect damage",
   "seeking_immortals.jei.item.seeking_immortals.defend_against_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
   "seeking_immortals.jei.item.seeking_immortals.revive_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
   "seeking_immortals.jei.item.seeking_immortals.strengthen_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",

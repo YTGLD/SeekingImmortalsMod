@@ -26,6 +26,11 @@ public class Config {
     public final ModConfigSpec.IntValue give_nightmare_base_insight_drug ;
     public final ModConfigSpec.IntValue immortal ;
 
+
+
+
+
+
     public Config(ModConfigSpec.Builder BUILDER){
         BUILDER.push("噩梦");
 
@@ -108,26 +113,79 @@ public class Config {
             BUILDER.push("颠倒之物");
             nightmare_base_reversal = BUILDER
                     .translation("seeking_immortals.config.nightmare_base_reversal")
-                    .defineInRange("nightmare_base_reversal", 4,0,100);
+                    .defineInRange("nightmare_base_reversal", 25,0,100);
             BUILDER.pop();
 
             BUILDER.push("噩梦之起始");
             nightmare_base_start = BUILDER
                     .translation("seeking_immortals.config.nightmare_base_start")
-                    .defineInRange("nightmare_base_start", 100,0,100);
+                    .defineInRange("nightmare_base_start", 75,0,100);
             BUILDER.pop();
             BUILDER.push("获取");
             give_nightmare_base_insight_drug = BUILDER
                     .translation("seeking_immortals.config.give_nightmare_base_insight_drug")
-                    .comment("疯狂灵药获取时要求的药水数量")
                     .defineInRange("give_nightmare_base_insight_drug", 9,1,100);
+            BUILDER.pop();
+
+            BUILDER.push("惶恐肉瘤");
+            nightmare_base_black_eye_eye = BUILDER
+                    .translation("seeking_immortals.config.nightmare_base_black_eye_eye")
+                    .defineInRange("nightmare_base_black_eye_eye", 1.25f,0.01f,100);
+            BUILDER.pop();
+
+            BUILDER.push("幽怨之魂");
+            nightmare_base_fool_soul = BUILDER
+                    .translation("seeking_immortals.config.nightmare_base_fool_soul")
+                    .defineInRange("nightmare_base_fool_soul", 1,0.01f,100);
+            nightmare_base_fool_soul2 = BUILDER
+                    .translation("seeking_immortals.config.nightmare_base_fool_soul2")
+                    .defineInRange("nightmare_base_fool_soul2", 1,0.01f,100);
+            BUILDER.pop();
+            BUILDER.push("灵念药戒");
+            ring = BUILDER
+                    .translation("seeking_immortals.config.ring")
+                    .defineInRange("ring", 2,0,100f);
+            BUILDER.pop();
+            BUILDER.push("虚伪的自尊");
+            hypocritical_self_esteem = BUILDER
+                    .translation("seeking_immortals.config.hypocritical_self_esteem")
+                    .defineInRange("hypocritical_self_esteem", 10,1,100f);
+            BUILDER.pop();
+            BUILDER.push("邪异古烛");
+            candle = BUILDER
+                    .translation("seeking_immortals.config.candle")
+                    .defineInRange("candle", 1.25,1,100f);
+            candle2 = BUILDER
+                    .translation("seeking_immortals.config.candle2")
+                    .defineInRange("candle2", 1.5,1,100f);
+            candle3 = BUILDER
+                    .translation("seeking_immortals.config.candle3")
+                    .defineInRange("candle3", 100,0,100000f);
+            BUILDER.pop();
+            BUILDER.push("孤狼");
+            wolf = BUILDER
+                    .translation("seeking_immortals.config.wolf")
+                    .defineInRange("wolf", 10,1,100f);
+
             BUILDER.pop();
         }
 
 
         BUILDER.pop();
     }
+    public final ModConfigSpec.DoubleValue wolf ;
+    public final ModConfigSpec.DoubleValue candle ;
+    public final ModConfigSpec.DoubleValue candle2 ;
+    public final ModConfigSpec.DoubleValue candle3 ;
 
+
+
+    public final ModConfigSpec.DoubleValue hypocritical_self_esteem ;
+    public final ModConfigSpec.DoubleValue ring ;
+    public final ModConfigSpec.DoubleValue nightmare_base_fool_soul ;
+    public final ModConfigSpec.DoubleValue nightmare_base_fool_soul2 ;
+
+    public final ModConfigSpec.DoubleValue nightmare_base_black_eye_eye ;
 
     public final   ModConfigSpec.IntValue Nightecora ;
 

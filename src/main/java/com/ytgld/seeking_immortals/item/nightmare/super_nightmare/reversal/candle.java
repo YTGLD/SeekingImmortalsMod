@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal;
 
+import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
@@ -34,8 +35,8 @@ public class candle  extends nightmare implements SuperNightmare {
                             event.setAmount(0);
                             player.setHealth(1);
                         }
-                        if (s > 5 * 20) {
-                            s = 5 * 20;
+                        if (s >Config.SERVER.candle3.getAsDouble()) {
+                            s = (int) Config.SERVER.candle3.getAsDouble();
                         }
                         player.addEffect(new MobEffectInstance(Effects.invulnerable,s,0,false,false,false));
                         player.invulnerableTime = player.invulnerableTime + s;
@@ -47,7 +48,7 @@ public class candle  extends nightmare implements SuperNightmare {
         if (event.getSource().getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.candle.get())){
                 if (player.invulnerableTime>0){
-                    event.setAmount(event.getAmount()*1.25f);
+                    event.setAmount((float) (event.getAmount()* Config.SERVER.candle.getAsDouble()));
                 }
             }
         }
@@ -56,7 +57,7 @@ public class candle  extends nightmare implements SuperNightmare {
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player, Items.candle.get())){
                 if (player.invulnerableTime>0){
-                    event.setAmount(event.getAmount()*1.5f);
+                    event.setAmount((float) (event.getAmount()*Config.SERVER.candle2.getAsDouble()));
                 }
             }
         }
