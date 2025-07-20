@@ -58,6 +58,7 @@ import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
+import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.event.CurioCanEquipEvent;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -70,6 +71,11 @@ import java.util.Random;
 public class NewEvent {
 
     public static float time= 0;
+
+    @SubscribeEvent
+    public void tick(LevelTickEvent.Post event){
+        time++;
+    }
     @SubscribeEvent
     public void CurioLivingIncomingDamageEvent(LivingIncomingDamageEvent event){
         if (event.getEntity() instanceof Player player) {
@@ -88,10 +94,6 @@ public class NewEvent {
     }
     @SubscribeEvent
     public void CurioLivingIncomingDamageEvent(EntityTickEvent.Post event){
-
-        time++;
-
-
 
         if (event.getEntity() instanceof Player player) {
             CuriosApi.getCuriosInventory(player).ifPresent(handler -> {

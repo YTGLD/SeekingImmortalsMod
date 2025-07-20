@@ -45,7 +45,7 @@ public class SeekingImmortalsMod
 
     public SeekingImmortalsMod(IEventBus eventBus, ModContainer modContainer) {
 
-        modContainer.registerExtensionPoint(IConfigScreenFactory.class, ConfigurationScreen::new);
+
 
         NeoForge.EVENT_BUS.register(new NewEvent());
         NeoForge.EVENT_BUS.register(new AdvancementEvt());

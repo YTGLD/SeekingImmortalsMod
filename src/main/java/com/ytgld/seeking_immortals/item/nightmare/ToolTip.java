@@ -7,19 +7,15 @@ import net.minecraft.client.gui.Font;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.gui.screens.inventory.tooltip.ClientTooltipComponent;
-import net.minecraft.core.Position;
 import net.minecraft.world.inventory.tooltip.TooltipComponent;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
-import org.checkerframework.checker.units.qual.N;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
-import static com.ibm.icu.text.PluralRules.Operand.j;
 
 public class ToolTip  implements ClientTooltipComponent, TooltipComponent {
     private final AllTip allTip;
@@ -50,9 +46,14 @@ public class ToolTip  implements ClientTooltipComponent, TooltipComponent {
     }
 
     private int backgroundHeight() {
-        return this.gridSizeY() * 32;
-    }
+        Map<Integer, String> map = allTip.element(stack);
+        if (map!=null) {
+            return map.size() * 12;
+        }else {
+            return 32;
 
+        }
+    }
     public void renderImage(@NotNull Font font, int x, int y, @NotNull GuiGraphics guiGraphics) {
         if (Screen.hasShiftDown()) {
             int i = this.gridSizeX();
