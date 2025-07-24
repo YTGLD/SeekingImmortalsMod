@@ -13,6 +13,7 @@ import com.ytgld.seeking_immortals.item.an_element.NightmareTooltip;
 import com.ytgld.seeking_immortals.item.nightmare.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
 import com.ytgld.seeking_immortals.renderer.MRender;
+import com.ytgld.seeking_immortals.test_entity.client.LotusEntityRender;
 import com.ytgld.seeking_immortals.test_entity.client.OrbEntityRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
@@ -75,6 +76,7 @@ public class SeekingImmortalsMod
         @SubscribeEvent
         public static void EntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event){
             event.registerEntityRenderer(EntityTs.orb_entity.get(), OrbEntityRenderer::new);
+            event.registerEntityRenderer(EntityTs.lotus_entity.get(), LotusEntityRender::new);
         }
         @SubscribeEvent
         public static void RegisterStageEvent(RenderLevelStageEvent.RegisterStageEvent event) {

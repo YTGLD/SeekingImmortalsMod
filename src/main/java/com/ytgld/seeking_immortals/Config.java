@@ -168,11 +168,31 @@ public class Config {
                     .defineInRange("wolf", 10,1,100f);
 
             BUILDER.pop();
+
+            BUILDER.push("神血祖符");
+            blood_god_kill = BUILDER
+                    .translation("seeking_immortals.config.blood_god_kill")
+                    .defineInRange("blood_god_kill", 500,1,Integer.MAX_VALUE);
+            blood_god_heal = BUILDER
+                    .translation("seeking_immortals.config.blood_god_heal")
+                    .defineInRange("blood_god_heal", 5000,1,Integer.MAX_VALUE);
+            blood_god_damage = BUILDER
+                    .translation("seeking_immortals.config.blood_god_damage")
+                    .defineInRange("blood_god_damage", 10000,1,Integer.MAX_VALUE);
+
+            BUILDER.pop();
         }
 
 
         BUILDER.pop();
     }
+
+    public  final ModConfigSpec.IntValue blood_god_kill ;
+    public  final ModConfigSpec.IntValue blood_god_heal ;
+    public  final ModConfigSpec.IntValue blood_god_damage ;
+
+
+
     public final ModConfigSpec.DoubleValue wolf ;
     public final ModConfigSpec.DoubleValue candle ;
     public final ModConfigSpec.DoubleValue candle2 ;

@@ -4,6 +4,7 @@ import com.google.gson.JsonSyntaxException;
 import com.mojang.blaze3d.pipeline.RenderTarget;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
+import com.ytgld.seeking_immortals.ClientConfig;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import net.minecraft.client.DeltaTracker;
 import net.minecraft.client.Minecraft;
@@ -64,6 +65,9 @@ public class MoonPost {
     }
 
     public static void renderEffectForNextTick(ResourceLocation resourceLocation) {
+        if (!ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()){
+            return;
+        }
         PostEffect effect = postEffects.get(resourceLocation);
         if (effect != null) {
             effect.setEnabled(true);

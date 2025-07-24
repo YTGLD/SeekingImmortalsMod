@@ -22,11 +22,17 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
+import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
+import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
+import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 public class nightmare_base extends nightmare {
@@ -42,6 +48,21 @@ public class nightmare_base extends nightmare {
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         slotContext.entity().getAttributes().addTransientAttributeModifiers(gets(slotContext));
         tick = 100;
+        if (slotContext.entity() instanceof Player player) {
+            int kill = Handler.getTagNumber(stack,blood_god.giveName_kill);
+            int heal = Handler.getTagNumber(stack,blood_god.giveName_heal);
+            int damage = Handler.getTagNumber(stack,blood_god.giveName_damage);
+            if (stack.get(DataReg.tag)!=null) {
+                if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
+                    if (kill >= Config.SERVER.blood_god_kill.get()
+                            && heal >= Config.SERVER.blood_god_heal.get()
+                            && damage >= Config.SERVER.blood_god_damage.get()) {
+                        player.addItem(new ItemStack(Items.blood_god.get()));
+                        stack.get(DataReg.tag).putBoolean(blood_god.give_End,true);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -50,6 +71,8 @@ public class nightmare_base extends nightmare {
             slotContext.entity().level().playSound(null, slotContext.entity().getX(), slotContext.entity().getY(), slotContext.entity().getZ(), SoundEvents.ELDER_GUARDIAN_CURSE, SoundSource.NEUTRAL, 1, 1);
             stack.set(DataReg.tag, new CompoundTag());
         }
+
+
 
 
         if (!stack.get(DataReg.tag).getBoolean("canDo")) {
@@ -75,7 +98,85 @@ public class nightmare_base extends nightmare {
             stack.get(DataReg.tag).putBoolean("canDo", true);
         }
     }
+    public static void healGive(LivingHealEvent event){
+        if (event.getEntity() instanceof Player player) {
+            if (Handler.hascurio(player,Items.nightmare_base.get())) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base.get())) {
+                                if (stack.get(DataReg.tag)!=null) {
+                                    if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
+                                        int s = (int) event.getAmount();
+                                        if (s < 1) {
+                                            s = 1;
+                                        }
+                                        Handler.addTagNumber(stack, blood_god.giveName_heal, player, s);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
+    public static void damageGive(LivingDamageEvent .Pre event){
+        if (event.getSource().getEntity() instanceof Player player) {
+            if (Handler.hascurio(player,Items.nightmare_base.get())) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base.get())) {
+                                if (stack.get(DataReg.tag) != null) {
+                                    if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
 
+                                        int s = (int) event.getNewDamage();
+                                        if (s < 1) {
+                                            s = 1;
+                                        }
+                                        Handler.addTagNumber(stack, blood_god.giveName_damage, player, s);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
+    public static void killGive(LivingDeathEvent event){
+        if (event.getSource().getEntity() instanceof Player player) {
+            if (Handler.hascurio(player,Items.nightmare_base.get())) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base.get())) {
+                                if (stack.get(DataReg.tag) != null) {
+                                    if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
+
+                                        Handler.addTagNumber(stack, blood_god.giveName_kill, player, 1);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
     public Multimap<Holder<Attribute>, AttributeModifier> gets(SlotContext slotContext) {
         Multimap<Holder<Attribute>, AttributeModifier> linkedHashMultimap = HashMultimap.create();
         float s = -0.3f;

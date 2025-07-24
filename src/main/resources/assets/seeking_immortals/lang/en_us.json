@@ -12,11 +12,35 @@
 "item.nightmareeye.tool.string.2": "Cannot be removed",
 
 
+  "item.seeking_immortals.blood_god":"§4 Divine Blood Ancestor Talisman",
+  "item.blood_god.tool.string.1": "Increases maximum health by 25%",
+  "item.blood_god.tool.string.2": "Increases health regeneration by 40%",
+  "item.blood_god.tool.string.3": "Increases the speed of drinking potions by 25%",
+  "item.blood_god.tool.string.4": "You take up to 5 damage",
+  "item.blood_god.tool.string.5": "Damage over 5 will be converted to an equal amount of bleeding",
+  "item.blood_god.tool.string.6": "Drinking healing potions reduces bleeding damage to 50% of its original value",
+  "item.blood_god.tool.string.7": "Drinking potion reduces bleed damage to 95% of its original size",
+  "item.blood_god.tool.string.8": "30 second cooldown",
+
+  "seeking_immortals.jei.item.seeking_immortals.blood_god": "需要500击杀数，5000治疗量，10000造成伤害获取",
+  "item.blood_god.tool.string.9": "移除死兆诅咒",
+  "seeking_immortals.configuration.神血祖符": "神血祖符",
+  "seeking_immortals.config.blood_god_kill": "需要的击杀数",
+  "seeking_immortals.configuration.blood_god_kill": "神血祖符-击杀",
+  "seeking_immortals.config.blood_god_heal": "需要的治疗数",
+  "seeking_immortals.configuration.blood_god_heal": "神血祖符-治疗",
+
+  "seeking_immortals.config.blood_god_damage": "需要的造成伤害量",
+  "seeking_immortals.configuration.blood_god_damage": "神血祖符-伤害",
+
 
   "attribute.name.seeking_immortals.allattack": "universalDamage",
   "attribute.name.seeking_immortals.cit": "criticalDamage",
   "attribute.name.seeking_immortals.heal": "healing",
   "attribute.name.seeking_immortals.dig": "diggingSpeed",
+
+  "item.seeking_immortals.lotus":"§4混沌尊骨",
+  "item.lotus.tool.string.1": "在你死亡的地方生成混沌之莲",
 
 
   "item.seeking_immortals.wolf":"§4Lonely Wolf",
@@ -532,7 +556,6 @@
   "item.nightmare_base.tool.string.do": "但是........",
   "item.nightmare_base_fool.tool.string.do": "增加了2级的时运",
   "item.nightmare_base_fool.tool.string.do.2": "增加了2级的抢夺",
-
 
 
 "item.seeking_immortals.revive_runestone":"§4 Revive Runestone",

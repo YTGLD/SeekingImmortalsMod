@@ -18,6 +18,8 @@ public class Tab {
             .title(Component.translatable("itemGroup.seeking_immortals"))
             .displayItems((a,b)->{
 
+                b.accept(new ItemStack(Items.blood_god.get()));
+                b.accept(new ItemStack(Items.lotus.get()));
 
                 b.accept(new ItemStack(Items.immortal.get()));
                 b.accept(new ItemStack(Items.eye.get()));

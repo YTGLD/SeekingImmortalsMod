@@ -18,67 +18,26 @@ import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME, modid = SeekingImmortalsMod.MODID)
 public final class ParticleRenderer {
     @SubscribeEvent
-    public static void onRenderLevelStage(RenderLevelStageEvent event) {
-
-        if (event.getStage() != RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
-            return;
-        }
-
-        var camPos = event.getCamera().getPosition();
-
-        PoseStack poseStack = event.getPoseStack();
-        poseStack.pushPose();
-
-
-
-        RenderType renderType = MRender.LIGHTING;
-        VertexConsumer consumer = Minecraft.getInstance().renderBuffers().bufferSource().getBuffer(renderType);
-
-
-        Minecraft.getInstance().particleEngine.iterateParticles(particle -> {
-            if (particle instanceof blood blood) {
-                poseStack.pushPose();
-                var offset = particle.getPos().subtract(camPos);
-                poseStack.translate(offset.x, offset.y, offset.z);
-                setT(poseStack,blood,consumer);
-               poseStack.popPose();
-            }
-            if (particle instanceof cube cube) {
-                poseStack.pushPose();
-                var offset = particle.getPos().subtract(camPos);
-                poseStack.translate(offset.x, offset.y, offset.z);
-                cube.renderC(poseStack,consumer,240,0.5F);
-                poseStack.popPose();
-            }
-        });
-        Minecraft.getInstance().renderBuffers().bufferSource().endBatch(renderType);
-
-        poseStack.popPose();
-    }
-
-    @SubscribeEvent
     public static void RenderLevelStageEvent(RenderLevelStageEvent event) {
-
-        if (SeekingImmortalsMod.stage_particles!=null ) {
-            if (event.getStage() != SeekingImmortalsMod.stage_particles) {
-                return;
-            }
-
+        if (event.getStage() == RenderLevelStageEvent.Stage.AFTER_PARTICLES) {
             var camPos = event.getCamera().getPosition();
 
             PoseStack poseStack = event.getPoseStack();
             poseStack.pushPose();
 
-            RenderType renderType = MRender.beacon.apply(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/p_blood.png"), true);
 
+
+            RenderType renderType = MRender.LIGHTNING;
             VertexConsumer consumer = Minecraft.getInstance().renderBuffers().bufferSource().getBuffer(renderType);
 
+
             Minecraft.getInstance().particleEngine.iterateParticles(particle -> {
-                if (particle instanceof cube cube) {
+                if (particle instanceof blood blood) {
+
                     poseStack.pushPose();
                     var offset = particle.getPos().subtract(camPos);
                     poseStack.translate(offset.x, offset.y, offset.z);
-                    cube.renderC(poseStack, consumer, 240, 0.5F);
+                    setT(poseStack,blood,consumer);
                     poseStack.popPose();
                 }
             });
@@ -86,10 +45,11 @@ public final class ParticleRenderer {
 
             poseStack.popPose();
         }
+
     }
     private  static void setT(PoseStack matrices,
-                      blood entity,
-                      VertexConsumer vertexConsumers)
+                              blood entity,
+                              VertexConsumer vertexConsumers)
     {
         matrices.pushPose();
 
@@ -101,13 +61,13 @@ public final class ParticleRenderer {
 
             float alpha = (float)(i) / (float)(entity.getTrailPositions().size());
 
-            renderBlood(matrices, vertexConsumers, adjustedPrevPos, adjustedCurrPos, alpha, RenderType.lightning(),0.1f);
+            renderBlood(matrices, vertexConsumers, adjustedPrevPos, adjustedCurrPos, alpha/2, RenderType.lightning(),0.1f);
         }
         matrices.popPose();
     }
 
     public static void renderBlood(PoseStack poseStack, VertexConsumer vertexConsumer, Vec3 start, Vec3 end, float a, RenderType renderType, float r) {
-        int segmentCount = 16; // 圆柱横向细分数
+        int segmentCount = 8; // 圆柱横向细分数
 
         for (int i = 0; i < segmentCount; i++) {
             double angle1 = (2 * Math.PI * i) / segmentCount;
@@ -130,22 +90,22 @@ public final class ParticleRenderer {
     private static void addSquare(VertexConsumer vertexConsumer, PoseStack poseStack, Vec3 up1, Vec3 up2, Vec3 down1, Vec3 down2, float alpha) {
         // 添加四个顶点来绘制一个矩形
         vertexConsumer.addVertex(poseStack.last().pose(), (float) up1.x, (float) up1.y, (float) up1.z)
-                .setColor(255 ,0 ,255, (int) (alpha * 255))
+                .setColor(255, 60, 255, (int) (alpha * 255))
                 .setUv2(240, 240)
                 .setNormal(0, 0, 1);
 
         vertexConsumer.addVertex(poseStack.last().pose(), (float) down1.x, (float) down1.y, (float) down1.z)
-                .setColor(255 ,0 ,255, (int) (alpha * 255))
+                .setColor(255, 60, 255, (int) (alpha * 255))
                 .setUv2(240, 240)
                 .setNormal(0, 0, 1);
 
         vertexConsumer.addVertex(poseStack.last().pose(), (float) down2.x, (float) down2.y, (float) down2.z)
-                .setColor(255 ,0 ,255, (int) (alpha * 255))
+                .setColor(255, 60, 255, (int) (alpha * 255))
                 .setUv2(240, 240)
                 .setNormal(0, 0, 1);
 
         vertexConsumer.addVertex(poseStack.last().pose(), (float) up2.x, (float) up2.y, (float) up2.z)
-                .setColor(	255 ,0 ,255, (int) (alpha * 255))
+                .setColor(255, 60, 255, (int) (alpha * 255))
                 .setUv2(240, 240)
                 .setNormal(0, 0, 1);
     }

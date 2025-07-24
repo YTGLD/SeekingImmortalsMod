@@ -11,11 +11,13 @@ import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
 import com.ytgld.seeking_immortals.item.nightmare.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
+import com.ytgld.seeking_immortals.item.nightmare.base.lotus;
 import com.ytgld.seeking_immortals.item.nightmare.base.strengthen_runestone;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.falling_immortals;
 import com.ytgld.seeking_immortals.item.nightmare.immortal;
+import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_eye;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_heart;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.nightmare_base_black_eye_red;
@@ -23,10 +25,6 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.apple;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.nightmare_base_fool_bone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.hidden_blade;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.insight.nightmare_base_insight_insane;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_insight;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_reversal;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_start;
-import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base_stone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.redemption.nightmare_base_redemption_deception;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.candle;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.reversal.nightmare_base_reversal_orb;
@@ -50,10 +48,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.TriState;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
-import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
-import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
-import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import net.neoforged.neoforge.event.entity.living.*;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -130,10 +125,20 @@ public class NewEvent {
         }
     }
     @SubscribeEvent
+    public void LivingDamageEvent(LivingDamageEvent.Pre event){
+        blood_god.hurtOfBlood(event);
+        nightmare_base.damageGive(event);
+    }
+    @SubscribeEvent
+    public void Start(LivingEntityUseItemEvent.Start event){
+        blood_god.hurtOfBlood(event);
+    }
+    @SubscribeEvent
     public void LivingHealEvent(LivingHealEvent event) {
         nightmare_base_reversal_orb.LivingHealEvent(event);
         nightmare_base_black_eye_heart.heal(event);
         candle.heal(event);
+        nightmare_base.healGive(event);
         if (event.getEntity() instanceof LivingEntity living){
             if (living.getAttribute(AttReg.heal)!=null){
                 float attack = (float) living.getAttribute(AttReg.heal).getValue();
@@ -152,6 +157,8 @@ public class NewEvent {
         nightmare_base_black_eye_red.kill(event);
         nightmare_base_insight_insane.LivingDeathEvents(event);
         falling_immortals.dieEqItem(event);
+        nightmare_base.killGive(event);
+        lotus.die(event);
     }
 
     @SubscribeEvent

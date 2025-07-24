@@ -521,6 +521,29 @@
   "seeking_immortals.config.nightmare_base_fool_soul": "每个饰品的生命值加成",
   "seeking_immortals.config.nightmare_base_fool_soul2": "每个饰品的治疗加成",
 
+  "item.seeking_immortals.blood_god":"§4神血祖符",
+  "item.blood_god.tool.string.1": "增加25%最大生命值",
+  "item.blood_god.tool.string.2": "增加40%生命恢复",
+  "item.blood_god.tool.string.3": "饮用药水的速度增加25%",
+  "item.blood_god.tool.string.4": "你最高受到5点伤害",
+  "item.blood_god.tool.string.5": "超过5点的伤害将转换成等数值的流血",
+  "item.blood_god.tool.string.6": "饮用治疗药水使流血伤害削弱至原先的50%",
+  "item.blood_god.tool.string.7": "饮用药水使流血伤害削弱至原先的95%",
+  "item.blood_god.tool.string.8": "30秒冷却",
+  "seeking_immortals.configuration.神血祖符": "神血祖符",
+  "seeking_immortals.config.blood_god_kill": "需要的击杀数",
+  "seeking_immortals.configuration.blood_god_kill": "神血祖符-击杀",
+  "seeking_immortals.config.blood_god_heal": "需要的治疗数",
+  "seeking_immortals.configuration.blood_god_heal": "神血祖符-治疗",
+
+  "seeking_immortals.config.blood_god_damage": "需要的造成伤害量",
+  "seeking_immortals.configuration.blood_god_damage": "神血祖符-伤害",
+  "seeking_immortals.jei.item.seeking_immortals.blood_god": "需要500击杀数，5000治疗量，10000造成伤害获取",
+
+
+  "item.seeking_immortals.lotus":"§4混沌尊骨",
+  "item.lotus.tool.string.1": "目标死亡的地方生成混沌之莲",
+
   "seeking_immortals.config.ring": "药水等级",
   "seeking_immortals.config.hypocritical_self_esteem": "最大索敌数",
   "seeking_immortals.config.candle": "伤害比例",
