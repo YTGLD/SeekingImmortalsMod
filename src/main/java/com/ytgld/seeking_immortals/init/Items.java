@@ -75,6 +75,7 @@ public class Items {
     public static final DeferredHolder<Item,?> yoke =REGISTRY.register("yoke", yoke::new);
     public static final DeferredHolder<Item,?> blood_god =REGISTRY.register("blood_god", blood_god::new);
     public static final DeferredHolder<Item,?> lotus =REGISTRY.register("lotus", lotus::new);
+    public static final DeferredHolder<Item,?> bone_or_god =REGISTRY.register("bone_or_god", bone_or_god::new);
 
     public static final DeferredHolder<Item,?> nightmare_base_start_power =REGISTRY.register("nightmare_base_start_power", nightmare_base_start_power::new);
     public static final DeferredHolder<Item,?> tricky_puppets =REGISTRY.register("tricky_puppets", tricky_puppets::new);

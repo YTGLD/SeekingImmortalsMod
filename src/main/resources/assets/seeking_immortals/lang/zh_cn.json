@@ -542,7 +542,7 @@
 
 
   "item.seeking_immortals.lotus":"§4混沌尊骨",
-  "item.lotus.tool.string.1": "目标死亡的地方生成混沌之莲",
+  "effect.seeking_immortals.bone_god": "死亡标记",
 
   "seeking_immortals.config.ring": "药水等级",
   "seeking_immortals.config.hypocritical_self_esteem": "最大索敌数",
@@ -550,11 +550,31 @@
   "seeking_immortals.config.candle2": "治疗比例",
   "seeking_immortals.config.candle3": "无敌时长的最大上限",
 
+  "seeking_immortals.configuration.惶恐肉瘤": "惶恐肉瘤",
+  "seeking_immortals.configuration.幽怨之魂": "幽怨之魂",
+  "seeking_immortals.configuration.灵念药戒": "灵念药戒",
+  "seeking_immortals.configuration.虚伪的自尊":"虚伪的自尊",
+  "seeking_immortals.configuration.邪异古烛": "邪异古烛",
+  "seeking_immortals.configuration.孤狼": "孤狼",
+
   "seeking_immortals.config.wolf": "检查半径",
 
   "item.seeking_immortals.revive_runestone":"§4复苏符石",
   "item.revive_runestone.tool.string.1": "受伤有概率吸收伤害",
   "item.revive_runestone.tool.string.2": "攻击有概率吸取生命",
+  "effect.seeking_immortals.dead": "枯朽",
+
+  "item.seeking_immortals.bone_or_god":"§4血祭神颅",
+  "item.bone_or_god.tool.string": "任何尝试对你施加负面BUFF的生物都会自食恶果",
+  "item.bone_or_god.tool.string.1":"免疫负面药水状态",
+  "item.bone_or_god.tool.string.2": "宠物攻击会附加10%主人的面板伤害",
+  "item.bone_or_god.tool.string.3":"宠物伤害提高200%",
+  "item.bone_or_god.tool.string.4": "宠物抗性提高50%",
+  "item.bone_or_god.tool.string.5":"若宠附加的物没有攻击目标，则缓慢恢复生命值",
+  "seeking_immortals.jei.item.seeking_immortals.bone_or_god": "杀死100只宠物获取",
+  "seeking_immortals.configuration.血祭神颅": "血祭神颅",
+  "seeking_immortals.config.bone_or_god_give": "杀死的宠物数量",
+
 
   "item.seeking_immortals.strengthen_runestone":"§4强化符石",
   "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量",
@@ -562,7 +582,9 @@
 
 
   "item.eye.tool.string.7": "剥离你所看注视生物的灵魂",
-  "item.eye.tool.string.8": "灵魂会飞向你，若撞击到生物则造成大量负面效果和4点魔法伤害"
+  "item.eye.tool.string.8": "灵魂会飞向你，若撞击到生物则造成大量负面效果和4点魔法伤害",
+
+  "item.blood_god.tool.string.9": "移除死兆诅咒"
 }
 
 

@@ -38,6 +38,11 @@ public abstract class LivingEntityMixin {
                 cir.setReturnValue(false);
             }
         }
+        if (Handler.hascurio(living, Items.bone_or_god.get())) {
+            if (!effectInstance.getEffect().value().isBeneficial()) {
+                cir.setReturnValue(false);
+            }
+        }
     }
     @Inject(at = @At("RETURN"), method = "getArmorValue", cancellable = true)
     private void getArmorValue(CallbackInfoReturnable<Integer> cir){

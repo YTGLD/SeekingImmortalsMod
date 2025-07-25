@@ -16,5 +16,6 @@ public class Effects {
     public static final DeferredHolder<MobEffect,?> blade  =REGISTRY.register("blade",()->new blade());
     public static final DeferredHolder<MobEffect,?> the_yoke_of_war  =REGISTRY.register("the_yoke_of_war",()->new the_yoke_of_war());
     public static final DeferredHolder<MobEffect,?> invulnerable  =REGISTRY.register("invulnerable",()->new invulnerable());
+    public static final DeferredHolder<MobEffect,?> bone_god  =REGISTRY.register("bone_god",()->new bone_god());
 
 }

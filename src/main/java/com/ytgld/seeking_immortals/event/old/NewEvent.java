@@ -10,7 +10,8 @@ import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
 import com.ytgld.seeking_immortals.item.nightmare.AllTip;
-import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
+import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
+import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
 import com.ytgld.seeking_immortals.item.nightmare.base.lotus;
 import com.ytgld.seeking_immortals.item.nightmare.base.strengthen_runestone;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
@@ -158,9 +159,11 @@ public class NewEvent {
         nightmare_base_insight_insane.LivingDeathEvents(event);
         falling_immortals.dieEqItem(event);
         nightmare_base.killGive(event);
-        lotus.die(event);
     }
-
+    @SubscribeEvent
+    public void effect(MobEffectEvent.Added event){
+        bone_or_god.effect(event);
+    }
     @SubscribeEvent
     public void LivingHurtEvent(LivingIncomingDamageEvent event){
         falling_immortals.damage(event);
@@ -182,6 +185,7 @@ public class NewEvent {
         nightmare_base_start_pod.damage(event);
         candle.hurt(event);
         hidden_blade.hurt_cit(event);
+        bone_or_god.hurt(event);
         if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
             float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
             lvl *= 0.2f;

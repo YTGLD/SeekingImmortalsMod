@@ -41,14 +41,18 @@ public class OrbEntityRenderer<T extends orb_entity> extends net.minecraft.clien
         double z = Mth.lerp(partialTick, p_entity.zOld, p_entity.getZ());
         poseStack.pushPose();
         poseStack.translate(p_entity.getX()-x, p_entity.getY()-y,p_entity.getZ() -z);
-        if (false) {
-            float f = p_entity.live / 10f - 2;
-            if (f < 0) {
-                f = 0;
-            }
-            float f1 = p_entity.getDistanceToGround();
-            if (f1 > 0.0F) {
-                Light.renderShadow(poseStack, bufferSource, p_entity, p_entity.level(), f,p_entity.r,p_entity.g,p_entity.b);
+
+
+        if (true) {
+            if (ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()) {
+                float f = p_entity.live / 10f - 2;
+                if (f < 0) {
+                    f = 0;
+                }
+                float f1 = p_entity.getDistanceToGround();
+                if (f1 > 0.0F) {
+                    Light.renderShadow(poseStack, bufferSource, p_entity, p_entity.level(), f, p_entity.r, p_entity.g, p_entity.b);
+                }
             }
         }
         if (ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()) {

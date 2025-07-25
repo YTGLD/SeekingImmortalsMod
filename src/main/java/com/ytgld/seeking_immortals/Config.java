@@ -181,11 +181,18 @@ public class Config {
                     .defineInRange("blood_god_damage", 10000,1,Integer.MAX_VALUE);
 
             BUILDER.pop();
+
+            BUILDER.push("血祭神颅");
+            bone_or_god_give = BUILDER
+                    .translation("seeking_immortals.config.bone_or_god_give")
+                    .defineInRange("bone_or_god_give", 200,1,Integer.MAX_VALUE);
+            BUILDER.pop();
         }
 
 
         BUILDER.pop();
     }
+    public  final ModConfigSpec.IntValue bone_or_god_give ;
 
     public  final ModConfigSpec.IntValue blood_god_kill ;
     public  final ModConfigSpec.IntValue blood_god_heal ;

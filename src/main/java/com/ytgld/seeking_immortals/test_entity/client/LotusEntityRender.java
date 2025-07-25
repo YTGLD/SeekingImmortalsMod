@@ -35,79 +35,80 @@ public class LotusEntityRender <T extends lotus_entity> extends net.minecraft.cl
 
     @Override
     public void render(T p_entity, float entityYaw, float partialTick, PoseStack poseStack, MultiBufferSource bufferSource, int packedLight) {
-        MoonPost.renderEffectForNextTick(SeekingImmortalsMod.POST);
+        if (false) {
+            MoonPost.renderEffectForNextTick(SeekingImmortalsMod.POST);
 
-        double x = Mth.lerp(partialTick, p_entity.xOld, p_entity.getX());
-        double y = Mth.lerp(partialTick, p_entity.yOld, p_entity.getY());
-        double z = Mth.lerp(partialTick, p_entity.zOld, p_entity.getZ());
-        poseStack.pushPose();
-        poseStack.translate(p_entity.getX()-x, p_entity.getY()-y,p_entity.getZ() -z);
-        float f = p_entity.lightSize / 1.5f;
-        float f1 = Handler.getDistanceToGround(p_entity);
-        int alpha = 140 -  p_entity.tickCount ;
-        if (alpha < 0) {
-            alpha = 0;
-        }
-        if (p_entity.canSee) {
-            if (p_entity.isFollower || p_entity.isBoom){
-                float size = p_entity.boomAnimationTime / 20f;
-                if (size > 1) {
-                    size = 1;
-                }
-                orb(poseStack,bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"textures/gui/light.png"))),240,size, Light.ARGB.color(alpha, p_entity.r, p_entity.g, p_entity.b));
-            }
-        }
-        if (f1 > 0.0F&&f>0) {
-            Light.renderShadow(poseStack, bufferSource, p_entity, p_entity.level(), f,p_entity.r,p_entity.g,p_entity.b);
-        }
-        float agee = 100 -  p_entity.tickCount*2.2f;
-        if (agee < -10) {
-            agee = -10;
-        }
-        {
+            double x = Mth.lerp(partialTick, p_entity.xOld, p_entity.getX());
+            double y = Mth.lerp(partialTick, p_entity.yOld, p_entity.getY());
+            double z = Mth.lerp(partialTick, p_entity.zOld, p_entity.getZ());
             poseStack.pushPose();
-            poseStack.translate(0,2.75,0);
-            poseStack.scale(1.25f -agee/100f, 1.25f-agee/100f, 1.25f-agee/100f);
-
-            if (p_entity.isBoom) {
-                float b =50- p_entity.boomAnimationTime;
-                if (b < 0) {
-                    b = 0;
-                }
-                poseStack.pushPose();
-                poseStack.translate(0,-10,0);
-                renderDisk(poseStack,bufferSource.getBuffer(MRender.endBloodOutline),20,10,p_entity.r, p_entity.g, p_entity.b,100,b/30f);
-                poseStack.popPose();
-
+            poseStack.translate(p_entity.getX() - x, p_entity.getY() - y, p_entity.getZ() - z);
+            float f = p_entity.lightSize / 1.5f;
+            float f1 = Handler.getDistanceToGround(p_entity);
+            int alpha = 140 - p_entity.tickCount;
+            if (alpha < 0) {
+                alpha = 0;
             }
-
             if (p_entity.canSee) {
                 if (p_entity.isFollower || p_entity.isBoom) {
-
-                    follower(poseStack, bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
-                            "textures/gui/light.png"))), Light.ARGB.color(alpha, p_entity.r, p_entity.g, p_entity.b),alpha,alpha,agee);
+                    float size = p_entity.boomAnimationTime / 20f;
+                    if (size > 1) {
+                        size = 1;
+                    }
+                    orb(poseStack, bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/light.png"))), 240, size, Light.ARGB.color(alpha, p_entity.r, p_entity.g, p_entity.b));
                 }
-                float orbSize;
-                orbSize = f / 25f;
+            }
+            if (f1 > 0.0F && f > 0) {
+                Light.renderShadow(poseStack, bufferSource, p_entity, p_entity.level(), f, p_entity.r, p_entity.g, p_entity.b);
+            }
+            float agee = 100 - p_entity.tickCount * 2.2f;
+            if (agee < -10) {
+                agee = -10;
+            }
+            {
                 poseStack.pushPose();
-                poseStack.scale(0.75f, 0.75f, 0.75f);
-                poseStack.translate(0, 0.25, 0);
-                poseStack.mulPose(Axis.YN.rotationDegrees(45));
-                if (p_entity.isFollower || p_entity.isBoom) {
-                    follower(poseStack, bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
-                            "textures/gui/light.png"))), Light.ARGB.color(alpha, p_entity.r, p_entity.g, p_entity.b),alpha,alpha,agee);
+                poseStack.translate(0, 2.75, 0);
+                poseStack.scale(1.25f - agee / 100f, 1.25f - agee / 100f, 1.25f - agee / 100f);
+
+                if (p_entity.isBoom) {
+                    float b = 50 - p_entity.boomAnimationTime;
+                    if (b < 0) {
+                        b = 0;
+                    }
+                    poseStack.pushPose();
+                    poseStack.translate(0, -10, 0);
+                    renderDisk(poseStack, bufferSource.getBuffer(MRender.endBloodOutline), 20, 10, p_entity.r, p_entity.g, p_entity.b, 100, b / 30f);
+                    poseStack.popPose();
+
                 }
-                poseStack.scale(1.5f, 1.5f, 1.5f);
-                orb(poseStack, bufferSource.getBuffer(MRender.endBloodOutline), 240, orbSize, 1);
-                orb(poseStack, bufferSource.getBuffer(MRender.ging()), 240, orbSize, 1);
+
+                if (p_entity.canSee) {
+                    if (p_entity.isFollower || p_entity.isBoom) {
+
+                        follower(poseStack, bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                                "textures/gui/light.png"))), Light.ARGB.color(alpha, p_entity.r, p_entity.g, p_entity.b), alpha, alpha, agee);
+                    }
+                    float orbSize;
+                    orbSize = f / 25f;
+                    poseStack.pushPose();
+                    poseStack.scale(0.75f, 0.75f, 0.75f);
+                    poseStack.translate(0, 0.25, 0);
+                    poseStack.mulPose(Axis.YN.rotationDegrees(45));
+                    if (p_entity.isFollower || p_entity.isBoom) {
+                        follower(poseStack, bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,
+                                "textures/gui/light.png"))), Light.ARGB.color(alpha, p_entity.r, p_entity.g, p_entity.b), alpha, alpha, agee);
+                    }
+                    poseStack.scale(1.5f, 1.5f, 1.5f);
+                    orb(poseStack, bufferSource.getBuffer(MRender.endBloodOutline), 240, orbSize, 1);
+                    orb(poseStack, bufferSource.getBuffer(MRender.ging()), 240, orbSize, 1);
+                    poseStack.popPose();
+                }
                 poseStack.popPose();
             }
+
+
             poseStack.popPose();
         }
-
-
-        poseStack.popPose();
-
     }
     private static void renderDisk(PoseStack poseStack, VertexConsumer builder, float height, int segments, float red, float green, float blue, float alpha, float radius) {
         // 绘制圆柱底部
@@ -156,32 +157,32 @@ public class LotusEntityRender <T extends lotus_entity> extends net.minecraft.cl
         {
             poseStack.pushPose();
             poseStack.mulPose(Axis.YN.rotationDegrees(0.0F)); // 调整为0度
-            poseStack.mulPose(Axis.XN.rotationDegrees(30F+age));
-            poseStack.translate(0.0F,  2.0F - age / 200f, 0.0F);
+            poseStack.mulPose(Axis.XN.rotationDegrees(30F));
+            poseStack.translate(0.0F,  2.0F, 0.0F);
             renderSphere1(poseStack, vertexConsumer, 240, size, color,a1,a2);
             poseStack.popPose();
         }
         {
             poseStack.pushPose();
             poseStack.mulPose(Axis.YN.rotationDegrees(90)); // 调整为90度
-            poseStack.mulPose(Axis.XN.rotationDegrees(-30F-age));
-            poseStack.translate(0.0F,  2.0F - age / 200f, 0.0F);
+            poseStack.mulPose(Axis.XN.rotationDegrees(-30F));
+            poseStack.translate(0.0F,  2.0F, 0.0F);
             renderSphere1(poseStack, vertexConsumer, 240, size, color,a1,a2);
             poseStack.popPose();
         }
         {
             poseStack.pushPose();
             poseStack.mulPose(Axis.YN.rotationDegrees(180)); // 调整为180度
-            poseStack.mulPose(Axis.XN.rotationDegrees(-30F-age));
-            poseStack.translate(0.0F, 2.0F - age / 200f, 0.0F);
+            poseStack.mulPose(Axis.XN.rotationDegrees(-30F));
+            poseStack.translate(0.0F, 2.0F, 0.0F);
             renderSphere1(poseStack, vertexConsumer, 240, size, color,a1,a2);
             poseStack.popPose();
         }
         {
             poseStack.pushPose();
             poseStack.mulPose(Axis.YN.rotationDegrees(270)); // 调整为270度
-            poseStack.mulPose(Axis.XN.rotationDegrees(30F+age));
-            poseStack.translate(0.0F,  2.0F - age / 200f, 0.0F);
+            poseStack.mulPose(Axis.XN.rotationDegrees(30F));
+            poseStack.translate(0.0F,  2.0F, 0.0F);
             renderSphere1(poseStack, vertexConsumer, 240, size, color,a1,a2);
             poseStack.popPose();
         }

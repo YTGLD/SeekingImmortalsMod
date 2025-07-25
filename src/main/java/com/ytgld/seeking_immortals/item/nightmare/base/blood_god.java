@@ -1,4 +1,4 @@
-package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
+package com.ytgld.seeking_immortals.item.nightmare.base;
 
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.init.AttReg;

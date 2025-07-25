@@ -12,9 +12,13 @@ import net.minecraft.client.renderer.RenderStateShard;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
 import net.minecraft.resources.ResourceLocation;
+import org.lwjgl.opengl.GL11;
 
 import java.util.function.BiFunction;
 import java.util.function.Function;
+
+import static org.lwjgl.opengl.GL11C.GL_LEQUAL;
+import static org.lwjgl.opengl.GL11C.GL_LESS;
 
 public class MRender extends RenderType {
 
@@ -23,12 +27,32 @@ public class MRender extends RenderType {
         return ENTITY_SHADOW.apply(location);
     }
 
+    public static final TransparencyStateShard UNIFIED_TRANSPARENCY_STATE = new TransparencyStateShard("unified_transparency", () -> {
+        RenderSystem.enableDepthTest();
+        RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(
+                GlStateManager.SourceFactor.SRC_ALPHA,
+                GlStateManager.DestFactor.ONE,
+                GlStateManager.SourceFactor.ONE,
+                GlStateManager.DestFactor.ZERO
+        );
+        RenderSystem.depthFunc(GL_LESS);
+        RenderSystem.depthMask(false);
+
+    }, () -> {
+        RenderSystem.disableBlend();
+        RenderSystem.defaultBlendFunc();
+        RenderSystem.depthMask(true);
+        RenderSystem.depthFunc(GL_LEQUAL);
+        RenderSystem.disableDepthTest();
+    });
+
     public static final Function<ResourceLocation, RenderType> ENTITY_SHADOW = Util.memoize(
             p_286151_ -> {
                 RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder()
                         .setShaderState(RENDERTYPE_ENTITY_SHADOW_SHADER)
                         .setTextureState(new RenderStateShard.TextureStateShard(p_286151_, false, false))
-                        .setTransparencyState(TRANSLUCENT_TRANSPARENCY)
+                        .setTransparencyState(UNIFIED_TRANSPARENCY_STATE)
                         .setCullState(NO_CULL)
                         .setLightmapState(LIGHTMAP)
                         .setOverlayState(OVERLAY)
@@ -39,7 +63,6 @@ public class MRender extends RenderType {
                 return create("entity_shadow_seeking", DefaultVertexFormat.NEW_ENTITY, VertexFormat.Mode.QUADS, 1536, false, false, rendertype$compositestate);
             }
     );
-
 
 
 

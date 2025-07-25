@@ -22,16 +22,16 @@
   "item.blood_god.tool.string.7": "Drinking potion reduces bleed damage to 95% of its original size",
   "item.blood_god.tool.string.8": "30 second cooldown",
 
-  "seeking_immortals.jei.item.seeking_immortals.blood_god": "需要500击杀数，5000治疗量，10000造成伤害获取",
-  "item.blood_god.tool.string.9": "移除死兆诅咒",
-  "seeking_immortals.configuration.神血祖符": "神血祖符",
-  "seeking_immortals.config.blood_god_kill": "需要的击杀数",
-  "seeking_immortals.configuration.blood_god_kill": "神血祖符-击杀",
-  "seeking_immortals.config.blood_god_heal": "需要的治疗数",
-  "seeking_immortals.configuration.blood_god_heal": "神血祖符-治疗",
+"seeking_immortals.jei.item.seeking_immortals.blood_god": "Requires 500 kills, 5000 healing, 10000 damage dealt",
+  "item.blood_god.tool.string.9": "Removed the Curse of Death",
+  "seeking_immortals.configuration.神血祖符": "Divine blood ancestral talisman",
+  "seeking_immortals.config.blood_god_kill": "Number of kills required",
+  "seeking_immortals.configuration.blood_god_kill": "Divine Blood Ancestor Talisman - Kill",
+  "seeking_immortals.config.blood_god_heal": "Number of treatments needed",
+  "seeking_immortals.configuration.blood_god_heal": "Divine Blood Ancestor Talisman - Healing",
 
-  "seeking_immortals.config.blood_god_damage": "需要的造成伤害量",
-  "seeking_immortals.configuration.blood_god_damage": "神血祖符-伤害",
+  "seeking_immortals.config.blood_god_damage": "The amount of damage that needs to be done",
+  "seeking_immortals.configuration.blood_god_damage": "Divine Blood Ancestor Talisman - Damage",
 
 
   "attribute.name.seeking_immortals.allattack": "universalDamage",
@@ -40,7 +40,6 @@
   "attribute.name.seeking_immortals.dig": "diggingSpeed",
 
   "item.seeking_immortals.lotus":"§4混沌尊骨",
-  "item.lotus.tool.string.1": "在你死亡的地方生成混沌之莲",
 
 
   "item.seeking_immortals.wolf":"§4Lonely Wolf",
@@ -343,7 +342,8 @@
  "item.immortal.tool.string.6": "It is rumored that a person who wields the power of the cycle of life and death...",
  "item.immortal.tool.string.7": "Простовання простовання...",
  "item.immortal.tool.string.8": "But... At what cost? ",
- "effect.seeking_immortals.dead": "枯朽",
+  "effect.seeking_immortals.dead": "decay",
+  "effect.seeking_immortals.bone_god": "Death mark",
 
  "advancements.tooltip.immortal.text": "“I've long been tired of reincarnation again and again”",
  "advancements.tooltip.immortal.hand": "Step into reincarnation",
@@ -442,7 +442,7 @@
 
   "seeking_immortals.jei.item.seeking_immortals.falling_immortals": "While wearing the Tilted Fruit, the Eye of Ender is held in the main hand to kill the withering (in fact, it will directly replace the Tilted Fruit with the Fallen Immortal)",
   "advancements.tooltip.falling_immortals.text": "Obtain this item",
-  "advancements.tooltip.falling_immortals.hand": "希望之火的熄灭",
+  "advancements.tooltip.falling_immortals.hand": "The extinguishing of the flame of hope",
 
 "item.seeking_immortals.hidden_blade":"§4 Hidden Blade",
   "item.hidden_blade.tool.string.1": "Strike back when hit",
@@ -542,32 +542,47 @@
 
   "seeking_immortals.config.wolf": "Check Radius",
 
-  "seeking_immortals.configuration.惶恐肉瘤": "惶恐肉瘤",
-  "seeking_immortals.configuration.幽怨之魂": "幽怨之魂",
-  "seeking_immortals.configuration.灵念药戒": "灵念药戒",
-  "seeking_immortals.configuration.虚伪的自尊": "虚伪的自尊",
-  "seeking_immortals.configuration.邪异古烛": "邪异古烛",
-  "seeking_immortals.configuration.孤狼": "孤狼",
+  "seeking_immortals.configuration.惶恐肉瘤": "Fear of sarcoma",
+  "seeking_immortals.configuration.幽怨之魂": "The soul of grievances",
+  "seeking_immortals.configuration.灵念药戒": "Spiritual recitation of medicine",
+  "seeking_immortals.configuration.虚伪的自尊": "Hypocritical self-esteem",
+  "seeking_immortals.configuration.邪异古烛": "Evil is different from ancient candles",
+  "seeking_immortals.configuration.孤狼": "Lone wolf",
 
 "item.seeking_immortals.defend_against_runestone":"§4 Defend against runestone",
   "item.defend_against_runestone.tool.string.1": "Has a chance to gain Resistance II when hit",
   "item.defend_against_runestone.tool.string.2": "Chance to inflict Weakness II on the target when attacking",
 
-  "item.nightmare_base.tool.string.do": "但是........",
-  "item.nightmare_base_fool.tool.string.do": "增加了2级的时运",
-  "item.nightmare_base_fool.tool.string.do.2": "增加了2级的抢夺",
+  "item.nightmare_base.tool.string.do": "HOWEVER........",
 
+
+
+  "item.seeking_immortals.bone_or_god":"§4 Blood Sacrifice Skull",
+  "item.bone_or_god.tool.string": "Any mob that tries to apply a negative buff to you will reap the consequences",
+  "item.bone_or_god.tool.string.1":"Immunity Negative Potion Status",
+  "item.bone_or_god.tool.string.2": "Pet attacks add 10% of the owner's panel damage",
+  "item.bone_or_god.tool.string.3":"Pet damage increased by 200%",
+  "item.bone_or_god.tool.string.4": "Pet resistance increased by 50%",
+  "item.bone_or_god.tool.string.5":"If the pet attached object does not attack the target, it will slowly restore health",
+  "seeking_immortals.configuration.血祭神颅": "Blood sacrifice of the skull",
+  "seeking_immortals.config.bone_or_god_give": "Number of pets killed",
+
+
+
+  "seeking_immortals.jei.item.seeking_immortals.bone_or_god": "Kill 100 pets to obtain",
 
 "item.seeking_immortals.revive_runestone":"§4 Revive Runestone",
+
   "item.revive_runestone.tool.string.1": "Damage Absorbs Chance Injury",
   "item.revive_runestone.tool.string.2": "Attack has a chance to drain life",
 
 "item.seeking_immortals.strengthen_runestone":"§4 Strengthen_Runestone",
   "item.strengthen_runestone.tool.string.1": "Attack has a chance to gain Strength II",
   "item.strengthen_runestone.tool.string.2": "Damage has a chance to reflect damage",
-  "seeking_immortals.jei.item.seeking_immortals.defend_against_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
-  "seeking_immortals.jei.item.seeking_immortals.revive_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
-  "seeking_immortals.jei.item.seeking_immortals.strengthen_runestone": "发现在地牢和矿井，概率10%，一个玩家只能获得一个",
+
+  "seeking_immortals.jei.item.seeking_immortals.defend_against_runestone": "Found in dungeons and mines, 10% chance, one player can only get one",
+  "seeking_immortals.jei.item.seeking_immortals.revive_runestone": "Found in dungeons and mines, 10% chance, one player can only get one",
+  "seeking_immortals.jei.item.seeking_immortals.strengthen_runestone": "Found in dungeons and mines, 10% chance, only one player can get one",
 
   "item.eye.tool.string.7": "Strip the soul of the creature you are looking at",
   "item.eye.tool.string.8": "Souls fly towards you, dealing a lot of debuffs and 4 magic damage if they hit a mob"

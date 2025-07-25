@@ -6,6 +6,8 @@ import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
+import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
@@ -15,6 +17,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -25,6 +28,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
+import oshi.driver.mac.net.NetStat;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -49,10 +53,23 @@ public class nightmare_base extends nightmare {
         slotContext.entity().getAttributes().addTransientAttributeModifiers(gets(slotContext));
         tick = 100;
         if (slotContext.entity() instanceof Player player) {
-            int kill = Handler.getTagNumber(stack,blood_god.giveName_kill);
+            int kill = Handler.getTagNumber(stack, blood_god.giveName_kill);
             int heal = Handler.getTagNumber(stack,blood_god.giveName_heal);
             int damage = Handler.getTagNumber(stack,blood_god.giveName_damage);
+
+            int killOwner = Handler.getTagNumber(stack,bone_or_god.give);
+
             if (stack.get(DataReg.tag)!=null) {
+
+
+                if (!stack.get(DataReg.tag).getBoolean(bone_or_god.giveEnd)) {
+                    if (killOwner >= Config.SERVER.bone_or_god_give.get()) {
+                        player.addItem(new ItemStack(Items.bone_or_god.get()));
+                        stack.get(DataReg.tag).putBoolean(bone_or_god.giveEnd,true);
+                    }
+                }
+
+
                 if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
                     if (kill >= Config.SERVER.blood_god_kill.get()
                             && heal >= Config.SERVER.blood_god_heal.get()
@@ -165,8 +182,18 @@ public class nightmare_base extends nightmare {
                             ItemStack stack = stackHandler.getStackInSlot(i);
                             if (stack.is(Items.nightmare_base.get())) {
                                 if (stack.get(DataReg.tag) != null) {
-                                    if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
+                                    if (event.getEntity() instanceof OwnableEntity ownableEntity) {
+                                        if (ownableEntity.getOwner() instanceof Player o) {
+                                            if (player.is(o)){
+                                                if (!stack.get(DataReg.tag).getBoolean(bone_or_god.giveEnd)) {
+                                                    Handler.addTagNumber(stack, bone_or_god.give, player, 1);
+                                                }
+                                            }
+                                        }
+                                    }
 
+
+                                    if (!stack.get(DataReg.tag).getBoolean(blood_god.give_End)) {
                                         Handler.addTagNumber(stack, blood_god.giveName_kill, player, 1);
                                     }
                                 }
