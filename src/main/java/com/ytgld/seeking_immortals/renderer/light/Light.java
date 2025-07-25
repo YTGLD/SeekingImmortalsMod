@@ -1,5 +1,7 @@
 package com.ytgld.seeking_immortals.renderer.light;
 
+import com.mojang.blaze3d.platform.GlStateManager;
+import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ytgld.seeking_immortals.Handler;
@@ -23,6 +25,9 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.joml.Vector3f;
 
+import static org.lwjgl.opengl.GL11C.GL_LEQUAL;
+import static org.lwjgl.opengl.GL11C.GL_LESS;
+
 public class Light {
 
     public static void renderShadow(
@@ -40,7 +45,6 @@ public class Light {
         int i1 = Mth.floor(renderState.getZ() - size);
         int j1 = Mth.floor(renderState.getZ() + size);
         PoseStack.Pose posestack$pose = poseStack.last();
-//        VertexConsumer vertexconsumer = bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/shadow_writer.png")));
         VertexConsumer vertexconsumer = bufferSource.getBuffer(MRender.entityShadowsEEKING(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/shadow_writer.png")));
         BlockPos.MutableBlockPos blockpos$mutableblockpos = new BlockPos.MutableBlockPos();
 
@@ -81,7 +85,6 @@ public class Light {
         if (blockstate.getRenderShape() != RenderShape.INVISIBLE) {
             VoxelShape voxelshape = blockstate.getShape(chunk, pos);
             if (blockstate.isCollisionShapeFullBlock(chunk, pos)) {
-
                 if (!voxelshape.isEmpty()) {
                     float f1 = weight * 0.5F;
                     if (f1 >= 0.0F) {
@@ -89,6 +92,7 @@ public class Light {
                         float maxDist = 5;
                         float dist = Handler.getDistanceToGround(renderState);
                         int alpha = (int) (255 * (1 - (dist / maxDist)));
+                        alpha /= 2;
                         if (alpha < 0) alpha = 0; // 确保 alpha 不会小于 0
                         if (dist > maxDist) {
                             return;
@@ -189,13 +193,13 @@ public class Light {
             double v,
             Vector3f normal
     ) {
-
         consumer.addVertex(pose.pose(), (float) offsetX, (float) offsetY, (float) offsetZ)
                 .setColor((color >> 16) & 0xFF, (color >> 8) & 0xFF, color & 0xFF, (color >> 24) & 0xFF)
                 .setUv((float) u, (float) v)
                 .setOverlay(OverlayTexture.NO_OVERLAY)
-                .setUv2(240, 240)
+                .setUv2(0xFF, 0xFF)
                 .setNormal(normal.x(), normal.y(), normal.z());
+
     }
 
     public static class ARGB {

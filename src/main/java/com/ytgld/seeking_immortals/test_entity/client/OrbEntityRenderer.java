@@ -43,7 +43,7 @@ public class OrbEntityRenderer<T extends orb_entity> extends net.minecraft.clien
         poseStack.translate(p_entity.getX()-x, p_entity.getY()-y,p_entity.getZ() -z);
 
 
-        if (true) {
+        if (false) {
             if (ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()) {
                 float f = p_entity.live / 10f - 2;
                 if (f < 0) {
