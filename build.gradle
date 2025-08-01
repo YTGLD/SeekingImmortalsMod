@@ -121,13 +121,17 @@ repositories {
         }
     }
     maven {
+        url = "https://api.modrinth.com/maven"
+    }
+    maven {
         url = "https://maven.theillusivec4.top/"
     }
 }
 dependencies {
+    implementation "maven.modrinth:moonstone:1.3.1.8-neoforge"
+
     compileOnly "mezz.jei:jei-1.21.1-common-api:19.21.0.247"
     compileOnly "mezz.jei:jei-1.21.1-neoforge-api:19.21.0.247"
-
     localRuntime "mezz.jei:jei-1.21.1-neoforge:19.21.0.247"
 
     implementation 'top.theillusivec4.curios:curios-neoforge:9.4.0+1.21.1'
