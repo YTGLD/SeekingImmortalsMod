@@ -1,0 +1,31 @@
+{
+    "targets": [
+        "swap"
+    ],
+    "passes": [
+       {
+            "name": "seeking_immortals:color_convolve",
+            "intarget": "minecraft:main",
+            "outtarget": "swap",
+            "use_linear_filter": true,
+            "uniforms": [
+                {
+                    "name": "RedMatrix",
+                  "values": [ 1.1,0,0 ]
+                }
+            ]
+        },
+        {
+            "name": "seeking_immortals:color_convolve",
+            "intarget": "swap",
+            "outtarget": "minecraft:main",
+            "use_linear_filter": true,
+            "uniforms": [
+                {
+                    "name": "RedMatrix",
+                  "values": [ 1.1,0,0 ]
+                }
+            ]
+        }
+    ]
+}

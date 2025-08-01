@@ -1,0 +1,41 @@
+{
+  "parent": "seeking_immortals:seeking_immortals/falling_immortals",
+  "criteria": {
+    "yoke": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "seeking_immortals:yoke"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "display": {
+    "announce_to_chat": true,
+    "description": {
+      "translate": "advancements.tooltip.yoke.text"
+    },
+    "frame": "goal",
+    "hidden": false,
+    "icon": {
+      "id": "seeking_immortals:yoke"
+    },
+    "show_toast": true,
+    "title": {
+      "translate": "advancements.tooltip.yoke.hand"
+    }
+  },
+  "requirements": [
+    [
+      "yoke"
+    ]
+  ],
+  "rewards": {
+    "experience": 100
+  },
+  "sends_telemetry_event": true
+}
