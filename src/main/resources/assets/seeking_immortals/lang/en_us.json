@@ -575,6 +575,13 @@
 
   "item.revive_runestone.tool.string.1": "Damage Absorbs Chance Injury",
   "item.revive_runestone.tool.string.2": "Attack has a chance to drain life",
+  "curse.seeking_immortals.string": "cursed",
+
+  "curse.seeking_immortals.nightmare_base_black_eye.name.1": "Terran says... We are selfish, greedy and pathetic",
+  "curse.seeking_immortals.nightmare_base_black_eye.name.2": "But the Terrans have long been watched by the great evil gods",
+  "curse.seeking_immortals.nightmare_base_black_eye.name.3": "I can see them...",
+  "curse.seeking_immortals.nightmare_base_black_eye.name.4": "They will eventually die without a place to be buried...",
+  "shift.curse.seeking_immortals.name": "Hold down Shift to take a closer look",
 
 "item.seeking_immortals.strengthen_runestone":"§4 Strengthen_Runestone",
   "item.strengthen_runestone.tool.string.1": "Attack has a chance to gain Strength II",

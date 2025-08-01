@@ -7,7 +7,9 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.LightTexture;
+import net.minecraft.client.renderer.culling.Frustum;
 import org.joml.Matrix4f;
+import org.joml.Vector3d;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
@@ -15,11 +17,19 @@ import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
+import javax.annotation.Nullable;
+
 @Mixin(LevelRenderer.class)
 public abstract class LevelRendererMixin {
     @Shadow
     @Final
     private Minecraft minecraft;
+
+    @Shadow @Nullable private Frustum capturedFrustum;
+
+    @Shadow @Final private Vector3d frustumPos;
+
+    @Shadow private Frustum cullingFrustum;
 
     @Inject(method = "initOutline()V",
             at = @At("TAIL"))

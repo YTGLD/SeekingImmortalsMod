@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals;
 
+import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.*;
 import net.minecraft.client.gui.GuiGraphics;
@@ -25,6 +26,12 @@ public class MGuiGraphics {
         RenderSystem.setShaderTexture(0, texture);
         RenderSystem.setShader(GameRenderer::getPositionTexColorShader);
         RenderSystem.enableBlend();
+        RenderSystem.blendFuncSeparate(
+                GlStateManager.SourceFactor.SRC_ALPHA,
+                GlStateManager.DestFactor.ONE,
+                GlStateManager.SourceFactor.ONE,
+                GlStateManager.DestFactor.ZERO
+        );
         Matrix4f matrix4f = guiGraphics.pose().last().pose();
         BufferBuilder bufferbuilder = Tesselator.getInstance().begin(VertexFormat.Mode.QUADS, DefaultVertexFormat.POSITION_TEX_COLOR);
         bufferbuilder.addVertex(matrix4f, (float) startX, (float) startY, (float) zLevel).setColor(r, g, b, a).setUv(u0, v0);
@@ -33,5 +40,6 @@ public class MGuiGraphics {
         bufferbuilder.addVertex(matrix4f, (float) endX, (float) startY, (float) zLevel).setColor(r, g, b, a).setUv(u1, v0);
         BufferUploader.drawWithShader(bufferbuilder.buildOrThrow());
         RenderSystem.disableBlend();
+        RenderSystem.defaultBlendFunc();
     }
 }

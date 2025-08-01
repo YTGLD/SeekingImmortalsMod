@@ -5,7 +5,11 @@ import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.ytgld.seeking_immortals.MGuiGraphics;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base;
+import com.ytgld.seeking_immortals.item.nightmare.tip.Terror;
+import com.ytgld.seeking_immortals.renderer.IAbstractContainerScreen;
+import com.ytgld.seeking_immortals.renderer.IGuiGraphics;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.Font;
@@ -19,6 +23,7 @@ import net.minecraft.util.FastColor;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.Vec2;
 import net.neoforged.neoforge.client.ClientHooks;
 import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import org.joml.Matrix4f;
@@ -34,7 +39,7 @@ import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import java.util.List;
 
 @Mixin(GuiGraphics.class)
-public abstract class GuiGraphicsMixin {
+public abstract class GuiGraphicsMixin implements IGuiGraphics {
 
     @Shadow private ItemStack tooltipStack;
 
@@ -47,26 +52,160 @@ public abstract class GuiGraphicsMixin {
     public void ca$renderItemDecorationsRenderItem(LivingEntity living, Level level, ItemStack stack, int x, int y, int is, CallbackInfo ci) {
         GuiGraphics guiGraphics = (GuiGraphics) (Object) this;
         if (living != null) {
-            if (stack.getItem() instanceof nightmare_base){
+            if (stack.getItem() instanceof nightmare_base) {
                 int tickCount = living.tickCount;
-                float[][] positions = {{x - 8/10f, y - 8/10f}, {x + 24/10f, y - 8/10f}, {x - 8/10f, y + 24/10f}, {x + 24/10f, y + 24/10f}, {x + 56/10f, y - 8/10f}, {x + 56/10f, y + 24/10f}, {x - 8/10f, y + 56/10f}, {x + 24/10f, y + 56/10f}, {x + 5/10f, y + 5/10f}};
+                float[][] positions = {{x - 8 / 10f, y - 8 / 10f}, {x + 24 / 10f, y - 8 / 10f}, {x - 8 / 10f, y + 24 / 10f}, {x + 24 / 10f, y + 24 / 10f}, {x + 56 / 10f, y - 8 / 10f}, {x + 56 / 10f, y + 24 / 10f}, {x - 8 / 10f, y + 56 / 10f}, {x + 24 / 10f, y + 56 / 10f}, {x + 5 / 10f, y + 5 / 10f}};
                 double[] alphaFactors = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
                 for (int i = 0; i < 9; i++) {
                     float s = (float) Math.sin((double) tickCount / 50 * alphaFactors[i]);
                     if (s < 0) {
                         s = -s;
                     }
-                    float red = 1 - (i/10f);
-                    MGuiGraphics.blit(guiGraphics, ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/necora_red.png"), positions[i][0]-6, positions[i][1]-6, 0, 0, 24, 24, 24, 24, red, 0, 1, s);
+                    float red = 1 - (i / 10f);
+                    MGuiGraphics.blit(guiGraphics, ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/necora_red.png"), positions[i][0] - 6, positions[i][1] - 6, 0, 0, 24, 24, 24, 24, red, 0, 1, s);
                 }
             }
-
+        }
+    }
+    @Inject(at = {@At("RETURN")}, method = {"Lnet/minecraft/client/gui/GuiGraphics;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V"})
+    public void ca$renderItemDecorationsRenderItem(LivingEntity entity, Level level, ItemStack stack, int x, int y, int seed, int guiOffset, CallbackInfo ci) {
+        if (entity != null) {
+            if (stack.getItem() instanceof nightmare){
+                seekingImmortals$doFire(entity,level,stack,x,y,seed,guiOffset,ci,1.5f);
+                seekingImmortals$doFire(entity,level,stack,x,y,seed,guiOffset,ci,1.0f);
+                seekingImmortals$doFire(entity,level,stack,x,y,seed,guiOffset,ci,0.5f);
+            }
         }
     }
 
+    @Override
+    public  void seekingImmortals$addW( ItemStack stack) {
+        GuiGraphics guiGraphics = (GuiGraphics) (Object) this;
+        if (stack.getItem() instanceof Terror terror) {
+            guiGraphics.pose().pushPose();
+            if (this.minecraft.screen instanceof IAbstractContainerScreen iAbstractContainerScreen) {
+                List<Vec2> xy = iAbstractContainerScreen.seekingImmortals$xy();
+                if (xy != null) {
+                    for (int i = 1; i < xy.size(); i++) {
+                        Vec2 prevPos = xy.get(i - 1);
+                        Vec2 currPos = xy.get(i);
+                        if (prevPos.x != 0 && prevPos.y != 0 && currPos.x != 0 && currPos.y != 0) {
+                            float alpha = (float) (i) / (float) (xy.size());
+                            Vec2 adjustedPrevPos = new Vec2(prevPos.x, prevPos.y);
+                            Vec2 adjustedCurrPos = new Vec2(currPos.x, currPos.y);
+                            guiGraphics.pose().pushPose();
+                            guiGraphics.pose().translate(prevPos.x, prevPos.y, 0);
+                            guiGraphics.pose().scale(alpha, alpha, alpha);
+                            guiGraphics.pose().translate(-prevPos.x, -prevPos.y , 0);
+//                            seekingImmortals$renderBlood(guiGraphics.pose(), guiGraphics.bufferSource().getBuffer(MRender.LIGHTING), adjustedPrevPos, adjustedCurrPos,
+//                                    alpha,
+//                                    8,
+//                                    Light.ARGB.color((int) (alpha * 255), 255, (int) alpha * 255 / 2, (int) alpha * 255));
+                            MGuiGraphics.blit(guiGraphics, terror.image(null),
+                                    adjustedCurrPos.x -12  ,adjustedCurrPos.y -12,
+                                    0, 0, 24, 24, 24, 24,
+                                    (alpha), 0.25f,  alpha  / 2f,  alpha);
+                            guiGraphics.pose().popPose();
+                        }
+                    }
+
+                }
+            }
+            guiGraphics.pose().popPose();
+        }
+    }
+
+    @Unique
+    public void seekingImmortals$renderBlood(PoseStack poseStack, VertexConsumer vertexConsumer, Vec2 start, Vec2 end, float a, float r,int color) {
+        int segmentCount = 16;
+
+        for (int i = 0; i < segmentCount; i++) {
+            double angle1 = (2 * Math.PI * i) / segmentCount;
+            double angle2 = (2 * Math.PI * (i + 1)) / segmentCount;
+
+            double x1 = Math.cos(angle1) * r;
+            double z1 = Math.sin(angle1) * r;
+            double x2 = Math.cos(angle2) * r;
+            double z2 = Math.sin(angle2) * r;
+
+            Vec2 up1 = start.add(new Vec2((float) x1, (float) z1));
+            Vec2 up2 = start.add(new Vec2((float) x2, (float) z2));
+            Vec2 down1 = end.add(new Vec2((float) x1, (float) z1));
+            Vec2 down2 = end.add(new Vec2((float) x2, (float) z2));
 
 
+            seekingImmortals$addSquare(vertexConsumer, poseStack, up1, up2, down1, down2, a,color);
+        }
+    }
+    @Unique
+    private void seekingImmortals$addSquare(VertexConsumer vertexConsumer, PoseStack poseStack, Vec2 up1, Vec2 up2, Vec2 down1, Vec2 down2, float alpha,int color) {
+        vertexConsumer.addVertex(poseStack.last().pose(), (float) up1.x, (float) up1.y, (float) 0)
+                .setColor(color)
+                .setUv2(240, 240)
+                .setNormal(0, 0, 1);
 
+        vertexConsumer.addVertex(poseStack.last().pose(), (float) down1.x, (float) down1.y, (float) 0)
+                .setColor(color)
+                .setUv2(240, 240)
+                .setNormal(0, 0, 1);
+
+        vertexConsumer.addVertex(poseStack.last().pose(), (float) down2.x, (float) down2.y, (float) 0)
+                .setColor(color)
+                .setUv2(240, 240)
+                .setNormal(0, 0, 1);
+
+        vertexConsumer.addVertex(poseStack.last().pose(), (float) up2.x, (float) up2.y, (float)0)
+                .setColor(	color)
+                .setUv2(240, 240)
+                .setNormal(0, 0, 1);
+    }
+
+    @Unique
+    private void seekingImmortals$doFire(LivingEntity entity, Level level, ItemStack stack, int x, int y, int seed, int guiOffset, CallbackInfo ci,float speed){
+        GuiGraphics guiGraphics = (GuiGraphics) (Object) this;
+        if (entity != null) {
+            if (stack.getItem() instanceof Terror terror) {
+                if (terror.maxLevel(stack)!=0&&terror.nowLevel(stack)!=0) {
+                    if (terror.nowLevel(stack) >= terror.maxLevel(stack)) {
+                        float tickCount = entity.tickCount * speed + seed;
+                        float[][] positions = {
+                                {x - 8 / 10f, y - 8 / 10f},
+                                {x + 24 / 10f, y - 8 / 10f},
+                                {x - 8 / 10f, y + 24 / 10f},
+                                {x + 24 / 10f, y + 24 / 10f},
+                                {x + 56 / 10f, y - 8 / 10f},
+                                {x + 56 / 10f, y + 24 / 10f},
+                                {x - 8 / 10f, y + 56 / 10f},
+                                {x + 24 / 10f, y + 56 / 10f},
+                                {x + 5 / 10f, y + 5 / 10f}
+                        };
+                        double[] alphaFactors = {1.0, 2.0, 3.0, 4.0, 5.0, 6.0, 7.0, 8.0, 9.0};
+                        for (int i = 0; i < 9; i++) {
+                            float s = (float) Math.sin((double) tickCount / 50 * alphaFactors[i]);
+                            if (s < 0) {
+                                s = -s;
+                            }
+                            float upwardOffset = (float) (((tickCount * alphaFactors[i]) % 200) / 5);
+
+                            float red = 1;
+                            float green = 0.25f * s;
+                            float blue = 0.25f;
+
+                            float as = (20 - upwardOffset) / 20;
+                            if (as < 0) {
+                                as = 0;
+                            }
+
+                            MGuiGraphics.blit(guiGraphics, terror.image(entity),
+                                    positions[i][0] - 6, positions[i][1] - 6 - upwardOffset,
+                                    0, 0, 24, 24, 24, 24,
+                                    red, green, blue, as);
+                        }
+                    }
+                }
+            }
+        }
+    }
     @Unique
     public void moon1_21$drawManaged(Runnable pRunnable) {
         this.flush();

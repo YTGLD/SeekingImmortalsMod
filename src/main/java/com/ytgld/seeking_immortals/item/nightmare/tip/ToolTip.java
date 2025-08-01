@@ -1,4 +1,4 @@
-package com.ytgld.seeking_immortals.item.nightmare;
+package com.ytgld.seeking_immortals.item.nightmare.tip;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.ytgld.seeking_immortals.event.old.NewEvent;

@@ -1,13 +1,18 @@
 package com.ytgld.seeking_immortals;
 
+import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
 import com.ytgld.seeking_immortals.item.an_element.extend.Element;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.renderer.light.Light;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -16,6 +21,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 
+import java.util.List;
 import java.util.Map;
 
 public class Handler {
@@ -61,7 +67,6 @@ public class Handler {
         }
         return  0;
     }
-
     public static boolean hascurio(LivingEntity entity, Item curio) {
 
         if (CuriosApi.getCuriosInventory(entity).isPresent()) {

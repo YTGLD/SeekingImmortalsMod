@@ -3,10 +3,10 @@ package com.ytgld.seeking_immortals.item.nightmare.super_nightmare;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
-import com.ytgld.seeking_immortals.item.nightmare.AllTip;
-import com.ytgld.seeking_immortals.item.nightmare.ToolTip;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
+import com.ytgld.seeking_immortals.item.nightmare.tip.ToolTip;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -88,9 +88,7 @@ public class nightmare_base_black_eye extends nightmare implements SuperNightmar
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.nightmare_base_black_eye_heart").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.translatable("item.seeking_immortals.tricky_puppets").withStyle(ChatFormatting.DARK_RED));
         pTooltipComponents.add(Component.literal(""));
-
         pTooltipComponents.add(Component.translatable("item.nightmareeye.tool.string.2").withStyle(ChatFormatting.DARK_RED));
-
     }
     public Entity look(Level level, LivingEntity living) {
         Entity pointedEntity = null;

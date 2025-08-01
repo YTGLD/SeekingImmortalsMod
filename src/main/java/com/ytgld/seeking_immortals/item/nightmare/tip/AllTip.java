@@ -1,4 +1,4 @@
-package com.ytgld.seeking_immortals.item.nightmare;
+package com.ytgld.seeking_immortals.item.nightmare.tip;
 
 import com.ytgld.seeking_immortals.item.an_element.extend.Element;
 import net.minecraft.resources.ResourceLocation;
