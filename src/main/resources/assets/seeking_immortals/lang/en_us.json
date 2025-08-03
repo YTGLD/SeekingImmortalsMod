@@ -572,16 +572,24 @@
   "seeking_immortals.jei.item.seeking_immortals.bone_or_god": "Kill 100 pets to obtain",
 
 "item.seeking_immortals.revive_runestone":"§4 Revive Runestone",
+  "item.seeking_immortals.evil_thought_bone":"§4Evil thought bone",
+  "item.evil_thought_bone.tool.string": "Double the creature loot",
+
+
+
+
+  "curse.seeking_immortals.evil_thought_bone.string": "The higher the hatred level of this item, the better the amplification",
+  "curse.seeking_immortals.evil_thought_bone.string.do": "Increases by 1 level for every 800 critical damage dealt",
+  "curse.seeking_immortals.evil_thought_bone.string.1": "2",
+  "curse.seeking_immortals.evil_thought_bone.string.2": "2.5",
+  "curse.seeking_immortals.evil_thought_bone.string.3": "3",
+  "curse.seeking_immortals.evil_thought_bone.string.4": "3.5",
+
+
 
   "item.revive_runestone.tool.string.1": "Damage Absorbs Chance Injury",
   "item.revive_runestone.tool.string.2": "Attack has a chance to drain life",
-  "curse.seeking_immortals.string": "cursed",
-
-  "curse.seeking_immortals.nightmare_base_black_eye.name.1": "Terran says... We are selfish, greedy and pathetic",
-  "curse.seeking_immortals.nightmare_base_black_eye.name.2": "But the Terrans have long been watched by the great evil gods",
-  "curse.seeking_immortals.nightmare_base_black_eye.name.3": "I can see them...",
-  "curse.seeking_immortals.nightmare_base_black_eye.name.4": "They will eventually die without a place to be buried...",
-  "shift.curse.seeking_immortals.name": "Hold down Shift to take a closer look",
+  "curse.seeking_immortals.string": "Cursed",
 
 "item.seeking_immortals.strengthen_runestone":"§4 Strengthen_Runestone",
   "item.strengthen_runestone.tool.string.1": "Attack has a chance to gain Strength II",

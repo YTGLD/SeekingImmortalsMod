@@ -575,16 +575,19 @@
   "seeking_immortals.configuration.血祭神颅": "血祭神颅",
   "seeking_immortals.config.bone_or_god_give": "杀死的宠物数量",
 
+
+  "item.seeking_immortals.evil_thought_bone":"§4邪念骇骨",
+  "item.evil_thought_bone.tool.string": "增加生物掉落的战利品",
+
+  "curse.seeking_immortals.evil_thought_bone.string": "此物品的憎恨等级越高，增幅效果越好",
+  "curse.seeking_immortals.evil_thought_bone.string.do": "每造成800点暴击伤害都将提高1级",
+
+
+
   "curse.seeking_immortals.string": "受诅咒的",
   "item.seeking_immortals.strengthen_runestone":"§4强化符石",
   "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量",
   "item.strengthen_runestone.tool.string.2": "受伤有概率反弹伤害",
-
-  "curse.seeking_immortals.nightmare_base_black_eye.name.1": "人族说...我们是自私贪婪且可悲的",
-  "curse.seeking_immortals.nightmare_base_black_eye.name.2": "但人族早已被伟大的邪神所注视",
-  "curse.seeking_immortals.nightmare_base_black_eye.name.3": "我可以看见他们...",
-  "curse.seeking_immortals.nightmare_base_black_eye.name.4": "他们最终会死无葬身之地...",
-  "shift.curse.seeking_immortals.name": "按住“Shift”仔细查看",
 
 
   "item.eye.tool.string.7": "剥离你所看注视生物的灵魂",

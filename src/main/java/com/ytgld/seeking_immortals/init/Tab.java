@@ -20,6 +20,7 @@ public class Tab {
 
                 b.accept(new ItemStack(Items.blood_god.get()));
                 b.accept(new ItemStack(Items.bone_or_god.get()));
+                b.accept(new ItemStack(Items.evil_thought_bone.get()));
 
                 b.accept(new ItemStack(Items.immortal.get()));
                 b.accept(new ItemStack(Items.eye.get()));

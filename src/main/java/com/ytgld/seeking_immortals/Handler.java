@@ -11,6 +11,7 @@ import com.ytgld.seeking_immortals.renderer.light.Light;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.world.entity.Entity;
@@ -21,16 +22,34 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.phys.Vec3;
 import top.theillusivec4.curios.api.CuriosApi;
 
-import java.util.List;
 import java.util.Map;
 
 public class Handler {
+    public static MutableComponent addColorText(String text,float speed) {
+
+        int s = Component.translatable(text).toString().length();
+        int r = (int) (255 * Math.sin(NewEvent.time / speed));
+        int b = (int) (100 * Math.sin(s) * Math.sin(NewEvent.time / 200f));
+        if (r < 0) {
+            r = -r;
+        }
+        if (b < 0) {
+            b = -b;
+        }
+        return Component.translatable(text).withStyle(Style.EMPTY.withColor(
+                TextColor.fromRgb(Light.ARGB.color(
+                                255,
+                                r,
+                                50,
+                                b + 155
+                        )
+                ))
+        );
+    }
     public static float getDistanceToGround(Entity entity) {
-        // 获取实体的位置
         Vec3 position = entity.position();
         BlockPos blockPos = new BlockPos((int) position.x, (int) position.y, (int) position.z);
 
-        // 获取该位置下方的最近非空气方块位置
         BlockPos groundPos = blockPos.below();
         while (groundPos.getY() > -100 && entity.level().getBlockState(groundPos).isAir()) {
             groundPos = groundPos.below();

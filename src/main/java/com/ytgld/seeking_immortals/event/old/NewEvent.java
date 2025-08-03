@@ -2,9 +2,7 @@ package com.ytgld.seeking_immortals.event.old;
 
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
-import com.ytgld.seeking_immortals.event.CurioDeathAtMeEvent;
-import com.ytgld.seeking_immortals.event.CurioHurtEvent;
-import com.ytgld.seeking_immortals.event.CurioTickEvent;
+import com.ytgld.seeking_immortals.event.*;
 import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
@@ -82,6 +80,38 @@ public class NewEvent {
                     for (int i = 0; i < stacksHandler.getSlots(); i++) {
                         ItemStack stack = stackHandler.getStackInSlot(i);
                         NeoForge.EVENT_BUS.post(new CurioHurtEvent(player, stack,event));
+                    }
+                }
+            });
+        }
+    }
+    @SubscribeEvent
+    public void CurioDropEventCurioDropEvent(LivingDropsEvent event){
+        if (event.getSource().getEntity() instanceof Player player) {
+            CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                    ICurioStacksHandler stacksHandler = entry.getValue();
+                    IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                    for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                        ItemStack stack = stackHandler.getStackInSlot(i);
+                        NeoForge.EVENT_BUS.post(new CurioDropEvent(player, stack,event));
+                    }
+                }
+            });
+        }
+    }
+    @SubscribeEvent
+    public void CurioAttackEventLivingIncomingDamageEvent(LivingIncomingDamageEvent event){
+        if (event.getSource().getEntity() instanceof Player player) {
+            CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                    ICurioStacksHandler stacksHandler = entry.getValue();
+                    IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                    for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                        ItemStack stack = stackHandler.getStackInSlot(i);
+                        NeoForge.EVENT_BUS.post(new CurioAttackEvent(player, stack,event));
                     }
                 }
             });

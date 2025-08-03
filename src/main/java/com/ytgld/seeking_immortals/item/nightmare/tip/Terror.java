@@ -9,11 +9,12 @@ import javax.annotation.Nullable;
 import java.util.Map;
 
 public interface Terror {
-    ResourceLocation image(LivingEntity entity);
+    ResourceLocation image(@Nullable LivingEntity entity);
     @Nullable
     Map<Integer ,Component> describe(ItemStack stack);
     int maxLevel(ItemStack stack);
     int nowLevel(ItemStack stack);
 
+    int color(ItemStack stack);
 
 }

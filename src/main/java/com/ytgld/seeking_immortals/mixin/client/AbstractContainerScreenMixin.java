@@ -1,6 +1,7 @@
 package com.ytgld.seeking_immortals.mixin.client;
 
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.renderer.IAbstractContainerScreen;
 import com.ytgld.seeking_immortals.renderer.IGuiGraphics;
 import net.minecraft.client.gui.GuiGraphics;
@@ -39,14 +40,16 @@ public abstract class AbstractContainerScreenMixin <T extends AbstractContainerM
     public void Lnet(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci){
         ItemStack itemstack = this.menu.getCarried();
         if (!itemstack.isEmpty()){
-            if (itemstack.getItem() instanceof SuperNightmare ) {
+            if (itemstack.getItem() instanceof nightmare) {
                 seekingImmortals$vec2.add(new Vec2(mouseX, mouseY));
-
             }
-
+        }else {
+            seekingImmortals$vec2.clear();
         }
-        if (seekingImmortals$vec2.size() > 100) {
-            seekingImmortals$vec2.removeFirst();
+        if (!seekingImmortals$vec2.isEmpty()) {
+            if (seekingImmortals$vec2.size() > 100) {
+                seekingImmortals$vec2.removeFirst();
+            }
         }
 
     }

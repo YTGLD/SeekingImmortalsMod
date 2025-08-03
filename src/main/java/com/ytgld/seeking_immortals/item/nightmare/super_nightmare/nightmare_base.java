@@ -4,11 +4,13 @@ import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
+import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
 import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.renderer.light.Light;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
@@ -17,6 +19,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.OwnableEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
@@ -28,6 +31,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
+import org.jetbrains.annotations.Nullable;
 import oshi.driver.mac.net.NetStat;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
@@ -257,6 +261,20 @@ public class nightmare_base extends nightmare {
                         ), 3, AttributeModifier.Operation.ADD_VALUE);
 
         return linkedHashMultimap;
+    }
+    @Override
+    public int maxLevel(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public int nowLevel(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public int color(ItemStack stack) {
+        return Light.ARGB.color(255,155,50,255);
     }
 
     @Override

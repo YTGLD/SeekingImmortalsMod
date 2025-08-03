@@ -26,6 +26,7 @@ import net.minecraft.world.item.UseAnim;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingEntityUseItemEvent;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.SlotContext;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
@@ -174,6 +175,22 @@ public class blood_god extends nightmare implements SuperNightmare, AllTip {
         return map;
     }
 
+
+    @Override
+    public @Nullable Map<Integer, Component> describe(ItemStack stack) {
+        Map<Integer, Component> map = new HashMap<>();
+        map.put(1,Component.translatable("curse.seeking_immortals.string").append(" ").withStyle(ChatFormatting.RED));
+        return map;
+    }
+    @Override
+    public int maxLevel(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public int nowLevel(ItemStack stack) {
+        return 1;
+    }
     @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> pTooltipComponents, TooltipFlag tooltipFlag) {
         super.appendHoverText(stack, context, pTooltipComponents, tooltipFlag);

@@ -26,30 +26,13 @@ import java.util.Map;
 import java.util.Optional;
 
 public class nightmare extends Item implements ICurioItem, INightmare , Terror {
-    public final String terrorName ="SITheTerrorName";
+    public static final String terrorName ="SITheTerrorName";
     public nightmare() {
         super(new Properties().stacksTo(1).component(CuriosRegistry.CURIO_ATTRIBUTE_MODIFIERS, CurioAttributeModifiers.EMPTY)
                 .durability(1000000000).rarity(Rarity.UNCOMMON));
     }
 
-    @Override
-    public @NotNull Component getName(@NotNull ItemStack stack) {
-        Component component = super.getName(stack);
-        @Nullable Map<Integer, Component> map = this.describe(stack);
-        if (map != null) {
-            Integer integer = map.keySet().stream().toList().get(this.nowLevel(stack));
-            if (integer!=0) {
-                Component newName = map.get(integer);
-                newName.copy().append(component);
-                return newName;
-            }else {
-                return component;
-            }
-        }
 
-
-        return component;
-    }
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
@@ -77,6 +60,26 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror {
         return ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/tooltip/fire.png");
 
     }
+    @Override
+    public @NotNull Component getName(@NotNull ItemStack stack) {
+        Component component = super.getName(stack);
+        @Nullable Map<Integer, Component> map = this.describe(stack);
+        if (map != null) {
+            Integer integer = map.keySet().stream().toList().get(this.nowLevel(stack)-1);
+            if (integer!=-1) {
+                return map.get(integer).copy().append(component);
+            }else {
+                return component;
+            }
+        }
+
+
+        return component;
+    }
+
+    public int getOneLevel() {
+        return 0;
+    }
 
     @Override
     @Nullable
@@ -86,11 +89,16 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror {
 
     @Override
     public int maxLevel(ItemStack stack) {
-        return 1;
+        return 0;
     }
     @Override
     public int nowLevel(ItemStack stack) {
-        return 1;
+        return 0;
+    }
+
+    @Override
+    public int color(ItemStack stack) {
+        return 0;
     }
 }
 
