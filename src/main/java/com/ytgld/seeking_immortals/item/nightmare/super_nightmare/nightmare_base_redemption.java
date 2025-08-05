@@ -5,6 +5,7 @@ import com.google.common.collect.Multimap;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.extend.MainNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.tip.ToolTip;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -27,7 +28,7 @@ import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.*;
 
-public class nightmare_base_redemption extends nightmare implements SuperNightmare , AllTip {
+public class nightmare_base_redemption extends nightmare implements SuperNightmare ,  AllTip, MainNightmare {
 
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {

@@ -23,19 +23,16 @@ public class AttReg {
     public static final DeferredHolder<Attribute,?> cit = REGISTRY.register("cit",()->{
         return new RangedAttribute("attribute.name.seeking_immortals.cit", 1, -1024, 1024).setSyncable(true);
     });
-    public static final DeferredHolder<Attribute,?> dig = REGISTRY.register("dig",()->{
-        return new RangedAttribute("attribute.name.seeking_immortals.dig", 1, -1024, 1024).setSyncable(true);
-    });
-    public static final DeferredHolder<Attribute,?> hurt = REGISTRY.register("hurt",()->{
-        return new RangedAttribute("attribute.name.seeking_immortals.res", 1, -1024, 1024).setSyncable(true);
+
+    public static final DeferredHolder<Attribute,?> effectNumber = REGISTRY.register("effect_number",()->{
+        return new RangedAttribute("attribute.name.seeking_immortals.effect_number", 1, -1024, 1024).setSyncable(true);
     });
     @SubscribeEvent
     public static void EntityAttributeCreationEvent(EntityAttributeModificationEvent event){
         event.add(EntityType.PLAYER , AttReg.alL_attack,1);
         event.add(EntityType.PLAYER , AttReg.heal,1);
         event.add(EntityType.PLAYER , AttReg.cit,1);
-        event.add(EntityType.PLAYER , AttReg.dig,1);
-        event.add(EntityType.PLAYER , AttReg.hurt,1);
+        event.add(EntityType.PLAYER , AttReg.effectNumber,1);
 
     }
 }

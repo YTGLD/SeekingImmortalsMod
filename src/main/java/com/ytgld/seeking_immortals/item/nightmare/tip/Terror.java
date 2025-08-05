@@ -14,7 +14,8 @@ public interface Terror {
     Map<Integer ,Component> describe(ItemStack stack);
     int maxLevel(ItemStack stack);
     int nowLevel(ItemStack stack);
-
+    boolean showFire(ItemStack stack);
+    boolean isRot(ItemStack stack);
     int color(ItemStack stack);
 
 }

@@ -43,18 +43,18 @@ public class OrbEntityRenderer<T extends orb_entity> extends net.minecraft.clien
         poseStack.translate(p_entity.getX()-x, p_entity.getY()-y,p_entity.getZ() -z);
 
 
-        if (false) {
-            if (ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()) {
-                float f = p_entity.live / 10f - 2;
-                if (f < 0) {
-                    f = 0;
-                }
-                float f1 = p_entity.getDistanceToGround();
-                if (f1 > 0.0F) {
-                    Light.renderShadow(poseStack, bufferSource, p_entity, p_entity.level(), f, p_entity.r, p_entity.g, p_entity.b);
-                }
-            }
-        }
+//        if (false) {
+//            if (ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()) {
+//                float f = p_entity.live / 10f - 2;
+//                if (f < 0) {
+//                    f = 0;
+//                }
+//                float f1 = p_entity.getDistanceToGround();
+//                if (f1 > 0.0F) {
+//                    Light.renderShadow(poseStack, bufferSource, p_entity, p_entity.level(), f, p_entity.r, p_entity.g, p_entity.b);
+//                }
+//            }
+//        }
         if (ClientConfig.CLIENT_CONFIG.itemDurabilityMultiplier.get()) {
             if (p_entity.canSee) renderSphere1(poseStack, bufferSource.getBuffer(MRender.endBloodOutline), 240, 0.15f);
             setT(poseStack, p_entity, bufferSource.getBuffer(MRender.lightning_color_outline));

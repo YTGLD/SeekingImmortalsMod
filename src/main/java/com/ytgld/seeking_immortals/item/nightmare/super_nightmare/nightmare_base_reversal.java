@@ -8,6 +8,7 @@ import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.extend.MainNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.tip.ToolTip;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -39,7 +40,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class nightmare_base_reversal extends nightmare implements SuperNightmare, AllTip {
+public class nightmare_base_reversal extends nightmare implements SuperNightmare,  AllTip, MainNightmare {
 
 
     public static final String att = "Attrib";

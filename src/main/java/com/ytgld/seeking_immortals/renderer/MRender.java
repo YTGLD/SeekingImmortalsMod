@@ -46,7 +46,20 @@ public class MRender extends RenderType {
         RenderSystem.depthFunc(GL_LEQUAL);
         RenderSystem.disableDepthTest();
     });
-
+    public static final RenderType light = create(
+            "lightning_si_do",
+            DefaultVertexFormat.POSITION_COLOR,
+            VertexFormat.Mode.QUADS,
+            1536,
+            false,
+            true,
+            RenderType.CompositeState.builder()
+                    .setShaderState(RENDERTYPE_LIGHTNING_SHADER)
+                    .setWriteMaskState(COLOR_DEPTH_WRITE)
+                    .setTransparencyState(UNIFIED_TRANSPARENCY_STATE)
+                    .setOutputState(WEATHER_TARGET)
+                    .createCompositeState(false)
+    );
     public static final Function<ResourceLocation, RenderType> ENTITY_SHADOW = Util.memoize(
             p_286151_ -> {
                 RenderType.CompositeState rendertype$compositestate = RenderType.CompositeState.builder()

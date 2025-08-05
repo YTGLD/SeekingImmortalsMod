@@ -6,6 +6,7 @@ import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.extend.MainNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.tip.ToolTip;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -31,7 +32,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class nightmare_base_start extends nightmare implements SuperNightmare, AllTip {
+public class nightmare_base_start extends nightmare implements SuperNightmare,  AllTip, MainNightmare {
     @Override
     public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
         if (slotContext.entity() instanceof Player player){

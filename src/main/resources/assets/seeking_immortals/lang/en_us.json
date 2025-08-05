@@ -64,7 +64,6 @@
  "item.nightmare_base_stone.tool.string.2": "10 seconds cooling",
   "item.nightmare_base_stone.tool.string.1": "But you can unlock the following items",
   "item.seeking_immortals.nightmare_base_stone_meet": "§4Despair Resonance",
-  "item.nightmare_base_stone_meet.tool.string.1": "Enhance the following accessories",
   "item.seeking_immortals.ectoplasmstar.nightmare_base_stone_meet": "Double luck, and each point of luck increases healing by 2.5%",
   "item.seeking_immortals.ectoplasmstar.mayhemcrystal": "Damage amplification increases by 50%",
   "item.seeking_immortals.ectoplasmstar.maxamout": "All effect BUFF levels increase by 2",
@@ -575,7 +574,15 @@
   "item.seeking_immortals.evil_thought_bone":"§4Evil thought bone",
   "item.evil_thought_bone.tool.string": "Double the creature loot",
 
-
+"item.seeking_immortals.blood_ring":"§4 sacrificial blood ring",
+  "item.blood_ring.tool.string.1": "Press R to sacrifice 50% of your current health",
+  "item.blood_ring.tool.string.2": "Gain for every 1 health sacrifice",
+  "item.blood_ring.tool.string.3": "damage, armor, speed and attackSpeed",
+  "item.blood_ring.tool.string.4": "The more health the sacrifice, the longer it lasts",
+  "item.blood_ring.tool.string.5": "The more sacrifices made at full health, the more rewards this item will have",
+  "seeking_immortals.jei.item.seeking_immortals.blood_ring": "受到3000点伤后害获取",
+  "seeking_immortals.configuration.献祭血戒": "献祭血戒",
+  "seeking_immortals.config.blood_ring": "需要的数值",
 
 
   "curse.seeking_immortals.evil_thought_bone.string": "The higher the hatred level of this item, the better the amplification",
@@ -584,8 +591,26 @@
   "curse.seeking_immortals.evil_thought_bone.string.2": "2.5",
   "curse.seeking_immortals.evil_thought_bone.string.3": "3",
   "curse.seeking_immortals.evil_thought_bone.string.4": "3.5",
+  "attribute.name.seeking_immortals.effect_number": "Number of potions to carry",
+"key.seeking_immortals.r": "Activate cosmetic ability",
+  "key.seeking_immortals": "Seeking Immortals",
+  "item.nightmare_base_stone_meet.tool.string": "Aim at the creature and press the R key to hit",
+  "item.nightmare_base_stone_meet.tool.string.1": "Damage 10% of your health plus 2",
 
-
+  "item.seeking_immortals.biochemistry":"§4The biochemistry",
+  "item.biochemistry.tool.string.1": "Drink 3 times when the vial is full",
+  "item.biochemistry.tool.string.2": "Each sin worn increases capacity",
+  "item.biochemistry.tool.string.3": "Press R to drink the potion in the bottle",
+  "item.biochemistry.tool.string.4": "to increase healing, speed, maximum health, and attack speed",
+  "item.biochemistry.tool.string.5": "restore 40% health at the same time",
+  "item.biochemistry.tool.string.6": "killing a creature may restore the amount of potion in the bottle",
+  "item.biochemistry.tool.string.7": "The more potions you drink, the better the attribute bonus and the longer it lasts",
+  "item.biochemistry.tool.string.8": "current attribute:",
+  "item.biochemistry.tool.string.9": "current duration:",
+  "item.biochemistry.tool.string.10": "It can also be drunk",
+  "seeking_immortals.jei.item.seeking_immortals.biochemistry": "受到7000点伤害后获取",
+  "seeking_immortals.configuration.刺鼻不死药": "刺鼻不死药",
+  "seeking_immortals.config.biochemistry": "需要的数值",
 
   "item.revive_runestone.tool.string.1": "Damage Absorbs Chance Injury",
   "item.revive_runestone.tool.string.2": "Attack has a chance to drain life",

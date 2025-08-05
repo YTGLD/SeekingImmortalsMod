@@ -2,6 +2,7 @@ package com.ytgld.seeking_immortals.item.nightmare.extend;
 
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.init.DataReg;
+import com.ytgld.seeking_immortals.item.nightmare.tip.ILevel;
 import com.ytgld.seeking_immortals.item.nightmare.tip.Terror;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
@@ -22,10 +23,11 @@ import top.theillusivec4.curios.api.type.capability.ICurio;
 import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.common.CuriosRegistry;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class nightmare extends Item implements ICurioItem, INightmare , Terror {
+public class nightmare extends Item implements ICurioItem, INightmare , Terror, ILevel {
     public static final String terrorName ="SITheTerrorName";
     public nightmare() {
         super(new Properties().stacksTo(1).component(CuriosRegistry.CURIO_ATTRIBUTE_MODIFIERS, CurioAttributeModifiers.EMPTY)
@@ -33,6 +35,11 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror {
     }
 
 
+    @Override
+    public List<Component> getAttributesTooltip(List<Component> tooltips, TooltipContext context, ItemStack stack) {
+        tooltips.clear();
+        return tooltips;
+    }
 
     @Override
     public void onEquip(SlotContext slotContext, ItemStack prevStack, ItemStack stack) {
@@ -60,6 +67,7 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror {
         return ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/tooltip/fire.png");
 
     }
+
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
         Component component = super.getName(stack);
@@ -97,7 +105,27 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror {
     }
 
     @Override
+    public boolean showFire(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public boolean isRot(ItemStack stack) {
+        return false;
+    }
+
+    @Override
     public int color(ItemStack stack) {
+        return 0;
+    }
+
+    @Override
+    public float maxLevel_float(ItemStack stack) {
+        return 0;
+    }
+
+    @Override
+    public float nowLevel_float(ItemStack stack) {
         return 0;
     }
 }

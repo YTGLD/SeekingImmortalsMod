@@ -187,11 +187,24 @@ public class Config {
                     .translation("seeking_immortals.config.bone_or_god_give")
                     .defineInRange("bone_or_god_give", 200,1,Integer.MAX_VALUE);
             BUILDER.pop();
+            BUILDER.push("献祭血戒");
+            blood_ring = BUILDER
+                    .translation("seeking_immortals.config.blood_ring")
+                    .defineInRange("blood_ring", 3000,1,Integer.MAX_VALUE);
+            BUILDER.pop();
+            BUILDER.push("刺鼻不死药");
+            biochemistry = BUILDER
+                    .translation("seeking_immortals.config.biochemistry")
+                    .defineInRange("biochemistry", 7000,1,Integer.MAX_VALUE);
+            BUILDER.pop();
         }
 
 
         BUILDER.pop();
     }
+    public  final ModConfigSpec.IntValue biochemistry ;
+    public  final ModConfigSpec.IntValue blood_ring ;
+
     public  final ModConfigSpec.IntValue bone_or_god_give ;
 
     public  final ModConfigSpec.IntValue blood_god_kill ;

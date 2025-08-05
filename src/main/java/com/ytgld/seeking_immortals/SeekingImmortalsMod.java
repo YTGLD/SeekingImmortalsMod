@@ -4,6 +4,8 @@ import com.mojang.blaze3d.vertex.DefaultVertexFormat;
 import com.mojang.logging.LogUtils;
 import com.ytgld.seeking_immortals.client.particle.blood;
 import com.ytgld.seeking_immortals.client.particle.cube;
+import com.ytgld.seeking_immortals.event.key.ClientEvent;
+import com.ytgld.seeking_immortals.event.key.SINetworkHandler;
 import com.ytgld.seeking_immortals.event.now.EventHandler;
 import com.ytgld.seeking_immortals.event.old.AdvancementEvt;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
@@ -11,7 +13,7 @@ import com.ytgld.seeking_immortals.init.*;
 import com.ytgld.seeking_immortals.item.an_element.NightmareTooltip;
 import com.ytgld.seeking_immortals.item.nightmare.tip.ToolTip;
 import com.ytgld.seeking_immortals.renderer.MRender;
-import com.ytgld.seeking_immortals.test_entity.client.LotusEntityRender;
+import com.ytgld.seeking_immortals.test_entity.client.LightingRender;
 import com.ytgld.seeking_immortals.test_entity.client.OrbEntityRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.ShaderInstance;
@@ -23,8 +25,10 @@ import net.neoforged.fml.ModContainer;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.fml.common.Mod;
 import net.neoforged.fml.config.ModConfig;
+import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent;
 import net.neoforged.neoforge.client.event.*;
 import net.neoforged.neoforge.common.NeoForge;
+import net.neoforged.neoforge.network.event.RegisterPayloadHandlersEvent;
 import org.slf4j.Logger;
 
 import java.io.IOException;
@@ -47,6 +51,7 @@ public class SeekingImmortalsMod
         NeoForge.EVENT_BUS.register(new NewEvent());
         NeoForge.EVENT_BUS.register(new AdvancementEvt());
         NeoForge.EVENT_BUS.register(new EventHandler());
+        eventBus.addListener(this::registerPayloadHandler);
 
         Effects.REGISTRY.register(eventBus);
         AttReg.REGISTRY.register(eventBus);
@@ -61,9 +66,21 @@ public class SeekingImmortalsMod
     }
     public static RenderLevelStageEvent.Stage stage_particles ;
 
+    private void registerPayloadHandler(final RegisterPayloadHandlersEvent evt) {
+        SINetworkHandler.register(evt.registrar("1.0"));
+    }
 
     @EventBusSubscriber(modid = MODID, bus = EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+        @SubscribeEvent
+        public static void setupClient(FMLClientSetupEvent evt) {
+            NeoForge.EVENT_BUS.register(new ClientEvent());
+        }
+
+        @SubscribeEvent // on the mod event bus only on the physical client
+        public static void registerBindings(RegisterKeyMappingsEvent event) {
+            event.register(Keys.KEY_MAPPING_LAZY_R);
+        }
         @SubscribeEvent
         public static void RegisterClientTooltipComponentFactoriesEvent(RegisterClientTooltipComponentFactoriesEvent event){
             event.register(NightmareTooltip.class, Function.identity());
@@ -72,7 +89,8 @@ public class SeekingImmortalsMod
         @SubscribeEvent
         public static void EntityRenderersEvent(EntityRenderersEvent.RegisterRenderers event){
             event.registerEntityRenderer(EntityTs.orb_entity.get(), OrbEntityRenderer::new);
-            event.registerEntityRenderer(EntityTs.lotus_entity.get(), LotusEntityRender::new);
+            event.registerEntityRenderer(EntityTs.lighting.get(), LightingRender::new);
+
         }
         @SubscribeEvent
         public static void RegisterStageEvent(RenderLevelStageEvent.RegisterStageEvent event) {

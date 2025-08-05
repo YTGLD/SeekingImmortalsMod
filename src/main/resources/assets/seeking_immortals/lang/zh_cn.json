@@ -16,7 +16,6 @@
   "advancements.tooltip.immortal.hand": "步入轮回",
 
   "item.seeking_immortals.nightmare_base_stone_meet": "§4绝望共鸣",
-  "item.nightmare_base_stone_meet.tool.string.1": "强化下列饰品",
   "item.seeking_immortals.ectoplasmstar.nightmare_base_stone_meet": "幸运值加倍，且每点幸运加2.5%治疗",
   "item.seeking_immortals.ectoplasmstar.mayhemcrystal": "伤害增幅增加50%",
   "item.seeking_immortals.ectoplasmstar.maxamout": "所有效果BUFF等级加2",
@@ -575,13 +574,38 @@
   "seeking_immortals.configuration.血祭神颅": "血祭神颅",
   "seeking_immortals.config.bone_or_god_give": "杀死的宠物数量",
 
+  "key.seeking_immortals.r": "激活饰品能力",
+  "key.seeking_immortals": "月之石：噩梦之章",
 
+  "item.nightmare_base_stone_meet.tool.string": "对准生物按下R键以就行打击",
+  "item.nightmare_base_stone_meet.tool.string.1": "伤害为你的10%生命值加2",
   "item.seeking_immortals.evil_thought_bone":"§4邪念骇骨",
   "item.evil_thought_bone.tool.string": "增加生物掉落的战利品",
 
   "curse.seeking_immortals.evil_thought_bone.string": "此物品的憎恨等级越高，增幅效果越好",
   "curse.seeking_immortals.evil_thought_bone.string.do": "每造成800点暴击伤害都将提高1级",
 
+
+  "item.seeking_immortals.blood_ring":"§4献祭血戒",
+  "item.blood_ring.tool.string.1": "按下R键献祭50%的当前生命值",
+  "item.blood_ring.tool.string.2": "每献祭1点生命值都会获得",
+  "item.blood_ring.tool.string.3": "的伤害,护甲,速度,攻速和减少治疗",
+  "item.blood_ring.tool.string.4": "献祭的生命值越多，持续时间越长",
+  "item.blood_ring.tool.string.5": "满生命值的情况下献祭的次数越多，此物品的奖励就越多",
+
+  "attribute.name.seeking_immortals.effect_number": "携带药水数量",
+
+  "item.seeking_immortals.biochemistry":"§4刺鼻不死药",
+  "item.biochemistry.tool.string.1": "药瓶装满时能喝3次",
+  "item.biochemistry.tool.string.2": "每佩戴1个罪孽都会增加容量",
+  "item.biochemistry.tool.string.3": "按下R键喝下瓶中的药水",
+  "item.biochemistry.tool.string.4": "来增加治疗，速度，最大生命值和攻击速度",
+  "item.biochemistry.tool.string.5": "同时恢复40%生命值",
+  "item.biochemistry.tool.string.6": "杀死生物有可能恢复瓶中的药水量",
+  "item.biochemistry.tool.string.7": "喝下的药水次数越多，属性加成越好，持续时间越长",
+  "item.biochemistry.tool.string.8": "目前属性：",
+  "item.biochemistry.tool.string.9": "目前持续时间：",
+  "item.biochemistry.tool.string.10": "还可以喝",
 
 
   "curse.seeking_immortals.string": "受诅咒的",

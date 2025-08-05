@@ -7,7 +7,9 @@ import com.ytgld.seeking_immortals.Handler;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Items;
+import com.ytgld.seeking_immortals.item.nightmare.base.biochemistry;
 import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
+import com.ytgld.seeking_immortals.item.nightmare.base.blood_ring;
 import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.renderer.light.Light;
@@ -31,6 +33,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.neoforged.neoforge.event.entity.living.LivingDamageEvent;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingHealEvent;
+import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
 import org.jetbrains.annotations.Nullable;
 import oshi.driver.mac.net.NetStat;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -65,8 +68,26 @@ public class nightmare_base extends nightmare {
 
             int killOwner = Handler.getTagNumber(stack,bone_or_god.give);
 
+
+            int hurtDamage = Handler.getTagNumber(stack,blood_ring.giveName_damage);
+            int biochemistry_give = Handler.getTagNumber(stack,biochemistry.giveName);
+
             if (stack.get(DataReg.tag)!=null) {
 
+
+                if (!stack.get(DataReg.tag).getBoolean(biochemistry.giveNameEnd)) {
+                    if (biochemistry_give >= Config.SERVER.biochemistry.get()) {
+                        player.addItem(new ItemStack(Items.biochemistry.get()));
+                        stack.get(DataReg.tag).putBoolean(biochemistry.giveNameEnd,true);
+                    }
+                }
+
+                if (!stack.get(DataReg.tag).getBoolean(blood_ring.give_End)) {
+                    if (hurtDamage >= Config.SERVER.blood_ring.get()) {
+                        player.addItem(new ItemStack(Items.blood_ring.get()));
+                        stack.get(DataReg.tag).putBoolean(blood_ring.give_End,true);
+                    }
+                }
 
                 if (!stack.get(DataReg.tag).getBoolean(bone_or_god.giveEnd)) {
                     if (killOwner >= Config.SERVER.bone_or_god_give.get()) {
@@ -121,6 +142,35 @@ public class nightmare_base extends nightmare {
             stack.get(DataReg.tag).putBoolean("canDo", true);
         }
     }
+    public static void biochemistry(LivingDamageEvent.Pre event){
+        if (event.getEntity() instanceof Player player) {
+            if (Handler.hascurio(player,Items.nightmare_base.get())) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base.get())) {
+
+                                if (stack.get(DataReg.tag) != null) {
+                                    if (!stack.get(DataReg.tag).getBoolean(biochemistry.giveNameEnd)) {
+                                        int s = (int) event.getNewDamage();
+                                        if (s < 1) {
+                                            s = 1;
+                                        }
+                                        Handler.addTagNumber(stack, biochemistry.giveName, player, s);
+                                    }
+                                }
+
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
     public static void healGive(LivingHealEvent event){
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player,Items.nightmare_base.get())) {
@@ -167,6 +217,33 @@ public class nightmare_base extends nightmare {
                                             s = 1;
                                         }
                                         Handler.addTagNumber(stack, blood_god.giveName_damage, player, s);
+                                    }
+                                }
+                            }
+                        }
+                    }
+                });
+            }
+        }
+    }
+    public static void blood_ringDamage(LivingIncomingDamageEvent event){
+        if (event.getEntity() instanceof Player player) {
+            if (Handler.hascurio(player,Items.nightmare_base.get())) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            if (stack.is(Items.nightmare_base.get())) {
+                                if (stack.get(DataReg.tag) != null) {
+                                    if (!stack.get(DataReg.tag).getBoolean(blood_ring.give_End)) {
+                                        int s = (int) event.getAmount();
+                                        if (s < 1) {
+                                            s = 1;
+                                        }
+                                        Handler.addTagNumber(stack, blood_ring.giveName_damage, player, s);
                                     }
                                 }
                             }
@@ -270,6 +347,11 @@ public class nightmare_base extends nightmare {
     @Override
     public int nowLevel(ItemStack stack) {
         return 1;
+    }
+
+    @Override
+    public boolean showFire(ItemStack stack) {
+        return false;
     }
 
     @Override

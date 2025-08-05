@@ -7,6 +7,8 @@ import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
+import com.ytgld.seeking_immortals.item.nightmare.base.biochemistry;
+import com.ytgld.seeking_immortals.item.nightmare.extend.MainNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
 import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
@@ -36,7 +38,9 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -53,6 +57,7 @@ import net.neoforged.neoforge.event.entity.player.PlayerEvent;
 import net.neoforged.neoforge.event.tick.EntityTickEvent;
 import net.neoforged.neoforge.event.tick.LevelTickEvent;
 import top.theillusivec4.curios.api.CuriosApi;
+import top.theillusivec4.curios.api.event.CurioAttributeModifierEvent;
 import top.theillusivec4.curios.api.event.CurioCanEquipEvent;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
@@ -137,6 +142,24 @@ public class NewEvent {
         }
     }
     @SubscribeEvent
+    public void CurioKillEventAtNewEvent(LivingDeathEvent event){
+        if (event.getSource().getEntity() instanceof Player player) {
+            if (event.getEntity() instanceof LivingEntity living) {
+                CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
+                    Map<String, ICurioStacksHandler> curios = handler.getCurios();
+                    for (Map.Entry<String, ICurioStacksHandler> entry : curios.entrySet()) {
+                        ICurioStacksHandler stacksHandler = entry.getValue();
+                        IDynamicStackHandler stackHandler = stacksHandler.getStacks();
+                        for (int i = 0; i < stacksHandler.getSlots(); i++) {
+                            ItemStack stack = stackHandler.getStackInSlot(i);
+                            NeoForge.EVENT_BUS.post(new CurioKillEvent(living,player,stack,event));
+                        }
+                    }
+                });
+            }
+        }
+    }
+    @SubscribeEvent
     public void CurioDeathAtMeEvent(LivingDeathEvent event){
         if (event.getEntity() instanceof Player player) {
             if (event.getSource().getEntity() instanceof LivingEntity living) {
@@ -155,9 +178,22 @@ public class NewEvent {
         }
     }
     @SubscribeEvent
+    public void Start(CurioAttributeModifierEvent  event){
+        ItemStack stack = event.getItemStack();
+        if (stack.getItem() instanceof MainNightmare ){
+            event.getModifiers().put(AttReg.effectNumber,new AttributeModifier(ResourceLocation.parse(SeekingImmortalsMod.MODID + "effect_number"),
+                    1, AttributeModifier.Operation.ADD_VALUE));
+        }
+    }
+    @SubscribeEvent
+    public void CurioKillEvent(CurioKillEvent event){
+        biochemistry.CuriosDie(event);
+    }
+    @SubscribeEvent
     public void LivingDamageEvent(LivingDamageEvent.Pre event){
         blood_god.hurtOfBlood(event);
         nightmare_base.damageGive(event);
+        nightmare_base.biochemistry(event);
     }
     @SubscribeEvent
     public void Start(LivingEntityUseItemEvent.Start event){
@@ -215,6 +251,7 @@ public class NewEvent {
         candle.hurt(event);
         hidden_blade.hurt_cit(event);
         bone_or_god.hurt(event);
+        nightmare_base.blood_ringDamage(event);
         if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
             float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
             lvl *= 0.2f;
@@ -282,27 +319,6 @@ public class NewEvent {
 
 
         hidden_blade.cit(event);
-
-    }
-    @SubscribeEvent
-    public void soulbattery(PlayerEvent.BreakSpeed event) {
-        if (event.getEntity() instanceof Player living){
-            if (living.getAttribute(AttReg.dig)!=null){
-
-                float dig = (float) living.getAttribute(AttReg.dig).getValue();
-
-                event.setNewSpeed(event.getNewSpeed()*(dig));
-            }
-        }
-    }
-    @SubscribeEvent
-    public void hurt(LivingIncomingDamageEvent event) {
-        if (event.getEntity() instanceof Player living){
-            if (living.getAttribute(AttReg.hurt)!=null){
-                float hurt = (float) living.getAttribute(AttReg.hurt).getValue();
-                event.setAmount(event.getAmount()*(hurt));
-            }
-        }
 
     }
     @SubscribeEvent

@@ -2,8 +2,10 @@ package com.ytgld.seeking_immortals.mixin.client;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
 import com.ytgld.seeking_immortals.MGuiGraphics;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
+import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base;
@@ -70,8 +72,8 @@ public abstract class GuiGraphicsMixin implements IGuiGraphics {
     @Inject(at = {@At("RETURN")}, method = {"Lnet/minecraft/client/gui/GuiGraphics;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V"})
     public void ca$renderItemDecorationsRenderItem(LivingEntity entity, Level level, ItemStack stack, int x, int y, int seed, int guiOffset, CallbackInfo ci) {
         if (entity != null) {
-            if (stack.getItem() instanceof nightmare){
-                if (!(stack.getItem() instanceof nightmare_base)) {
+            if (stack.getItem() instanceof nightmare nightmare){
+                if (nightmare.showFire(stack)) {
                     seekingImmortals$doFire(entity, level, stack, x, y, seed, guiOffset, ci, 1.5f);
                     seekingImmortals$doFire(entity, level, stack, x, y, seed, guiOffset, ci, 1.0f);
                     seekingImmortals$doFire(entity, level, stack, x, y, seed, guiOffset, ci, 0.5f);
@@ -85,43 +87,49 @@ public abstract class GuiGraphicsMixin implements IGuiGraphics {
         GuiGraphics guiGraphics = (GuiGraphics) (Object) this;
         if (stack.getItem() instanceof Terror terror) {
             if (terror.maxLevel(stack)!=0&&terror.nowLevel(stack)!=0) {
-                guiGraphics.pose().pushPose();
-                if (this.minecraft.screen instanceof IAbstractContainerScreen iAbstractContainerScreen) {
-                    List<Vec2> xy = iAbstractContainerScreen.seekingImmortals$xy();
-                    if (xy != null) {
-                        for (int i = 1; i < xy.size(); i++) {
-                            Vec2 prevPos = xy.get(i - 1);
-                            Vec2 currPos = xy.get(i);
-                            if (prevPos.x != 0 && prevPos.y != 0 && currPos.x != 0 && currPos.y != 0) {
-                                float alpha = (float) (i) / (float) (xy.size());
-                                Vec2 adjustedPrevPos = new Vec2(prevPos.x, prevPos.y);
-                                Vec2 adjustedCurrPos = new Vec2(currPos.x, currPos.y);
-                                guiGraphics.pose().pushPose();
-                                guiGraphics.pose().translate(prevPos.x, prevPos.y, 0);
-                                guiGraphics.pose().scale(alpha, alpha, alpha);
-                                guiGraphics.pose().translate(-prevPos.x, -prevPos.y, 0);
+                if (terror.nowLevel(stack)>= terror.maxLevel(stack)) {
+                    guiGraphics.pose().pushPose();
+                    if (this.minecraft.screen instanceof IAbstractContainerScreen iAbstractContainerScreen) {
+                        List<Vec2> xy = iAbstractContainerScreen.seekingImmortals$xy();
+                        if (xy != null) {
+                            for (int i = 1; i < xy.size(); i++) {
+                                Vec2 prevPos = xy.get(i - 1);
+                                Vec2 currPos = xy.get(i);
+                                if (prevPos.x != 0 && prevPos.y != 0 && currPos.x != 0 && currPos.y != 0) {
+                                    float alpha = (float) (i) / (float) (xy.size());
+                                    Vec2 adjustedPrevPos = new Vec2(prevPos.x, prevPos.y);
+                                    Vec2 adjustedCurrPos = new Vec2(currPos.x, currPos.y);
+                                    guiGraphics.pose().pushPose();
 
-                                if (terror.color(stack) == 0) {
-                                    MGuiGraphics.blit(guiGraphics, terror.image(null),
-                                            adjustedCurrPos.x - 12, adjustedCurrPos.y - 12,
-                                            0, 0, 24, 24, 24, 24,
-                                            (alpha), 0.25f, alpha / 2f, alpha);
-                                } else {
-                                    int color = terror.color(stack);
-                                    int as = (color >> 24) & 0xFF;
-                                    int rs = (color >> 16) & 0xFF;
-                                    int gs = (color >> 8) & 0xFF;
-                                    int bs = color & 0xFF;
-                                    float a = as / 255f;
-                                    float r = rs / 255f;
-                                    float g = gs / 255f;
-                                    float b = bs / 255f;
-                                    MGuiGraphics.blit(guiGraphics, terror.image(null),
-                                            adjustedCurrPos.x - 12, adjustedCurrPos.y - 12,
-                                            0, 0, 24, 24, 24, 24,
-                                            r, g, b*alpha, alpha);
+                                    guiGraphics.pose().translate(prevPos.x, prevPos.y, 0);
+                                    if (terror.isRot(stack)){
+                                        guiGraphics.pose().mulPose(Axis.ZP.rotationDegrees(NewEvent.time));
+                                    }
+                                    guiGraphics.pose().scale(alpha, alpha, alpha);
+                                    guiGraphics.pose().translate(-prevPos.x, -prevPos.y, 0);
+
+                                    if (terror.color(stack) == 0) {
+                                        MGuiGraphics.blit(guiGraphics, terror.image(null),
+                                                adjustedCurrPos.x - 12, adjustedCurrPos.y - 12,
+                                                0, 0, 24, 24, 24, 24,
+                                                (alpha), 0.25f, alpha / 2f, alpha);
+                                    } else {
+                                        int color = terror.color(stack);
+                                        int as = (color >> 24) & 0xFF;
+                                        int rs = (color >> 16) & 0xFF;
+                                        int gs = (color >> 8) & 0xFF;
+                                        int bs = color & 0xFF;
+                                        float a = as / 255f;
+                                        float r = rs / 255f;
+                                        float g = gs / 255f;
+                                        float b = bs / 255f;
+                                        MGuiGraphics.blit(guiGraphics, terror.image(null),
+                                                adjustedCurrPos.x - 12, adjustedCurrPos.y - 12,
+                                                0, 0, 24, 24, 24, 24,
+                                                r, g, b * alpha, alpha);
+                                    }
+                                    guiGraphics.pose().popPose();
                                 }
-                                guiGraphics.pose().popPose();
                             }
                         }
 
@@ -212,11 +220,27 @@ public abstract class GuiGraphicsMixin implements IGuiGraphics {
                             if (as < 0) {
                                 as = 0;
                             }
+                            int color = terror.color(stack);
+                            int asC = (color >> 24) & 0xFF;
+                            int rsC = (color >> 16) & 0xFF;
+                            int gsC = (color >> 8) & 0xFF;
+                            int bsC = color & 0xFF;
+                            float a = asC / 255f;
+                            float r = rsC / 255f;
+                            float g = gsC / 255f;
+                            float b = bsC / 255f;
+                            if (terror.color(stack)!=0){
+                                MGuiGraphics.blit(guiGraphics, terror.image(null),
+                                        positions[i][0] - 6, positions[i][1] - 6 - upwardOffset,
+                                        0, 0, 24, 24, 24, 24,
+                                        r, g, b * as, as);
+                            }else {
 
-                            MGuiGraphics.blit(guiGraphics, terror.image(entity),
-                                    positions[i][0] - 6, positions[i][1] - 6 - upwardOffset,
-                                    0, 0, 24, 24, 24, 24,
-                                    red, green, blue, as);
+                                MGuiGraphics.blit(guiGraphics, terror.image(entity),
+                                        positions[i][0] - 6, positions[i][1] - 6 - upwardOffset,
+                                        0, 0, 24, 24, 24, 24,
+                                        red, green, blue, as);
+                            }
                         }
                     }
                 }

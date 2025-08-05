@@ -7,6 +7,7 @@ import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.renderer.MRender;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.api.distmarker.Dist;
@@ -14,6 +15,7 @@ import net.neoforged.bus.api.SubscribeEvent;
 import net.neoforged.fml.common.EventBusSubscriber;
 import net.neoforged.neoforge.client.event.RenderLevelStageEvent;
 import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion;
+import org.jetbrains.annotations.NotNull;
 
 @EventBusSubscriber(value = Dist.CLIENT, bus = EventBusSubscriber.Bus.GAME, modid = SeekingImmortalsMod.MODID)
 public final class ParticleRenderer {
@@ -27,17 +29,20 @@ public final class ParticleRenderer {
 
 
 
-            RenderType renderType = MRender.LIGHTNING;
+            RenderType renderType = MRender.light;
             VertexConsumer consumer = Minecraft.getInstance().renderBuffers().bufferSource().getBuffer(renderType);
 
 
             Minecraft.getInstance().particleEngine.iterateParticles(particle -> {
                 if (particle instanceof blood blood) {
 
+                    float live = blood.getLifetime();
                     poseStack.pushPose();
                     var offset = particle.getPos().subtract(camPos);
                     poseStack.translate(offset.x, offset.y, offset.z);
-                    setT(poseStack,blood,consumer);
+
+                    renderSphere1(poseStack,consumer,240,live,1);
+
                     poseStack.popPose();
                 }
             });
@@ -47,67 +52,39 @@ public final class ParticleRenderer {
         }
 
     }
-    private  static void setT(PoseStack matrices,
-                              blood entity,
-                              VertexConsumer vertexConsumers)
-    {
-        matrices.pushPose();
+    public static void renderSphere1(@NotNull PoseStack matrices, @NotNull VertexConsumer vertexConsumer, int light, float s,float a) {
+        int stacks = 20;
+        int slices = 20;
+        for (int i = 0; i < stacks; ++i) {
+            float phi0 = (float) Math.PI * ((i + 0) / (float) stacks);
+            float phi1 = (float) Math.PI * ((i + 1) / (float) stacks);
 
-        for (int i = 1; i < entity.getTrailPositions().size(); i++){
-            Vec3 prevPos = entity.getTrailPositions().get(i - 1);
-            Vec3 currPos = entity.getTrailPositions().get(i);
-            Vec3 adjustedPrevPos = new Vec3(prevPos.x - entity.getPos().x, prevPos.y - entity.getPos().y, prevPos.z - entity.getPos().z);
-            Vec3 adjustedCurrPos = new Vec3(currPos.x - entity.getPos().x, currPos.y - entity.getPos().y, currPos.z - entity.getPos().z);
+            for (int j = 0; j < slices; ++j) {
+                float theta0 = (float) (2 * Math.PI) * ((j + 0) / (float) slices);
+                float theta1 = (float) (2 * Math.PI) * ((j + 1) / (float) slices);
 
-            float alpha = (float)(i) / (float)(entity.getTrailPositions().size());
+                float x0 = s * (float) Math.sin(phi0) * (float) Math.cos(theta0);
+                float y0 = s * (float) Math.cos(phi0);
+                float z0 = s * (float) Math.sin(phi0) * (float) Math.sin(theta0);
 
-            renderBlood(matrices, vertexConsumers, adjustedPrevPos, adjustedCurrPos, alpha/2, RenderType.lightning(),0.1f);
+                float x1 = s * (float) Math.sin(phi0) * (float) Math.cos(theta1);
+                float y1 = s * (float) Math.cos(phi0);
+                float z1 = s * (float) Math.sin(phi0) * (float) Math.sin(theta1);
+
+                float x2 = s * (float) Math.sin(phi1) * (float) Math.cos(theta1);
+                float y2 = s * (float) Math.cos(phi1);
+                float z2 = s * (float) Math.sin(phi1) * (float) Math.sin(theta1);
+
+                float x3 = s * (float) Math.sin(phi1) * (float) Math.cos(theta0);
+                float y3 = s * (float) Math.cos(phi1);
+                float z3 = s * (float) Math.sin(phi1) * (float) Math.sin(theta0);
+
+                vertexConsumer.addVertex(matrices.last().pose(), x0, y0, z0).setColor(1.0f, 0.25f, 0.75f, a).setOverlay(OverlayTexture.NO_OVERLAY).setUv(0, 0).setUv2(light, light).setNormal(1, 0, 0);
+                vertexConsumer.addVertex(matrices.last().pose(), x1, y1, z1).setColor(1.0f, 0.25f, 0.75f, a).setOverlay(OverlayTexture.NO_OVERLAY).setUv(0, 0).setUv2(light, light).setNormal(1, 0, 0);
+                vertexConsumer.addVertex(matrices.last().pose(), x2, y2, z2).setColor(1.0f, 0.25f, 0.75f, a).setOverlay(OverlayTexture.NO_OVERLAY).setUv(0, 0).setUv2(light, light).setNormal(1, 0, 0);
+                vertexConsumer.addVertex(matrices.last().pose(), x3, y3, z3).setColor(1.0f, 0.25f, 0.75f, a).setOverlay(OverlayTexture.NO_OVERLAY).setUv(0, 0).setUv2(light, light).setNormal(1, 0, 0);
+            }
         }
-        matrices.popPose();
-    }
-
-    public static void renderBlood(PoseStack poseStack, VertexConsumer vertexConsumer, Vec3 start, Vec3 end, float a, RenderType renderType, float r) {
-        int segmentCount = 8; // 圆柱横向细分数
-
-        for (int i = 0; i < segmentCount; i++) {
-            double angle1 = (2 * Math.PI * i) / segmentCount;
-            double angle2 = (2 * Math.PI * (i + 1)) / segmentCount;
-
-            double x1 = Math.cos(angle1) * r;
-            double z1 = Math.sin(angle1) * r;
-            double x2 = Math.cos(angle2) * r;
-            double z2 = Math.sin(angle2) * r;
-
-            Vec3 up1 = start.add(x1, 0, z1);
-            Vec3 up2 = start.add(x2, 0, z2);
-            Vec3 down1 = end.add(x1, 0, z1);
-            Vec3 down2 = end.add(x2, 0, z2);
-
-
-            addSquare(vertexConsumer, poseStack, up1, up2, down1, down2, a);
-        }
-    }
-    private static void addSquare(VertexConsumer vertexConsumer, PoseStack poseStack, Vec3 up1, Vec3 up2, Vec3 down1, Vec3 down2, float alpha) {
-        // 添加四个顶点来绘制一个矩形
-        vertexConsumer.addVertex(poseStack.last().pose(), (float) up1.x, (float) up1.y, (float) up1.z)
-                .setColor(255, 60, 255, (int) (alpha * 255))
-                .setUv2(240, 240)
-                .setNormal(0, 0, 1);
-
-        vertexConsumer.addVertex(poseStack.last().pose(), (float) down1.x, (float) down1.y, (float) down1.z)
-                .setColor(255, 60, 255, (int) (alpha * 255))
-                .setUv2(240, 240)
-                .setNormal(0, 0, 1);
-
-        vertexConsumer.addVertex(poseStack.last().pose(), (float) down2.x, (float) down2.y, (float) down2.z)
-                .setColor(255, 60, 255, (int) (alpha * 255))
-                .setUv2(240, 240)
-                .setNormal(0, 0, 1);
-
-        vertexConsumer.addVertex(poseStack.last().pose(), (float) up2.x, (float) up2.y, (float) up2.z)
-                .setColor(255, 60, 255, (int) (alpha * 255))
-                .setUv2(240, 240)
-                .setNormal(0, 0, 1);
     }
     private ParticleRenderer() {
 
