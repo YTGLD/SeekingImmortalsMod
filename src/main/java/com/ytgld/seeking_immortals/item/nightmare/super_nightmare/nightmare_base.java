@@ -74,7 +74,6 @@ public class nightmare_base extends nightmare {
 
             if (stack.get(DataReg.tag)!=null) {
 
-
                 if (!stack.get(DataReg.tag).getBoolean(biochemistry.giveNameEnd)) {
                     if (biochemistry_give >= Config.SERVER.biochemistry.get()) {
                         player.addItem(new ItemStack(Items.biochemistry.get()));
@@ -142,7 +141,7 @@ public class nightmare_base extends nightmare {
             stack.get(DataReg.tag).putBoolean("canDo", true);
         }
     }
-    public static void biochemistry(LivingDamageEvent.Pre event){
+    public static void biochemistry(LivingIncomingDamageEvent event){
         if (event.getEntity() instanceof Player player) {
             if (Handler.hascurio(player,Items.nightmare_base.get())) {
                 CuriosApi.getCuriosInventory(player).ifPresent(handler -> {
@@ -156,7 +155,7 @@ public class nightmare_base extends nightmare {
 
                                 if (stack.get(DataReg.tag) != null) {
                                     if (!stack.get(DataReg.tag).getBoolean(biochemistry.giveNameEnd)) {
-                                        int s = (int) event.getNewDamage();
+                                        int s = (int) event.getAmount();
                                         if (s < 1) {
                                             s = 1;
                                         }

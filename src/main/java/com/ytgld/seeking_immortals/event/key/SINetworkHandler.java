@@ -3,6 +3,7 @@ package com.ytgld.seeking_immortals.event.key;
 import com.ytgld.seeking_immortals.event.CurioTickEvent;
 import com.ytgld.seeking_immortals.item.nightmare.base.biochemistry;
 import com.ytgld.seeking_immortals.item.nightmare.base.blood_ring;
+import com.ytgld.seeking_immortals.item.nightmare.base.crazy_drug;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.nightmare_base_stone_meet;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.player.Player;
@@ -40,6 +41,7 @@ public class SINetworkHandler {
                                 if (!stack.isEmpty()) {
                                     blood_ring.giveBlood(serverPlayer, stack);
                                     biochemistry.addEffectForBiochemistry(serverPlayer,stack);
+                                    crazy_drug.crazy_drugAddEffect(serverPlayer,stack);
                                 }
                             }
                         }

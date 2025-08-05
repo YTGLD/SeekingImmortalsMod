@@ -23,6 +23,7 @@ public class Tab {
                 b.accept(new ItemStack(Items.evil_thought_bone.get()));
                 b.accept(new ItemStack(Items.blood_ring.get()));
                 b.accept(new ItemStack(Items.biochemistry.get()));
+                b.accept(new ItemStack(Items.crazy_drug.get()));
 
                 b.accept(new ItemStack(Items.immortal.get()));
                 b.accept(new ItemStack(Items.eye.get()));

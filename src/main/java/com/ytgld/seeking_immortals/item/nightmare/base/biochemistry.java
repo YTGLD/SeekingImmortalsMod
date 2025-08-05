@@ -12,22 +12,24 @@ import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.item.nightmare.tip.Terror;
 import com.ytgld.seeking_immortals.renderer.light.Light;
 import net.minecraft.ChatFormatting;
+import net.minecraft.advancements.Advancement;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.ServerAdvancementManager;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
-import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
@@ -92,10 +94,10 @@ public class biochemistry extends nightmare {
                             int lvl = biochemistry.nowLevel(stack);
                             float s = 1 + (lvl / 100f);
                             //最大0.35f
-                            compoundTag.putFloat(effectStronger, 0.2f * s);
-                            //最大时间现在是200刻*1.75
+                            compoundTag.putFloat(effectStronger, 0.275F * s);
+                            //最大时间现在是350刻*1.75
                             //最大350刻
-                            compoundTag.putInt(effectTime, (int) (200 * s));
+                            compoundTag.putInt(effectTime, (int) (350 * s));
 
 
 
@@ -119,7 +121,7 @@ public class biochemistry extends nightmare {
                 if (Mth.nextInt(RandomSource.create(),1,100)<=25) {
                     if (compoundTag.getInt(effectSize) < value) {
                         compoundTag.putInt(effectSize, compoundTag.getInt(effectSize) + 1);
-                        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARROW_HIT_PLAYER, SoundSource.NEUTRAL, 1F, 1F);
+                        player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.ARMOR_EQUIP_GENERIC, SoundSource.NEUTRAL, 1F, 1F);
                     }
                 }
             }
@@ -131,13 +133,29 @@ public class biochemistry extends nightmare {
         super.curioTick(slotContext, stack);
         if (slotContext.entity() instanceof Player player) {
             if (!player.level().isClientSide) {
-                player.getAttributes().addTransientAttributeModifiers(ad(stack,this));
+                if (this.nowLevel(stack)>=this.maxLevel(stack)){
+                    crazy_drug.give(stack,player);
+                }
+
                 CompoundTag compoundTag = stack.get(DataReg.tag);
+                player.getAttributes().addTransientAttributeModifiers(ad(stack,this));
                 if (compoundTag != null) {
                     int value = (int) player.getAttributeValue(AttReg.effectNumber);
+
+
+                    if (!player.getCooldowns().isOnCooldown(Items.biochemistry.get())){
+                        if (compoundTag.getInt(effectSize) < value) {
+                            compoundTag.putInt(effectSize, compoundTag.getInt(effectSize) + 1);
+                            player.getCooldowns().addCooldown(Items.biochemistry.get(), 600);
+                        }
+                    }
+
+
                     if (compoundTag.getInt(effectSize) > value) {
                         compoundTag.putInt(effectSize, value);
                     }
+
+
 
                     if (compoundTag.getInt(effectTime) <= 0) {
                         compoundTag.putFloat(effectStronger, 0);
@@ -225,11 +243,12 @@ public class biochemistry extends nightmare {
         tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.5").withStyle(ChatFormatting.DARK_RED));
         tooltipComponents.add(Component.literal(""));
         tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.6").withStyle(ChatFormatting.DARK_RED));
+        tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.11").withStyle(ChatFormatting.DARK_RED));
         tooltipComponents.add(Component.literal(""));
         tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.7").withStyle(ChatFormatting.GOLD));
         tooltipComponents.add(Component.literal(""));
-        tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.8").append(String.format("%.2f",20f * (1+this.nowLevel(stack)/100f))).append("%").withStyle(ChatFormatting.GOLD));
-        tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.9").append(String.format("%.2f",200f* (1+this.nowLevel(stack)/100f))).append("t").withStyle(ChatFormatting.GOLD));
+        tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.8").append(String.format("%.2f",27.5F * (1+this.nowLevel(stack)/100f))).append("%").withStyle(ChatFormatting.GOLD));
+        tooltipComponents.add(Component.translatable("item.biochemistry.tool.string.9").append(String.format("%.2f",350F* (1+this.nowLevel(stack)/100f))).append("t").withStyle(ChatFormatting.GOLD));
         CompoundTag compoundTag =stack.get(DataReg.tag);
         if (compoundTag!=null) {
             tooltipComponents.add((Component.translatable("item.biochemistry.tool.string.10")).append(String.valueOf(compoundTag.getInt(effectSize))).withStyle(ChatFormatting.DARK_RED));

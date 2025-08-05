@@ -78,6 +78,7 @@ public class Items {
     public static final DeferredHolder<Item,?> blood_ring =REGISTRY.register("blood_ring", blood_ring::new);
     public static final DeferredHolder<Item,?> biochemistry =REGISTRY.register("biochemistry", biochemistry::new);
 
+    public static final DeferredHolder<Item,?> crazy_drug =REGISTRY.register("crazy_drug", crazy_drug::new);
 
 
     public static final DeferredHolder<Item,?> bone_or_god =REGISTRY.register("bone_or_god", bone_or_god::new);

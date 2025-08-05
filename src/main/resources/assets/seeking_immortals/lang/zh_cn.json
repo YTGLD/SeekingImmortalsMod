@@ -606,6 +606,26 @@
   "item.biochemistry.tool.string.8": "目前属性：",
   "item.biochemistry.tool.string.9": "目前持续时间：",
   "item.biochemistry.tool.string.10": "还可以喝",
+  "item.biochemistry.tool.string.11": "药水数量随时间恢复",
+
+
+  "item.seeking_immortals.crazy_drug":"§4疯狂长生不死药",
+  "item.crazy_drug.tool.string.1": "药瓶装满时能喝10次",
+  "item.crazy_drug.tool.string.2":"每佩戴1个罪孽都会增加容量",
+  "item.crazy_drug.tool.string.3": "按下R键饮用瓶中的药水",
+  "item.crazy_drug.tool.string.4":"增加伤害，护甲，速度，治疗，攻速和最大生命值",
+  "item.crazy_drug.tool.string.5": "同时恢复10%生命值",
+  "item.crazy_drug.tool.string.6":"但是每次饮用都会减少瓶中药水洁净度",
+  "item.crazy_drug.tool.string.7": "每次都会减少属性加成且无下限",
+  "item.crazy_drug.tool.string.8":"灵药洁净度随时间缓慢恢复",
+  "item.crazy_drug.tool.string.9":"喝下的药水次数越多，属性加成越好",
+
+  "item.crazy_drug.tool.string.10":"目前属性加成：",
+  "item.crazy_drug.tool.string.11":"目前每次减少的洁净度：",
+  "item.crazy_drug.tool.string.12":"目前持续时间：",
+  "item.crazy_drug.tool.string.13": "还可以喝几次：",
+  "seeking_immortals.jei.item.seeking_immortals.crazy_drug": "获得一瓶满加成的刺鼻不死药",
+
 
 
   "curse.seeking_immortals.string": "受诅咒的",

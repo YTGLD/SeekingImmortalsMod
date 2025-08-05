@@ -51,6 +51,7 @@ import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.living.*;
+import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -178,10 +179,11 @@ public class NewEvent {
         }
     }
     @SubscribeEvent
-    public void Start(CurioAttributeModifierEvent  event){
+    public void Start(CurioAttributeModifierEvent  event) {
         ItemStack stack = event.getItemStack();
-        if (stack.getItem() instanceof MainNightmare ){
-            event.getModifiers().put(AttReg.effectNumber,new AttributeModifier(ResourceLocation.parse(SeekingImmortalsMod.MODID + "effect_number"),
+        if (stack.getItem() instanceof MainNightmare) {
+            event.getModifiers().put(AttReg.effectNumber, new AttributeModifier(ResourceLocation.parse(
+                    SeekingImmortalsMod.MODID + "effect_number" + stack.getItem().getDescriptionId()),
                     1, AttributeModifier.Operation.ADD_VALUE));
         }
     }
@@ -193,7 +195,6 @@ public class NewEvent {
     public void LivingDamageEvent(LivingDamageEvent.Pre event){
         blood_god.hurtOfBlood(event);
         nightmare_base.damageGive(event);
-        nightmare_base.biochemistry(event);
     }
     @SubscribeEvent
     public void Start(LivingEntityUseItemEvent.Start event){
@@ -252,6 +253,7 @@ public class NewEvent {
         hidden_blade.hurt_cit(event);
         bone_or_god.hurt(event);
         nightmare_base.blood_ringDamage(event);
+        nightmare_base.biochemistry(event);
         if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
             float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
             lvl *= 0.2f;
