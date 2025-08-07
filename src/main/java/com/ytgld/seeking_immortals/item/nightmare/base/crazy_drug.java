@@ -16,12 +16,16 @@ import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
@@ -70,7 +74,7 @@ import java.util.List;
 public class crazy_drug extends nightmare {
 
     public  static final String drugClear = "drugClear";
-
+    public static final String effectCooldown = "effectCooldown";
     public  static final String drugSize = "drugSize";
     public  static final String drugTime = "drugTime";
     public  static final String drugStronger = "drugStronger";
@@ -84,26 +88,29 @@ public class crazy_drug extends nightmare {
                     CompoundTag compoundTag = stack.get(DataReg.tag);
                     if (compoundTag != null) {
                         if (compoundTag.getInt(drugSize) > 0) {
-                            //加经验值，不超过最大值（100）
-                            if (compoundTag.getInt(terrorName) < drug.maxLevel(stack)) {
-                                compoundTag.putInt(terrorName, compoundTag.getInt(terrorName) + 1);
+                            if (compoundTag.getInt(effectCooldown) <= 0) {
+                                //加经验值，不超过最大值（100）
+                                if (compoundTag.getInt(terrorName) < drug.maxLevel(stack)) {
+                                    compoundTag.putInt(terrorName, compoundTag.getInt(terrorName) + 1);
+                                }
+                                //减少洁净度
+                                compoundTag.putInt(drugWeakness, compoundTag.getInt(drugWeakness) + 5);
+                                float stronger = 50*(1+(drug.nowLevel(stack))/100f);
+                                float weakness = compoundTag.getInt(drugWeakness);
+                                weakness /= (1 + (drug.nowLevel(stack)/100f));
+                                stronger -= weakness;
+
+                                //最终的奖励
+                                compoundTag.putFloat(drugStronger, stronger/100f);
+                                compoundTag.putInt(drugTime, (int) (400 * (1 + (drug.nowLevel(stack)/100f))));
+
+                                player.level().playSound(null, player.getX(), player.getY(), player.getZ(), SoundEvents.WITCH_DRINK, SoundSource.NEUTRAL, 1F, 1F);
+                                player.heal(player.getMaxHealth() * 0.1f);
+
+                                //减少数量
+                                compoundTag.putInt(drugSize, compoundTag.getInt(drugSize) - 1);
+                                compoundTag.putInt(effectCooldown, 2);
                             }
-                            //减少洁净度
-                            compoundTag.putInt(drugWeakness,compoundTag.getInt(drugWeakness)+10);
-
-                            //疯狂灵药的属性，最大是100%
-                            float stronger = (float) (0.5*(1 + (drug.nowLevel(stack))));
-                            //这个地方是减少了药水的洁净度，100-10*?（无下限）、10次后为负数，单位要除以100f
-                            float weakness = 100 - compoundTag.getInt(drugWeakness);
-                            weakness /= (1 + (drug.nowLevel(stack)));
-
-                            stronger*= weakness / 100f;
-                            //最终的奖励
-                            compoundTag.putFloat(drugStronger,stronger);
-                            compoundTag.putInt(drugTime,400*(1  + (drug.nowLevel(stack))));
-
-                            //减少数量
-                            compoundTag.putInt(drugSize,compoundTag.getInt(drugSize)-1);
                         }
                     }
                 }
@@ -130,24 +137,26 @@ public class crazy_drug extends nightmare {
                 //携带药水的数量
                 int value = (int) player.getAttributeValue(AttReg.effectNumber);
                 if (compoundTag != null) {
+                    if (compoundTag.getInt(effectCooldown) > 0) {
+                        compoundTag.putInt(effectCooldown,compoundTag.getInt(effectCooldown)-1);
+                    }
 
                     if (!compoundTag.getBoolean(drugClear)){
                         compoundTag.putInt(drugWeakness, 0);
                         compoundTag.putInt(drugSize, value);
                         compoundTag.putBoolean(drugClear,true);
                     }
-
-
-                    if (compoundTag.getInt(drugSize) > value) {
-                        compoundTag.putInt(drugSize, value);
+                    if (compoundTag.getInt(drugTime) > 0) {
+                        compoundTag.putInt(drugTime,compoundTag.getInt(drugTime)-1);
                     }
-
                     if (!player.getCooldowns().isOnCooldown(Items.crazy_drug.get())){
                         if (compoundTag.getInt(drugWeakness)>0) {
-                            compoundTag.putInt(drugWeakness, compoundTag.getInt(drugWeakness) - 10);
+                            compoundTag.putInt(drugWeakness, compoundTag.getInt(drugWeakness) - 7);
                         }
-                        compoundTag.putInt(drugSize, compoundTag.getInt(drugSize)+2);
-                        player.getCooldowns().addCooldown(Items.crazy_drug.get(), 600);
+                        if (compoundTag.getInt(drugSize)<value) {
+                            compoundTag.putInt(drugSize, compoundTag.getInt(drugSize) + 2);
+                        }
+                        player.getCooldowns().addCooldown(Items.crazy_drug.get(), (int) (350/(1+(this.nowLevel(stack))/100f)));
                     }
                 }
             }
@@ -194,6 +203,11 @@ public class crazy_drug extends nightmare {
     }
 
     @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        return !Handler.hascurio(slotContext.entity(), Items.biochemistry.get());
+    }
+
+    @Override
     public void appendHoverText(ItemStack stack, TooltipContext context, List<Component> tooltipComponents, TooltipFlag tooltipFlag) {
         tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.1").withStyle(ChatFormatting.DARK_RED));
         tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.2").withStyle(ChatFormatting.DARK_RED));
@@ -211,23 +225,33 @@ public class crazy_drug extends nightmare {
         tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.10")
                 .append(String.format("%.2f",50*(1+(this.nowLevel(stack))/100f))).withStyle(ChatFormatting.GOLD));
         tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.11")
-                .append(String.format("%.2f",10/(1+(this.nowLevel(stack))/100f))).withStyle(ChatFormatting.GOLD));
+                .append(String.format("%.2f",5/(1+(this.nowLevel(stack))/100f))).withStyle(ChatFormatting.GOLD));
         tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.12")
                 .append(String.format("%.2f",400*(1+(this.nowLevel(stack))/100f))).withStyle(ChatFormatting.GOLD));
+        tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.14")
+                .append(String.format("%.2f",350/(1+(this.nowLevel(stack))/100f))).withStyle(ChatFormatting.GOLD));
+
         CompoundTag compoundTag =stack.get(DataReg.tag);
         if (compoundTag!=null) {
             tooltipComponents.add((Component.translatable("item.crazy_drug.tool.string.13")).append(String.valueOf(compoundTag.getInt(drugSize))).withStyle(ChatFormatting.DARK_RED));
-            if (Screen.hasShiftDown()) {
 
-            }else {
-                tooltipComponents.add(Component.translatable("debug.crash.message").withStyle(ChatFormatting.RED));
-            }
+            float stronger = 50 * (1+(this.nowLevel(stack))/100f);
+            float weak = compoundTag.getFloat(drugWeakness);
+            weak /= (1 + (this.nowLevel(stack)/100f));
+            stronger -= weak;
+
+            tooltipComponents.add(Component.translatable("item.crazy_drug.tool.string.15")
+                    .append(String.format("%.2f",stronger)).append("%").withStyle(ChatFormatting.GOLD));
         }else {
             tooltipComponents.add((Component.translatable("item.crazy_drug.tool.string.13")).append(String.valueOf(0)).withStyle(ChatFormatting.DARK_RED));
         }
-
-
     }
+
+    @Override
+    public ResourceLocation image(@Nullable LivingEntity entity) {
+        return ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/tooltip/small_fire.png");
+    }
+
     @Override
     public int color(ItemStack stack) {
         return Light.ARGB.color(255,0,255,25);

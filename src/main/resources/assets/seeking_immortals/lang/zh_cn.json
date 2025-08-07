@@ -619,12 +619,15 @@
   "item.crazy_drug.tool.string.7": "每次都会减少属性加成且无下限",
   "item.crazy_drug.tool.string.8":"灵药洁净度随时间缓慢恢复",
   "item.crazy_drug.tool.string.9":"喝下的药水次数越多，属性加成越好",
-
+  "item.crazy_drug.tool.string.14": "冷却",
+  "item.crazy_drug.tool.string.15": "目前加成",
   "item.crazy_drug.tool.string.10":"目前属性加成：",
   "item.crazy_drug.tool.string.11":"目前每次减少的洁净度：",
   "item.crazy_drug.tool.string.12":"目前持续时间：",
   "item.crazy_drug.tool.string.13": "还可以喝几次：",
   "seeking_immortals.jei.item.seeking_immortals.crazy_drug": "获得一瓶满加成的刺鼻不死药",
+  "advancements.tooltip.crazy_drug.hand": "贪得无厌之死",
+  "advancements.tooltip.crazy_drug.text": "获得这个物品",
 
 
 

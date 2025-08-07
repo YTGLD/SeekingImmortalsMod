@@ -613,7 +613,7 @@
   "seeking_immortals.configuration.刺鼻不死药": "刺鼻不死药",
   "seeking_immortals.config.biochemistry": "需要的数值",
 
-"item.seeking_immortals.crazy_drug":"§4 crazy_drug",
+"item.seeking_immortals.crazy_drug":"§4.Crazy immortality elixir",
   "item.crazy_drug.tool.string.1": "Drink 10 times when the vial is full",
   "item.crazy_drug.tool.string.2":"Each sin you wear increases capacity",
   "item.crazy_drug.tool.string.3": "Press R to drink the potion in the bottle",
@@ -623,13 +623,15 @@
   "item.crazy_drug.tool.string.7": "Reduces attribute bonuses with no lower limit every time",
   "item.crazy_drug.tool.string.8": "The cleanliness of the elixir slowly recovers over time",
   "item.crazy_drug.tool.string.9":"The more potions you drink, the better the attribute bonus",
-
+  "item.crazy_drug.tool.string.15": "Current bonus",
+  "item.crazy_drug.tool.string.14": "Cooling",
 "item.crazy_drug.tool.string.10":"Current attribute bonus:",
   "item.crazy_drug.tool.string.11":"Cleanliness Reduction Per Current Reduction:",
   "item.crazy_drug.tool.string.12":"Current Duration:",
   "item.crazy_drug.tool.string.13": "How many times can you drink it:",
   "seeking_immortals.jei.item.seeking_immortals.crazy_drug": "Get a full bottle of pungent immortals",
-
+  "advancements.tooltip.crazy_drug.text": "Obtain this item",
+  "advancements.tooltip.crazy_drug.hand": "Greedy for an insatiable death",
   "item.revive_runestone.tool.string.1": "Damage Absorbs Chance Injury",
   "item.revive_runestone.tool.string.2": "Attack has a chance to drain life",
   "curse.seeking_immortals.string": "Cursed",

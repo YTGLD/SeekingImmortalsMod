@@ -24,12 +24,14 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
+import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.SlotContext;
 
 import java.util.List;
@@ -202,6 +204,10 @@ public class biochemistry extends nightmare {
         }
         return modifiers;
     }
+    @Override
+    public boolean canEquip(SlotContext slotContext, ItemStack stack) {
+        return !Handler.hascurio(slotContext.entity(), Items.crazy_drug.get());
+    }
 
     /**
      * 刺鼻不死药：
@@ -256,7 +262,10 @@ public class biochemistry extends nightmare {
             tooltipComponents.add((Component.translatable("item.biochemistry.tool.string.10")).append(String.valueOf(0)).withStyle(ChatFormatting.DARK_RED));
         }
     }
-
+    @Override
+    public ResourceLocation image(@Nullable LivingEntity entity) {
+        return ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/tooltip/small_fire.png");
+    }
     @Override
     public int nowLevel(ItemStack stack) {
         CompoundTag compoundTag = stack.get(DataReg.tag);
