@@ -16,9 +16,15 @@ import java.util.List;
 
 public class nightmare_base_reversal_orb extends nightmare implements SuperNightmare {
     public static void LivingHealEvent(LivingHealEvent event) {
-        if (event.getEntity() instanceof Player player) {
-            if (Handler.hascurio(player, Items.nightmare_base_reversal_orb.get())) {
-                player.hurt(player.damageSources().dryOut(), event.getAmount());
+        if (event.getEntity() instanceof Player player){
+            if (Handler.hascurio(player, Items.nightmare_base_reversal_orb.get())){
+                if (player.getHealth() > 10){
+                    if (event.getAmount() > player.getHealth()){
+                        player.setHealth(1);
+                    }else {
+                        player.setHealth(player.getHealth() - event.getAmount());
+                    }
+                }
                 event.setAmount(0);
             }
         }

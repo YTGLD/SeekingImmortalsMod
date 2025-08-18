@@ -181,6 +181,22 @@ public class MRender extends RenderType {
                                             false,
                                             false).add(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"textures/ging.png"),
                                             false, false).build()).createCompositeState(false));
+
+    public static final RenderType gingAlpha =
+            create("ging_alpha",
+                    DefaultVertexFormat.POSITION,
+                    VertexFormat.Mode.QUADS,
+                    256,
+                    false,
+                    false,
+                    CompositeState.builder().setCullState(NO_CULL)
+                            .setShaderState(RENDER_STATE_SHARD_ging)
+                            .setTransparencyState(LIGHTNING_TRANSPARENCY)
+                            .setTextureState(MultiTextureStateShard.builder().
+                                    add(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"textures/ging.png"),
+                                            false,
+                                            false).add(ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID,"textures/ging.png"),
+                                            false, false).build()).createCompositeState(false));
     public static final RenderType endBloodOutline =
             create("end_blood",
                     DefaultVertexFormat.POSITION,

@@ -12,8 +12,10 @@ import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
 import com.ytgld.seeking_immortals.item.nightmare.base.blood_ring;
 import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
+import com.ytgld.seeking_immortals.renderer.MRender;
 import com.ytgld.seeking_immortals.renderer.light.Light;
 import net.minecraft.ChatFormatting;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -351,6 +353,16 @@ public class nightmare_base extends nightmare {
     @Override
     public boolean showFire(ItemStack stack) {
         return false;
+    }
+
+    @Override
+    public boolean isTrail(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public RenderType getTrailRenderType(ItemStack stack) {
+        return MRender.gingAlpha;
     }
 
     @Override

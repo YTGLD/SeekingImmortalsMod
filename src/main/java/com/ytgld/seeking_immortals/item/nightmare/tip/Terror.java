@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.item.nightmare.tip;
 
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.LivingEntity;
@@ -16,6 +17,8 @@ public interface Terror {
     int nowLevel(ItemStack stack);
     boolean showFire(ItemStack stack);
     boolean isRot(ItemStack stack);
+    boolean isTrail(ItemStack stack);
+    RenderType getTrailRenderType(ItemStack stack);
     int color(ItemStack stack);
 
 }

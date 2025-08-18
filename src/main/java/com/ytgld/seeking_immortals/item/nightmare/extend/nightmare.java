@@ -4,6 +4,8 @@ import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.item.nightmare.tip.ILevel;
 import com.ytgld.seeking_immortals.item.nightmare.tip.Terror;
+import com.ytgld.seeking_immortals.renderer.MRender;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
@@ -112,6 +114,16 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror, 
     @Override
     public boolean isRot(ItemStack stack) {
         return false;
+    }
+
+    @Override
+    public boolean isTrail(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public RenderType getTrailRenderType(ItemStack stack) {
+        return MRender.light;
     }
 
     @Override
