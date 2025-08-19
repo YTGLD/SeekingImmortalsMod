@@ -33,7 +33,7 @@ public class defend_against_runestone extends nightmare implements SuperNightmar
         if (event.getEntity() instanceof Player player) {
             if (!player.getCooldowns().isOnCooldown(Items.defend_against_runestone.get())) {
                 if (Handler.hascurio(player, Items.defend_against_runestone.get())) {
-                    if (Mth.nextInt(RandomSource.create(), 0, 100) <= 25) {
+                    if (Mth.nextInt(RandomSource.create(), 0, 100) <= 15) {
                         player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 100, 1));
                         player.getCooldowns().addCooldown(Items.defend_against_runestone.get(),30);
                     }
@@ -44,7 +44,7 @@ public class defend_against_runestone extends nightmare implements SuperNightmar
             if (event.getEntity() instanceof LivingEntity living) {
                 if (!player.getCooldowns().isOnCooldown(Items.defend_against_runestone.get())) {
                     if (Handler.hascurio(player, Items.defend_against_runestone.get())) {
-                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 25) {
+                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 15) {
                             living.addEffect(new MobEffectInstance(MobEffects.WEAKNESS, 100, 1));
                             player.getCooldowns().addCooldown(Items.defend_against_runestone.get(),30);
                         }

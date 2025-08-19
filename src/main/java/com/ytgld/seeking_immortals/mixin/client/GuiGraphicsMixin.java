@@ -6,6 +6,7 @@ import com.mojang.math.Axis;
 import com.ytgld.seeking_immortals.MGuiGraphics;
 import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.event.old.NewEvent;
+import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.nightmare_base;
@@ -69,7 +70,7 @@ public abstract class GuiGraphicsMixin implements IGuiGraphics {
             }
         }
     }
-    @Inject(at = {@At("RETURN")}, method = {"Lnet/minecraft/client/gui/GuiGraphics;renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V"})
+    @Inject(at = {@At("RETURN")}, method = {"renderItem(Lnet/minecraft/world/entity/LivingEntity;Lnet/minecraft/world/level/Level;Lnet/minecraft/world/item/ItemStack;IIII)V"})
     public void ca$renderItemDecorationsRenderItem(LivingEntity entity, Level level, ItemStack stack, int x, int y, int seed, int guiOffset, CallbackInfo ci) {
         if (entity != null) {
             if (stack.getItem() instanceof nightmare nightmare){

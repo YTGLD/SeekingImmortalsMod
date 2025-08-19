@@ -9,6 +9,9 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.component.DataComponents;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.LivingEntity;
@@ -35,8 +38,6 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror, 
         super(new Properties().stacksTo(1).component(CuriosRegistry.CURIO_ATTRIBUTE_MODIFIERS, CurioAttributeModifiers.EMPTY)
                 .durability(1000000000).rarity(Rarity.UNCOMMON));
     }
-
-
     @Override
     public List<Component> getAttributesTooltip(List<Component> tooltips, TooltipContext context, ItemStack stack) {
         tooltips.clear();
@@ -69,7 +70,6 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror, 
         return ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/tooltip/fire.png");
 
     }
-
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
         Component component = super.getName(stack);

@@ -32,10 +32,8 @@ import top.theillusivec4.curios.api.CuriosApi;
 import top.theillusivec4.curios.api.type.inventory.ICurioStacksHandler;
 import top.theillusivec4.curios.api.type.inventory.IDynamicStackHandler;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Map;
+import java.lang.reflect.Field;
+import java.util.*;
 
 public class AdvancementEvt {
 
@@ -305,13 +303,16 @@ public class AdvancementEvt {
                             ItemStack stack = stackHandler.getStackInSlot(i);
                             if (stack.is(Items.nightmare_base_stone.get())) {
                                 if (stack.get(DataReg.tag) != null) {
+                                    int intWarden = Mth.nextInt(RandomSource.create(),0,3);
                                     if (event.getEntity() instanceof Warden warden) {
-                                        if (!stack.get(DataReg.tag).getBoolean(end_bone)) {
+                                        if (intWarden == 1) {
+                                            if (!stack.get(DataReg.tag).getBoolean(end_bone)) {
 
-                                            event.getDrops().add(new ItemEntity(warden.level(),warden.getX(),warden.getY(),warden.getZ(),
-                                                    new ItemStack(Items.end_bone)));
+                                                event.getDrops().add(new ItemEntity(warden.level(), warden.getX(), warden.getY(), warden.getZ(),
+                                                        new ItemStack(Items.end_bone)));
 
-                                            stack.get(DataReg.tag).putBoolean(end_bone, true);
+                                                stack.get(DataReg.tag).putBoolean(end_bone, true);
+                                            }
                                         }
                                     }
                                 }
@@ -335,13 +336,16 @@ public class AdvancementEvt {
                             ItemStack stack = stackHandler.getStackInSlot(i);
                             if (stack.is(Items.nightmare_base_start.get())) {
                                 if (stack.get(DataReg.tag) != null) {
+                                    int intWarden = Mth.nextInt(RandomSource.create(),0,4);
                                     if (event.getEntity() instanceof Warden warden) {
-                                        if (!stack.get(DataReg.tag).getBoolean(nightmare_base_start_power)) {
+                                        if (intWarden == 2) {
+                                            if (!stack.get(DataReg.tag).getBoolean(nightmare_base_start_power)) {
 
-                                            event.getDrops().add(new ItemEntity(warden.level(),warden.getX(),warden.getY(),warden.getZ(),
-                                                    new ItemStack(Items.nightmare_base_start_power)));
+                                                event.getDrops().add(new ItemEntity(warden.level(), warden.getX(), warden.getY(), warden.getZ(),
+                                                        new ItemStack(Items.nightmare_base_start_power)));
 
-                                            stack.get(DataReg.tag).putBoolean(nightmare_base_start_power, true);
+                                                stack.get(DataReg.tag).putBoolean(nightmare_base_start_power, true);
+                                            }
                                         }
                                     }
                                 }
@@ -437,12 +441,15 @@ public class AdvancementEvt {
                             if (stack.is(Items.nightmare_base_fool.get())) {
                                 if (stack.get(DataReg.tag) != null) {
                                     if (event.getEntity() instanceof Warden warden) {
-                                        if (!stack.get(DataReg.tag).getBoolean(nightmare_base_fool_bone)) {
+                                        int intWarden = Mth.nextInt(RandomSource.create(),0,2);
+                                        if (intWarden  == 1) {
+                                            if (!stack.get(DataReg.tag).getBoolean(nightmare_base_fool_bone)) {
 
-                                            event.getDrops().add(new ItemEntity(warden.level(),warden.getX(),warden.getY(),warden.getZ(),
-                                                    new ItemStack(Items.nightmare_base_fool_bone)));
+                                                event.getDrops().add(new ItemEntity(warden.level(), warden.getX(), warden.getY(), warden.getZ(),
+                                                        new ItemStack(Items.nightmare_base_fool_bone)));
 
-                                            stack.get(DataReg.tag).putBoolean(nightmare_base_fool_bone, true);
+                                                stack.get(DataReg.tag).putBoolean(nightmare_base_fool_bone, true);
+                                            }
                                         }
                                     }
                                 }
@@ -698,13 +705,16 @@ public class AdvancementEvt {
                             ItemStack stack = stackHandler.getStackInSlot(i);
                             if (stack.is(Items.nightmare_base_black_eye.get())) {
                                 if (stack.get(DataReg.tag) != null) {
+                                    int intWarden = Mth.nextInt(RandomSource.create(),0,7);
                                     if (event.getEntity() instanceof Warden warden) {
-                                        if (!stack.get(DataReg.tag).getBoolean(nightmare_base_black_eye_eye)) {
+                                        if (intWarden == 1) {
+                                            if (!stack.get(DataReg.tag).getBoolean(nightmare_base_black_eye_eye)) {
 
-                                            event.getDrops().add(new ItemEntity(warden.level(),warden.getX(),warden.getY(),warden.getZ(),
-                                                    new ItemStack(Items.nightmare_base_black_eye_eye)));
+                                                event.getDrops().add(new ItemEntity(warden.level(), warden.getX(), warden.getY(), warden.getZ(),
+                                                        new ItemStack(Items.nightmare_base_black_eye_eye)));
 
-                                            stack.get(DataReg.tag).putBoolean(nightmare_base_black_eye_eye, true);
+                                                stack.get(DataReg.tag).putBoolean(nightmare_base_black_eye_eye, true);
+                                            }
                                         }
                                     }
                                 }

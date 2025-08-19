@@ -129,6 +129,15 @@ public class blood_god extends nightmare implements SuperNightmare, AllTip {
     }
 
     @Override
+    public boolean canUnequip(SlotContext slotContext, ItemStack stack) {
+        CompoundTag compoundTag = stack.get(DataReg.tag);
+        if (compoundTag != null) {
+            return compoundTag.getInt(bloodTime) <= 0;
+        }
+        return true;
+    }
+
+    @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if (slotContext.entity() instanceof Player player) {
             CompoundTag compoundTag = stack.get(DataReg.tag);

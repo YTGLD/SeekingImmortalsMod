@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "ingredients": [
+    {
+      "item": "seeking_immortals:nightmare_base"
+    }
+  ],
+  "result": {
+    "id": "seeking_immortals:the_divine_fall_ring",
+    "count": 1
+  }
+}

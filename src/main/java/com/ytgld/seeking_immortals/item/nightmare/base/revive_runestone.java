@@ -25,7 +25,7 @@ public class revive_runestone  extends nightmare implements SuperNightmare {
         if (event.getEntity() instanceof Player player) {
             if (!player.getCooldowns().isOnCooldown(Items.revive_runestone.get())) {
                 if (Handler.hascurio(player, Items.revive_runestone.get())) {
-                    if (Mth.nextInt(RandomSource.create(), 0, 100) <= 25) {
+                    if (Mth.nextInt(RandomSource.create(), 0, 100) <= 15) {
                         player.addEffect(new MobEffectInstance(MobEffects.ABSORPTION, 100, 1));
                         player.getCooldowns().addCooldown(Items.revive_runestone.get(), 10);
                     }
@@ -36,7 +36,7 @@ public class revive_runestone  extends nightmare implements SuperNightmare {
             if (event.getEntity() instanceof LivingEntity living) {
                 if (!player.getCooldowns().isOnCooldown(Items.revive_runestone.get())) {
                     if (Handler.hascurio(player, Items.revive_runestone.get())) {
-                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 25) {
+                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 15) {
                             player.heal(6);
                             player.getCooldowns().addCooldown(Items.revive_runestone.get(), 10);
                         }

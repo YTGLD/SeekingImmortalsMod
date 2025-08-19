@@ -636,6 +636,15 @@
   "item.strengthen_runestone.tool.string.1": "攻击有概率获得力量",
   "item.strengthen_runestone.tool.string.2": "受伤有概率反弹伤害",
 
+  "item.seeking_immortals.the_divine_fall_ring":"§4神陨·天启之戒",
+  "item.the_divine_fall_ring.tool.string.1": "带上它 你将免疫黑暗",
+  "item.the_divine_fall_ring.tool.string.2": "带上它 你将免疫失明",
+  "item.the_divine_fall_ring.tool.string.3": "增加百分之百经验掉落",
+  "item.the_divine_fall_ring.tool.string.4": "增加十的伤害 生命 护甲",
+  "item.the_divine_fall_ring.tool.string.5": "复活时给予十秒无敌",
+  "item.the_divine_fall_ring.tool.string.6": "增加百分之五十治疗",
+  "item.the_divine_fall_ring.tool.string.7": "生命值越低 各方面属性越高",
+
 
   "item.eye.tool.string.7": "剥离你所看注视生物的灵魂",
   "item.eye.tool.string.8": "灵魂会飞向你，若撞击到生物则造成大量负面效果和4点魔法伤害",

@@ -640,6 +640,16 @@
   "item.strengthen_runestone.tool.string.1": "Attack has a chance to gain Strength II",
   "item.strengthen_runestone.tool.string.2": "Damage has a chance to reflect damage",
 
+
+"item.seeking_immortals.the_divine_fall_ring":"§4 Divine Fall: Ring of Apocalypse",
+  "item.the_divine_fall_ring.tool.string.1": "Take it and you will be immune to darkness",
+  "item.the_divine_fall_ring.tool.string.2": "Take it and you will be immune to blindness",
+  "item.the_divine_fall_ring.tool.string.3": "Increase experience drops by 100%",
+  "item.the_divine_fall_ring.tool.string.4": "Increases damage by ten Life Armor",
+  "item.the_divine_fall_ring.tool.string.5": "Grant 10 seconds of invincibility on revive",
+  "item.the_divine_fall_ring.tool.string.6": "increase healing by 50%",
+  "item.the_divine_fall_ring.tool.string.7": "The lower the health, the higher the stats in all aspects",
+
   "seeking_immortals.jei.item.seeking_immortals.defend_against_runestone": "Found in dungeons and mines, 10% chance, one player can only get one",
   "seeking_immortals.jei.item.seeking_immortals.revive_runestone": "Found in dungeons and mines, 10% chance, one player can only get one",
   "seeking_immortals.jei.item.seeking_immortals.strengthen_runestone": "Found in dungeons and mines, 10% chance, only one player can get one",

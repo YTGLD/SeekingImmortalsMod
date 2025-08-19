@@ -17,6 +17,7 @@ public class Tab {
             .icon(()->new ItemStack(Items.nightmare_base.get()))
             .title(Component.translatable("itemGroup.seeking_immortals"))
             .displayItems((a,b)->{
+                b.accept(new ItemStack(Items.the_divine_fall_ring.get()));
 
                 b.accept(new ItemStack(Items.blood_god.get()));
                 b.accept(new ItemStack(Items.bone_or_god.get()));

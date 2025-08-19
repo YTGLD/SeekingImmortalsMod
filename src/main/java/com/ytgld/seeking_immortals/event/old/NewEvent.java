@@ -7,12 +7,10 @@ import com.ytgld.seeking_immortals.init.AttReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
-import com.ytgld.seeking_immortals.item.nightmare.base.biochemistry;
+import com.ytgld.seeking_immortals.item.nightmare.base.*;
 import com.ytgld.seeking_immortals.item.nightmare.extend.MainNightmare;
+import com.ytgld.seeking_immortals.item.nightmare.the_divine_fall_ring;
 import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
-import com.ytgld.seeking_immortals.item.nightmare.base.blood_god;
-import com.ytgld.seeking_immortals.item.nightmare.base.bone_or_god;
-import com.ytgld.seeking_immortals.item.nightmare.base.strengthen_runestone;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.falling_immortals;
@@ -254,6 +252,8 @@ public class NewEvent {
         bone_or_god.hurt(event);
         nightmare_base.blood_ringDamage(event);
         nightmare_base.biochemistry(event);
+        defend_against_runestone.hurt(event);
+        revive_runestone.hurt(event);
         if (event.getEntity().hasEffect(Effects.dead) && event.getEntity().getEffect(Effects.dead)!=null){
             float lvl = event.getEntity().getEffect(Effects.dead).getAmplifier();
             lvl *= 0.2f;
@@ -300,6 +300,7 @@ public class NewEvent {
     @SubscribeEvent
     public  void LivingExperienceDropEvent(LivingExperienceDropEvent event) {
         nightmare_base_insight.exp(event);
+        the_divine_fall_ring.exp(event);
     }
     @SubscribeEvent
     public  void PlayerLoggedInEvent(PlayerEvent.PlayerLoggedInEvent event) {

@@ -109,11 +109,19 @@ public class ToolTip  implements ClientTooltipComponent, TooltipComponent {
                     b = 255;
                 }
 
-                drawString(guiGraphics, font, String.valueOf(character),
-                        x + j * font.width(String.valueOf(character)) + offsetX,
-                        y + yOFfSize + offsetY,
-                        Light.ARGB.color(a, 255, b/4,b ),
-                        false);
+                if (!(stack.getItem() instanceof Godtip)) {
+                    drawString(guiGraphics, font, String.valueOf(character),
+                            x + j * font.width(String.valueOf(character)) + offsetX,
+                            y + yOFfSize + offsetY,
+                            Light.ARGB.color(a, 255, b / 4, b),
+                            false);
+                }else {
+                    drawString(guiGraphics, font, String.valueOf(character),
+                            x + j * font.width(String.valueOf(character)) + offsetX,
+                            y + yOFfSize + offsetY,
+                            Light.ARGB.color(a, 255, b / 4, 0),
+                            false);
+                }
                 poseStack.popPose();
             }
         }

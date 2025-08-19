@@ -1,5 +1,6 @@
 package com.ytgld.seeking_immortals.mixin.client;
 
+import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.nightmare;
 import com.ytgld.seeking_immortals.renderer.IAbstractContainerScreen;
@@ -40,7 +41,7 @@ public abstract class AbstractContainerScreenMixin <T extends AbstractContainerM
     public void Lnet(GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTick, CallbackInfo ci){
         ItemStack itemstack = this.menu.getCarried();
         if (!itemstack.isEmpty()){
-            if (itemstack.getItem() instanceof nightmare) {
+            if (itemstack.getItem() instanceof INightmare) {
                 seekingImmortals$vec2.add(new Vec2(mouseX, mouseY));
             }
         }else {

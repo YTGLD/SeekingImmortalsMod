@@ -26,7 +26,7 @@ public class strengthen_runestone extends nightmare implements SuperNightmare {
             if (!player.getCooldowns().isOnCooldown(Items.strengthen_runestone.get())) {
                 if (event.getSource().getEntity() instanceof LivingEntity living) {
                     if (Handler.hascurio(player, Items.strengthen_runestone.get())) {
-                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 25) {
+                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 15) {
                             living.hurt(living.damageSources().magic(), event.getAmount() * 0.2f);
                             player.getCooldowns().addCooldown(Items.strengthen_runestone.get(),30);
                         }
@@ -39,7 +39,7 @@ public class strengthen_runestone extends nightmare implements SuperNightmare {
             if (!player.getCooldowns().isOnCooldown(Items.strengthen_runestone.get())) {
                 if (event.getEntity() instanceof LivingEntity) {
                     if (Handler.hascurio(player, Items.strengthen_runestone.get())) {
-                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 25) {
+                        if (Mth.nextInt(RandomSource.create(), 0, 100) <= 15) {
                             player.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 1));
                             player.getCooldowns().addCooldown(Items.strengthen_runestone.get(),30);
                         }

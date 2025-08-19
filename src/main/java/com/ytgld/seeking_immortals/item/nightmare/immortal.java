@@ -2,15 +2,22 @@ package com.ytgld.seeking_immortals.item.nightmare;
 
 import com.ytgld.seeking_immortals.Config;
 import com.ytgld.seeking_immortals.Handler;
+import com.ytgld.seeking_immortals.SeekingImmortalsMod;
 import com.ytgld.seeking_immortals.event.CurioHurtEvent;
+import com.ytgld.seeking_immortals.event.old.NewEvent;
 import com.ytgld.seeking_immortals.init.DataReg;
 import com.ytgld.seeking_immortals.init.Effects;
 import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
+import com.ytgld.seeking_immortals.item.nightmare.tip.Terror;
+import com.ytgld.seeking_immortals.renderer.MRender;
+import com.ytgld.seeking_immortals.renderer.light.Light;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.gui.screens.Screen;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
@@ -33,6 +40,7 @@ import top.theillusivec4.curios.api.type.capability.ICurioItem;
 import top.theillusivec4.curios.common.CuriosRegistry;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * 不朽轮回之印章
@@ -53,8 +61,53 @@ import java.util.List;
  * <p>
  * 深渊和噩梦物品无效化
  */
-public class immortal extends Item implements ICurioItem , INightmare {
+public class immortal extends Item implements ICurioItem , INightmare , Terror {
+    @Override
+    public ResourceLocation image(@Nullable LivingEntity entity) {
+        return ResourceLocation.fromNamespaceAndPath(SeekingImmortalsMod.MODID, "textures/gui/tooltip/fire.png");
 
+    }
+
+    @Nullable
+    @Override
+    public Map<Integer, Component> describe(ItemStack stack) {
+        return null;
+    }
+
+    @Override
+    public int maxLevel(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public int nowLevel(ItemStack stack) {
+        return 1;
+    }
+
+    @Override
+    public boolean showFire(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public boolean isRot(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public boolean isTrail(ItemStack stack) {
+        return false;
+    }
+
+    @Override
+    public RenderType getTrailRenderType(ItemStack stack) {
+        return MRender.light;
+    }
+
+    @Override
+    public int color(ItemStack stack) {
+        return Light.ARGB.color(255,255,0,100);
+    }
 
     public static final String transmigrateTag ="TransmigrateTag";
 
