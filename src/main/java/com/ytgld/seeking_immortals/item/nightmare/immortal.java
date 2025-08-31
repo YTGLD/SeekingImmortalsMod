@@ -17,6 +17,9 @@ import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
+import net.minecraft.network.chat.Style;
+import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -33,6 +36,7 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.neoforged.neoforge.event.entity.living.LivingDeathEvent;
 import net.neoforged.neoforge.event.entity.living.LivingIncomingDamageEvent;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CurioAttributeModifiers;
 import top.theillusivec4.curios.api.SlotContext;
@@ -154,7 +158,13 @@ public class immortal extends Item implements ICurioItem , INightmare , Terror {
         }
     }
 
-
+    @Override
+    public @NotNull Component getName(@NotNull ItemStack stack) {
+        Component component = super.getName(stack);
+        MutableComponent co = component.copy();
+        co.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFFF0000)));
+        return co;
+    }
     @Override
     public void curioTick(SlotContext slotContext, ItemStack stack) {
         if (slotContext.entity() instanceof Player player){

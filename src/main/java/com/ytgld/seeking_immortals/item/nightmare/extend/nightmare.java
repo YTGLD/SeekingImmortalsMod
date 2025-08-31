@@ -38,6 +38,7 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror, 
         super(new Properties().stacksTo(1).component(CuriosRegistry.CURIO_ATTRIBUTE_MODIFIERS, CurioAttributeModifiers.EMPTY)
                 .durability(1000000000).rarity(Rarity.UNCOMMON));
     }
+
     @Override
     public List<Component> getAttributesTooltip(List<Component> tooltips, TooltipContext context, ItemStack stack) {
         tooltips.clear();
@@ -73,19 +74,11 @@ public class nightmare extends Item implements ICurioItem, INightmare , Terror, 
     @Override
     public @NotNull Component getName(@NotNull ItemStack stack) {
         Component component = super.getName(stack);
-        @Nullable Map<Integer, Component> map = this.describe(stack);
-        if (map != null) {
-            Integer integer = map.keySet().stream().toList().get(this.nowLevel(stack)-1);
-            if (integer!=-1) {
-                return map.get(integer).copy().append(component);
-            }else {
-                return component;
-            }
-        }
-
-
-        return component;
+        MutableComponent co = component.copy();
+        co.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFFF0000)));
+        return co;
     }
+
 
     public int getOneLevel() {
         return 0;

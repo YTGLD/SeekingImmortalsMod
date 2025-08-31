@@ -6,6 +6,7 @@ import com.ytgld.seeking_immortals.item.nightmare.element.yoke;
 import com.ytgld.seeking_immortals.item.nightmare.eye;
 import com.ytgld.seeking_immortals.item.nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.base.*;
+import com.ytgld.seeking_immortals.item.nightmare.fall.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.eye.*;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.fool.*;
@@ -79,8 +80,9 @@ public class Items {
     public static final DeferredHolder<Item,?> biochemistry =REGISTRY.register("biochemistry", biochemistry::new);
 
     public static final DeferredHolder<Item,?> crazy_drug =REGISTRY.register("crazy_drug", crazy_drug::new);
-    public static final DeferredHolder<Item,?> the_divine_fall_ring =REGISTRY.register("the_divine_fall_ring", the_divine_fall_ring::new);
-
+    public static final DeferredHolder<Item,?> the_divine_fall_ring =REGISTRY.register("the_divine_fall_ring",the_divine_fall_ring::new);
+    public static final DeferredHolder<Item,?> vientiane_cauldron =REGISTRY.register("vientiane_cauldron",vientiane_cauldron::new);
+    public static final DeferredHolder<Item,?> alchemy_pot =REGISTRY.register("alchemy_pot", alchemy_pot::new);
 
     public static final DeferredHolder<Item,?> bone_or_god =REGISTRY.register("bone_or_god", bone_or_god::new);
 

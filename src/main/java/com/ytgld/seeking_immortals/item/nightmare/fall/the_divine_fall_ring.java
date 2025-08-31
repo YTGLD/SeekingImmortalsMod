@@ -1,4 +1,4 @@
-package com.ytgld.seeking_immortals.item.nightmare;
+package com.ytgld.seeking_immortals.item.nightmare.fall;
 
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.Multimap;
@@ -19,6 +19,7 @@ import net.minecraft.client.renderer.RenderType;
 import net.minecraft.core.Holder;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 import net.minecraft.network.chat.TextColor;
 import net.minecraft.resources.ResourceLocation;
@@ -34,6 +35,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.storage.loot.LootContext;
 import net.neoforged.neoforge.event.entity.living.LivingExperienceDropEvent;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import top.theillusivec4.curios.api.CurioAttributeModifiers;
 import top.theillusivec4.curios.api.CuriosApi;
@@ -164,7 +166,13 @@ public class the_divine_fall_ring extends Item implements ICurioItem, INightmare
 
         tooltipComponents.add(Component.translatable("item.immortal.tool.string.5").withStyle(ChatFormatting.RED));
     }
-
+    @Override
+    public @NotNull Component getName(@NotNull ItemStack stack) {
+        Component component = super.getName(stack);
+        MutableComponent co = component.copy();
+        co.setStyle(Style.EMPTY.withColor(TextColor.fromRgb(0XFFFF0000)));
+        return co;
+    }
     public void addTip(List<Component> tooltipComponents, String Z) {
         int red  = 255;
         int purple  = 255;

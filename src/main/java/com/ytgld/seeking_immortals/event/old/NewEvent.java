@@ -9,7 +9,7 @@ import com.ytgld.seeking_immortals.init.Items;
 import com.ytgld.seeking_immortals.item.an_element.AllElement;
 import com.ytgld.seeking_immortals.item.nightmare.base.*;
 import com.ytgld.seeking_immortals.item.nightmare.extend.MainNightmare;
-import com.ytgld.seeking_immortals.item.nightmare.the_divine_fall_ring;
+import com.ytgld.seeking_immortals.item.nightmare.fall.the_divine_fall_ring;
 import com.ytgld.seeking_immortals.item.nightmare.tip.AllTip;
 import com.ytgld.seeking_immortals.item.nightmare.extend.INightmare;
 import com.ytgld.seeking_immortals.item.nightmare.extend.SuperNightmare;
@@ -31,6 +31,7 @@ import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.start.wolf;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.end_bone;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.nightmare_base_stone_brain;
 import com.ytgld.seeking_immortals.item.nightmare.super_nightmare.stone.nightmare_base_stone_virus;
+import com.ytgld.seeking_immortals.item.nightmare.vientiane_cauldron;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.network.chat.Component;
@@ -49,7 +50,6 @@ import net.neoforged.neoforge.client.event.RenderTooltipEvent;
 import net.neoforged.neoforge.common.NeoForge;
 import net.neoforged.neoforge.common.util.TriState;
 import net.neoforged.neoforge.event.entity.living.*;
-import net.neoforged.neoforge.event.entity.player.AdvancementEvent;
 import net.neoforged.neoforge.event.entity.player.CriticalHitEvent;
 import net.neoforged.neoforge.event.entity.player.ItemTooltipEvent;
 import net.neoforged.neoforge.event.entity.player.PlayerEvent;
@@ -223,6 +223,7 @@ public class NewEvent {
         nightmare_base_insight_insane.LivingDeathEvents(event);
         falling_immortals.dieEqItem(event);
         nightmare_base.killGive(event);
+        vientiane_cauldron.kill(event);
     }
     @SubscribeEvent
     public void effect(MobEffectEvent.Added event){
